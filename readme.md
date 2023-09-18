@@ -1,8 +1,12 @@
-# starryui
+# Starry UI
 
 ![starry project logo, black square with 3 starlike patterns of pixels](./starryui.png)
 
 Starry UI Monorepo
+
+## Installation
+
+See the list of available components at https://www.npmjs.com/org/starryui
 
 ## Development
 
