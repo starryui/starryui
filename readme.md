@@ -1,5 +1,7 @@
 # starryui
 
+![starry project logo, black square with 3 starlike patterns of pixels](./starryui.png)
+
 Starry UI Monorepo
 
 ## Development
