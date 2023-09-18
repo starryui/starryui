@@ -1,1 +1,1 @@
-# StarryUI Button
+# StarryUI Traits
