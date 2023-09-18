@@ -1,7 +1,7 @@
 import { button } from '@starryui/button'
+import { attachStyle, withTheme } from '@starryui/theme'
 import { themeMidnight } from '@starryui/theme-midnight'
 import { withClick, withTextContent } from '@starryui/traits'
-import { attachStyle, withTheme } from 'packages/theme'
 
 attachStyle('body', themeMidnight.facets.body)
 
