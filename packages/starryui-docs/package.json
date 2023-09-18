@@ -5,12 +5,14 @@
  "description": "",
  "main": "dist/index.js",
  "scripts": {
-  "compile": "rm -rf dist/* && tsc -p tsconfig.pkg.json"
+  "compile": "rm -rf dist/* && tsc -noEmit -p tsconfig.pkg.json && esbuild index.ts --bundle --outfile=dist/main.js",
+  "compile-watch": "rm -rf dist/* && esbuild index.ts --watch --bundle --outfile=dist/main.js"
  },
  "keywords": [],
  "author": "",
  "license": "ISC",
  "dependencies": {
-  "@starryui/button": "^0.0.0"
+  "@starryui/button": "^0.0.0",
+  "@starryui/theme-midnight": "^0.0.0"
  }
 }

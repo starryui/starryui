@@ -1,9 +1,10 @@
 {
- "name": "@starryui/button",
+ "name": "@starryui/theme",
  "version": "0.0.0",
  "types": "dist/index.d.ts",
  "description": "",
  "main": "dist/index.js",
+ "devDependencies": {},
  "scripts": {
   "compile": "rm -rf dist/* && tsc -p tsconfig.pkg.json"
  },

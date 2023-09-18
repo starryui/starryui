@@ -1,5 +1,17 @@
 import { button } from '@starryui/button'
+import { themeMidnight } from '@starryui/theme-midnight'
+import { withClick, withTextContent } from '@starryui/traits'
+import { attachStyle, withTheme } from 'packages/theme'
 
-const hello = button()
-hello.textContent = 'Hello world'
-document.body.appendChild(hello)
+attachStyle('body', themeMidnight.facets.body)
+
+const hello = button(withTheme(themeMidnight))
+
+document.body.appendChild(
+ hello.add(
+  withTextContent('Hello world'),
+  withClick(function () {
+   console.log('clicked')
+  })
+ )()
+)

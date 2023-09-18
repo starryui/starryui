@@ -1,14 +1,15 @@
 {
  "exclude": ["node_modules", "dist"],
  "compilerOptions": {
-  "target": "ES2022",
-  "module": "commonjs",
-  "strict": true,
-  "esModuleInterop": true,
-  "skipLibCheck": true,
-  "forceConsistentCasingInFileNames": true,
   "declaration": true,
+  "esModuleInterop": true,
+  "forceConsistentCasingInFileNames": true,
   "incremental": true,
+  "isolatedModules": true,
+  "module": "commonjs",
+  "skipLibCheck": true,
+  "strict": true,
+  "target": "ES2022",
   "paths": {
    "@starryui/*": ["./packages/*/"]
   }

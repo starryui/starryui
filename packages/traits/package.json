@@ -1,9 +1,10 @@
 {
- "name": "@starryui/button",
+ "name": "@starryui/traits",
  "version": "0.0.0",
  "types": "dist/index.d.ts",
  "description": "",
  "main": "dist/index.js",
+ "devDependencies": {},
  "scripts": {
   "compile": "rm -rf dist/* && tsc -p tsconfig.pkg.json"
  },
@@ -11,6 +12,6 @@
  "author": "",
  "license": "ISC",
  "dependencies": {
-  "@starryui/traits": "^0.0.0"
+  "@starryui/theme": "^0.0.0"
  }
 }

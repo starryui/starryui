@@ -2,6 +2,8 @@
  "private": true,
  "scripts": {
   "build": "npm run compile -ws",
+  "docs": "cd packages/starryui-docs && python -m http.server",
+  "docs-watch": "rm -rf ./packages/*/dist && cd packages/starryui-docs && concurrently \"python -m http.server\" \"npm run compile-watch\"",
   "publish-all": "npm publish --workspaces --access public"
  },
  "workspaces": [
@@ -9,6 +11,8 @@
  ],
  "devDependencies": {
   "@types/node": "^20.6.2",
+  "concurrently": "^8.2.1",
+  "esbuild": "0.19.3",
   "typescript": "^5.2.2"
  }
 }
