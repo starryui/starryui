@@ -1,0 +1,14 @@
+{
+ "private": true,
+ "scripts": {
+  "build": "npm run compile -ws",
+  "publish-all": "npm publish --workspaces --access public"
+ },
+ "workspaces": [
+  "./packages/*"
+ ],
+ "devDependencies": {
+  "@types/node": "^20.6.2",
+  "typescript": "^5.2.2"
+ }
+}

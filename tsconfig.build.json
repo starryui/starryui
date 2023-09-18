@@ -1,0 +1,16 @@
+{
+ "exclude": ["node_modules", "dist"],
+ "compilerOptions": {
+  "target": "ES2022",
+  "module": "commonjs",
+  "strict": true,
+  "esModuleInterop": true,
+  "skipLibCheck": true,
+  "forceConsistentCasingInFileNames": true,
+  "declaration": true,
+  "incremental": true,
+  "paths": {
+   "@starryui/*": ["./packages/*/"]
+  }
+ }
+}
