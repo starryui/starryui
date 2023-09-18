@@ -36,9 +36,5 @@ export function attachThemeFacetStyle(theme: StarryUITheme, facet: string) {
  if (!(facet in theme.facets)) {
   throw new Error(`theme '${theme.name}' does not contain facet: '${facet}'`)
  }
- const styleElement = attachStyle(
-  `.${theme.name}-${facet}`,
-  theme.facets[facet]
- )
- return styleElement
+ return attachStyle(`.${theme.name}-${facet}`, theme.facets[facet])
 }

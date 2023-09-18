@@ -11,7 +11,6 @@
  "author": "",
  "license": "ISC",
  "dependencies": {
-  "@starryui/theme": "^0.0.0",
-  "@starryui/traits": "^0.0.0"
+  "@starryui/theme": "^0.0.0"
  }
 }
