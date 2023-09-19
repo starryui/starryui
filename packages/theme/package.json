@@ -1,13 +1,11 @@
 {
  "name": "@starryui/theme",
- "version": "0.0.4",
- "types": "dist/index.d.ts",
+ "version": "0.0.6",
+ "types": "index.d.ts",
  "description": "",
- "main": "dist/index.js",
+ "main": "index.js",
  "devDependencies": {},
- "scripts": {
-  "compile": "rm -rf dist/* && tsc -p tsconfig.pkg.json"
- },
+ "scripts": {},
  "keywords": [],
  "author": "",
  "license": "ISC"

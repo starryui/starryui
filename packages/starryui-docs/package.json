@@ -1,20 +1,19 @@
 {
  "name": "@starryui/starryui-docs",
- "version": "0.0.4",
- "types": "dist/index.d.ts",
+ "version": "0.0.6",
+ "types": "index.d.ts",
  "description": "",
- "main": "dist/index.js",
+ "main": "index.js",
  "scripts": {
-  "compile": "rm -rf dist/* && tsc -noEmit -p tsconfig.pkg.json && esbuild index.ts --bundle --outfile=dist/main.js",
   "compile-watch": "rm -rf dist/* && esbuild index.ts --watch --bundle --outfile=dist/main.js"
  },
  "keywords": [],
  "author": "",
  "license": "ISC",
  "dependencies": {
-  "@starryui/button": "^0.0.4",
-  "@starryui/theme-midnight": "^0.0.4",
-  "@starryui/theme": "^0.0.4",
-  "@starryui/traits": "^0.0.4"
+  "@starryui/button": "^0.0.6",
+  "@starryui/theme-midnight": "^0.0.6",
+  "@starryui/theme": "^0.0.6",
+  "@starryui/traits": "^0.0.6"
  }
 }

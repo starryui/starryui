@@ -1,10 +1,10 @@
 {
  "private": true,
  "scripts": {
-  "build": "npm run compile -ws",
+  "build": "tsc -b tsconfig.json",
   "docs": "cd packages/starryui-docs && python -m http.server",
-  "docs-watch": "rm -rf ./packages/*/dist && cd packages/starryui-docs && concurrently \"python -m http.server\" \"npm run compile-watch\"",
-  "publish-all": "npm publish --workspaces --access public"
+  "docs-watch": "cd packages/starryui-docs && concurrently \"python -m http.server\" \"npm run compile-watch\"",
+  "publish-all": "npm run build && npm publish --workspaces --access public"
  },
  "workspaces": [
   "./packages/*"

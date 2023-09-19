@@ -2,16 +2,31 @@
  "exclude": ["node_modules", "dist"],
  "compilerOptions": {
   "declaration": true,
+  "declarationMap": true,
   "esModuleInterop": true,
   "forceConsistentCasingInFileNames": true,
   "incremental": true,
-  "isolatedModules": true,
-  "module": "commonjs",
+  "isolatedModules": false,
+  "module": "CommonJS",
+  "moduleResolution": "node",
+  "outDir": ".",
+  "rootDir": ".",
   "skipLibCheck": true,
   "strict": true,
   "target": "ES2022",
   "paths": {
-   "@starryui/*": ["./packages/*/"]
+   "@starryui/*": ["./packages/*"]
   }
- }
+ },
+ "include": ["./packages/**/*.ts"],
+ "references": [
+  { "path": "./packages/button" },
+  { "path": "./packages/frame" },
+  { "path": "./packages/layout" },
+  { "path": "./packages/starryui-docs" },
+  { "path": "./packages/theme" },
+  { "path": "./packages/theme-midnight" },
+  { "path": "./packages/traits" },
+  { "path": "./packages/tray" }
+ ]
 }

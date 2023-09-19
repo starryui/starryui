@@ -1,16 +1,14 @@
 {
  "name": "@starryui/theme-midnight",
- "version": "0.0.4",
- "types": "dist/index.d.ts",
+ "version": "0.0.6",
+ "types": "index.d.ts",
  "description": "",
- "main": "dist/index.js",
- "scripts": {
-  "compile": "rm -rf dist/* && tsc -p tsconfig.pkg.json"
- },
+ "main": "index.js",
+ "scripts": {},
  "keywords": [],
  "author": "",
  "license": "ISC",
  "dependencies": {
-  "@starryui/theme": "^0.0.4"
+  "@starryui/theme": "^0.0.6"
  }
 }
