@@ -1,3 +1,4 @@
+import { StarryUIButtonImageTrait } from '@starryui/button'
 import { attachThemeFacetStyle, StarryUIThemeTrait } from '@starryui/theme'
 
 export interface StarryUITextContentTrait {
@@ -34,6 +35,7 @@ export type StarryUITrait =
  | StarryMouseEventListenerTrait<any>
  | StarryUITextContentTrait
  | StarryUIThemeTrait
+ | StarryUIButtonImageTrait
 
 export interface StarryUITraitConfig {
  style?: Partial<CSSStyleDeclaration>
@@ -55,8 +57,14 @@ export function applyTraits(
    case 'mouseEvent':
     elem.addEventListener(trait.mouseEvent, trait.handler)
     break
+   case 'buttonImage':
+    const image = document.createElement('div')
+    image.setAttribute('data-starryui-trait', 'buttonImage')
+    image.style.backgroundImage = `url(${JSON.stringify(trait.image)})`
+    elem.appendChild(image)
+    break
    case 'textContent':
-    elem.textContent = trait.textContent
+    elem.appendChild(document.createTextNode(trait.textContent))
     break
    case 'theme':
     if (!traitConfig.themeFacet) {

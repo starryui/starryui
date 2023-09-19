@@ -16,3 +16,15 @@ export const button = starryComponent<HTMLButtonElement>(function (
   return elem
  }
 })
+
+export interface StarryUIButtonImageTrait {
+ type: 'buttonImage'
+ image: string
+}
+
+export function withButtonImage(image: string): StarryUITrait {
+ return {
+  type: 'buttonImage',
+  image,
+ }
+}

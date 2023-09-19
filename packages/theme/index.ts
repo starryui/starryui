@@ -142,6 +142,8 @@ export const useThemeDimensions = {
    createRootCSSVariables({
     dimension0: '0',
     dimension1: '7px',
+    dimension2: '12px',
+    dimension3: '16px',
     dimension4: '32px',
    })
   )

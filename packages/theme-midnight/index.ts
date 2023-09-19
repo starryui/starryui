@@ -23,14 +23,32 @@ export const themeMidnight: StarryUITheme = {
      flexDirection: 'column',
      margin: 'var(--dimension0)',
      minHeight: '100vh',
-     overflowX: 'hidden',
-     overflowY: 'auto',
+     maxHeight: '100vh',
+     overflow: 'hidden',
      padding: 'var(--dimension0)',
     },
     '&, input, textarea, select': {
      color: 'var(--themef)',
      fontFamily: 'sans-serif',
      fontSize: '16px',
+    },
+    h1: {
+     fontSize: '24px',
+    },
+    h2: {
+     fontSize: '20px',
+    },
+    h3: {
+     fontSize: '18px',
+    },
+    h4: {
+     fontSize: '16px',
+    },
+    h5: {
+     fontSize: '14px',
+    },
+    h6: {
+     fontSize: '12px',
     },
    },
   ],
@@ -41,15 +59,25 @@ export const themeMidnight: StarryUITheme = {
      border: '1px solid var(--theme8)',
      color: 'var(--themef)',
      cursor: 'pointer',
+     display: 'flex',
+     flexDirection: 'row',
      padding: 'var(--dimension1)',
      minHeight: 'var(--dimension4)',
      minWidth: 'var(--dimension4)',
+     whiteSpace: 'nowrap',
     },
     '&:hover': {
      backgroundColor: 'var(--theme2)',
     },
     '&:active': {
      backgroundColor: 'var(--theme0)',
+    },
+    '& div[data-starryui-trait="buttonImage"]': {
+     backgroundSize: '100%',
+     height: 'var(--dimension3)',
+     imageRendering: 'pixelated',
+     marginRight: 'var(--dimension1)',
+     width: 'var(--dimension3)',
     },
    },
   ],
@@ -65,6 +93,8 @@ export const themeMidnight: StarryUITheme = {
    borderRadius: 'var(--dimension1)',
    boxSizing: 'border-box',
    height: '100%',
+   overflowX: 'hidden',
+   overflowY: 'auto',
    width: '100%',
   },
   row: {
@@ -80,6 +110,7 @@ export const themeMidnight: StarryUITheme = {
      backgroundColor: 'var(--theme1)',
      borderBottom: '1px solid var(--theme4)',
      boxSizing: 'border-box',
+     flexShrink: '0',
      overflowX: 'auto',
      overflowY: 'hidden',
      minHeight: 'var(--dimension4)',

@@ -5,7 +5,7 @@
  "description": "",
  "main": "index.js",
  "scripts": {
-  "compile-watch": "rm -rf dist/* && esbuild index.ts --watch --bundle --outfile=dist/main.js"
+  "compile-watch": "rm -rf dist/* && esbuild index.ts --watch --bundle --resolve-extensions=.ts --outfile=dist/main.js"
  },
  "keywords": [],
  "author": "",
