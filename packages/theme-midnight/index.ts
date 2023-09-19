@@ -15,11 +15,25 @@ export const themeMidnight: StarryUITheme = {
   themef: '#ffffff',
  },
  facets: {
-  body: {
-   backgroundColor: 'var(--theme0)',
-   margin: 'var(--dimension0)',
-   padding: 'var(--dimension0)',
-  },
+  body: [
+   {
+    '': {
+     backgroundColor: 'var(--theme0)',
+     display: 'flex',
+     flexDirection: 'column',
+     margin: 'var(--dimension0)',
+     minHeight: '100vh',
+     overflowX: 'hidden',
+     overflowY: 'auto',
+     padding: 'var(--dimension0)',
+    },
+    '&, input, textarea, select': {
+     color: 'var(--themef)',
+     fontFamily: 'sans-serif',
+     fontSize: '16px',
+    },
+   },
+  ],
   button: [
    {
     '': {
@@ -39,6 +53,27 @@ export const themeMidnight: StarryUITheme = {
     },
    },
   ],
+  column: {
+   display: 'flex',
+   flexDirection: 'column',
+   flexGrow: '1',
+   overflowX: 'hidden',
+   overflowY: 'auto',
+  },
+  frame: {
+   border: '1px solid var(--theme4)',
+   borderRadius: 'var(--dimension1)',
+   boxSizing: 'border-box',
+   height: '100%',
+   width: '100%',
+  },
+  row: {
+   display: 'flex',
+   flexDirection: 'row',
+   flexGrow: '1',
+   overflowX: 'auto',
+   overflowY: 'hidden',
+  },
   tray: [
    {
     '': {

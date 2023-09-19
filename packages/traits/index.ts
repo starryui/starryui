@@ -1,4 +1,4 @@
-import { StarryUIThemeTrait, attachThemeFacetStyle } from '@starryui/theme'
+import { attachThemeFacetStyle, StarryUIThemeTrait } from '@starryui/theme'
 
 export interface StarryUITextContentTrait {
  type: 'textContent'
@@ -36,6 +36,7 @@ export type StarryUITrait =
  | StarryUIThemeTrait
 
 export interface StarryUITraitConfig {
+ style?: Partial<CSSStyleDeclaration>
  themeFacet?: string
 }
 
@@ -46,6 +47,9 @@ export function applyTraits(
  traits: StarryUITrait[],
  traitConfig: StarryUITraitConfig
 ) {
+ if (traitConfig.style) {
+  Object.assign(elem.style, traitConfig.style)
+ }
  for (const trait of traits) {
   switch (trait.type) {
    case 'mouseEvent':

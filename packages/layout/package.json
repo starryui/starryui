@@ -1,5 +1,5 @@
 {
- "name": "@starryui/tray",
+ "name": "@starryui/layout",
  "version": "0.0.4",
  "types": "dist/index.d.ts",
  "description": "",
