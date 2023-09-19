@@ -1,6 +1,6 @@
 {
  "name": "@starryui/button",
- "version": "0.0.2",
+ "version": "0.0.3",
  "types": "dist/index.d.ts",
  "description": "",
  "main": "dist/index.js",
@@ -11,6 +11,6 @@
  "author": "",
  "license": "ISC",
  "dependencies": {
-  "@starryui/traits": "^0.0.2"
+  "@starryui/traits": "^0.0.3"
  }
 }

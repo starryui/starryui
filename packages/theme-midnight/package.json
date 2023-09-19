@@ -1,6 +1,6 @@
 {
  "name": "@starryui/theme-midnight",
- "version": "0.0.2",
+ "version": "0.0.3",
  "types": "dist/index.d.ts",
  "description": "",
  "main": "dist/index.js",
@@ -11,6 +11,6 @@
  "author": "",
  "license": "ISC",
  "dependencies": {
-  "@starryui/theme": "^0.0.2"
+  "@starryui/theme": "^0.0.3"
  }
 }
