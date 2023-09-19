@@ -1,6 +1,6 @@
 {
- "name": "@starryui/button",
- "version": "0.0.1",
+ "name": "@starryui/tray",
+ "version": "0.0.2",
  "types": "dist/index.d.ts",
  "description": "",
  "main": "dist/index.js",

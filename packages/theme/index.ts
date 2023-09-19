@@ -1,6 +1,17 @@
+import { StarryUIComponent, StarryUIComponentBuilder } from 'packages/traits'
+
+export interface StarryUIThemeVariables {
+ [key: string]: string
+}
+
+export interface CompoundCSSStyleDeclaration {
+ [key: string]: Partial<CSSStyleDeclaration> | [CompoundCSSStyleDeclaration]
+}
+
 export interface StarryUITheme {
+ facets: CompoundCSSStyleDeclaration
  name: string
- facets: { [key: string]: Partial<CSSStyleDeclaration> }
+ variables?: StarryUIThemeVariables
 }
 
 export interface StarryUIThemeTrait {
@@ -15,12 +26,30 @@ export function withTheme(theme: StarryUITheme): StarryUIThemeTrait {
  }
 }
 
-export function attachStyle(
+export function attachThemeVariables(variables?: StarryUIThemeVariables) {
+ if (variables) {
+  attachStyleText(`:root {
+${Object.entries(variables)
+ .map(function ([name, value]) {
+  return ` --${name}: ${value};`
+ })
+ .join('\n')}
+}`)
+ }
+}
+
+export function attachStyleText(text: string) {
+ const styleElement = document.createElement('style')
+ styleElement.textContent = text
+ document.head.appendChild(styleElement)
+ return styleElement
+}
+
+export function cssRuleText(
  selector: string,
  styles: Partial<CSSStyleDeclaration>
-) {
- const styleElement = document.createElement('style')
- styleElement.textContent = `${selector} {
+): string {
+ return `${selector} {
   ${Object.entries(styles)
    .map(([property, value]) => {
     const cssProperty = property.replace(/[A-Z]/g, (x) => `-${x.toLowerCase()}`)
@@ -28,13 +57,93 @@ export function attachStyle(
    })
    .join('\n')}
  }`
- document.head.appendChild(styleElement)
- return styleElement
+}
+
+export function compoundRuleText(
+ theme: StarryUITheme,
+ selector: string,
+ styles: [CompoundCSSStyleDeclaration]
+): string {
+ return styles
+  .map((style) =>
+   Object.entries(style)
+    .map(function ([key, value]) {
+     const finalSelector =
+      key === ''
+       ? selector
+       : key
+          .replace(/&/g, selector)
+          .replace(/facet\(([^\)]*)\)/g, (_, a) => `.theme-${theme.name}-${a}`)
+     if (Array.isArray(value)) {
+     } else {
+      return cssRuleText(finalSelector, value)
+     }
+    })
+    .join('\n')
+  )
+  .join('\n')
+}
+
+export function attachStyle(
+ theme: StarryUITheme,
+ selector: string,
+ styles: Partial<CSSStyleDeclaration> | [CompoundCSSStyleDeclaration]
+) {
+ if (Array.isArray(styles)) {
+  return attachStyleText(compoundRuleText(theme, selector, styles))
+ }
+ return attachStyleText(cssRuleText(selector, styles))
 }
 
 export function attachThemeFacetStyle(theme: StarryUITheme, facet: string) {
- if (!(facet in theme.facets)) {
-  throw new Error(`theme '${theme.name}' does not contain facet: '${facet}'`)
+ if (facet in theme.facets) {
+  return attachStyle(
+   theme,
+   `.theme-${theme.name}-${facet}`,
+   theme.facets[facet]
+  )
  }
- return attachStyle(`.${theme.name}-${facet}`, theme.facets[facet])
+ console.warn(
+  new Error(`theme '${theme.name}' does not contain facet: '${facet}'`)
+ )
+}
+
+export function applyTheme<T extends any[]>(
+ theme: StarryUITheme,
+ components: { [K in keyof T]: StarryUIComponentBuilder<T[K]> }
+): { [K in keyof T]: StarryUIComponent<T[K]> } {
+ return components.map((component) => component(withTheme(theme))) as {
+  [K in keyof T]: StarryUIComponent<T[K]>
+ }
+}
+
+export function createRootCSSVariables(source: { [key: string]: string }) {
+ return `:root {
+ ${Object.entries(source)
+  .map(function ([name, value]) {
+   return `--${name}: ${value};`
+  })
+  .join('\n ')}
+}`
+}
+
+export const useThemeDimensions = {
+ zero() {
+  return attachStyleText(
+   createRootCSSVariables({
+    dimension0: '0',
+    dimension1: '0',
+    dimension4: '0',
+   })
+  )
+ },
+ tiny() {
+  return attachStyleText(
+   createRootCSSVariables({
+    dimension0: '0',
+    dimension1: '7px',
+    dimension4: '32px',
+   })
+  )
+ },
 }

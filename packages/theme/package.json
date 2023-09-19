@@ -1,6 +1,6 @@
 {
  "name": "@starryui/theme",
- "version": "0.0.0",
+ "version": "0.0.2",
  "types": "dist/index.d.ts",
  "description": "",
  "main": "dist/index.js",

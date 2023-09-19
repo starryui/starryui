@@ -39,7 +39,7 @@ export interface StarryUITraitConfig {
  themeFacet?: string
 }
 
-const ThemeFacetMap = new Map<string, HTMLStyleElement>()
+const ThemeFacetMap = new Map<string, HTMLStyleElement | undefined>()
 
 export function applyTraits(
  elem: HTMLElement,
@@ -56,10 +56,12 @@ export function applyTraits(
     break
    case 'theme':
     if (!traitConfig.themeFacet) {
-     console.warn('Using theme trait without themeFacet specified')
+     console.warn(
+      `Using theme '${trait.theme.name}' trait without themeFacet specified`
+     )
      break
     }
-    const className = `${trait.theme.name}-${traitConfig.themeFacet}`
+    const className = `theme-${trait.theme.name}-${traitConfig.themeFacet}`
     if (!ThemeFacetMap.has(className)) {
      ThemeFacetMap.set(
       className,
@@ -83,9 +85,13 @@ export interface StarryUIComponent<T> extends StarryTraitAssembler<T> {
  }): StarryUIComponent<T>
 }
 
+export type StarryUIComponentBuilder<T> = (
+ ...traits: StarryUITrait[]
+) => StarryUIComponent<T>
+
 export function starryComponent<T>(
  builder: (traits: StarryUITrait[]) => StarryTraitAssembler<T>
-): (...traits: StarryUITrait[]) => StarryUIComponent<T> {
+): StarryUIComponentBuilder<T> {
  const wrap = function (...traits: StarryUITrait[]): StarryUIComponent<T> {
   const component = builder(traits) as StarryUIComponent<T>
 

@@ -1,5 +1,4 @@
 import {
- StarryUIComponent,
  StarryUITrait,
  StarryUITraitConfig,
  applyTraits,

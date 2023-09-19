@@ -12,9 +12,9 @@
  "author": "",
  "license": "ISC",
  "dependencies": {
-  "@starryui/button": "^0.0.0",
-  "@starryui/theme-midnight": "^0.0.0",
-  "@starryui/theme": "^0.0.0",
-  "@starryui/traits": "^0.0.0"
+  "@starryui/button": "^0.0.2",
+  "@starryui/theme-midnight": "^0.0.2",
+  "@starryui/theme": "^0.0.2",
+  "@starryui/traits": "^0.0.2"
  }
 }
