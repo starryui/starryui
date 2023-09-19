@@ -1,4 +1,4 @@
-import { StarryUIComponent, StarryUIComponentBuilder } from 'packages/traits'
+import { StarryUIComponent, StarryUIComponentBuilder } from '@starryui/traits'
 
 export interface StarryUIThemeVariables {
  [key: string]: string
