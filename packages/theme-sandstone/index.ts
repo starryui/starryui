@@ -138,7 +138,7 @@ export const themeSandstone: StarryUITheme = {
      paddingBottom: 'var(--dimension1)',
     },
     '& pre': {
-     backgroundColor: 'var(--theme2)',
+     backgroundColor: 'var(--theme-1)',
      fontFamily: "'Source Code Pro', 'Liberation Mono', monospace",
      fontSize: '13px',
      lineHeight: '2',
