@@ -1,5 +1,6 @@
 import { button, withButtonImage } from '@starryui/button'
 import { row } from '@starryui/layout'
+import { StarryUIPage } from '@starryui/page'
 import {
  StarryUITheme,
  applyThemeMultiple,
@@ -15,7 +16,6 @@ import { NORMAL_DELAY } from './constants'
 import { about } from './pages/about'
 import { components } from './pages/components'
 import { home } from './pages/home'
-import { ApplicationPage } from './pages/types'
 
 attachThemeVariables('body', themeMidnight.variables)
 attachStyle(themeMidnight, 'body', themeMidnight.facets.body)
@@ -44,7 +44,7 @@ topTray.appendChild(
 const breadcrumbs = themedRow()
 topTray.appendChild(breadcrumbs)
 
-function withBreadcrumb(path: string, page: ApplicationPage): ApplicationPage {
+function withBreadcrumb(path: string, page: StarryUIPage): StarryUIPage {
  const crumb = themedButton.add(withTextContent(page.title))({
   href: path,
   tagName: 'a',
@@ -65,8 +65,8 @@ function withBreadcrumb(path: string, page: ApplicationPage): ApplicationPage {
  return page
 }
 
-let activePage: ApplicationPage | undefined
-const pageCache = new Map<string, ApplicationPage>()
+let activePage: StarryUIPage | undefined
+const pageCache = new Map<string, StarryUIPage>()
 
 function loadPage(path: string, id: string, theme: StarryUITheme) {
  switch (id) {
