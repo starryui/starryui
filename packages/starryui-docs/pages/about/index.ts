@@ -1,4 +1,5 @@
 import { column } from '@starryui/layout'
+import { renderMarkdownFromPath } from '@starryui/starryui-docs/util/markdown'
 import {
  StarryUITheme,
  applyTheme,
@@ -6,11 +7,10 @@ import {
  attachThemeVariables,
 } from '@starryui/theme'
 import { ApplicationPage, ApplicationTask } from '../types'
-import { renderMarkdownFromPath } from '@starryui/starryui-docs/util/markdown'
 import { example0 } from './examples/example0'
 
 export function about(theme: StarryUITheme): ApplicationPage {
- const [themedColumn] = applyTheme(theme, [column])
+ const themedColumn = applyTheme(theme, column)
  const mainArea = themedColumn({
   style: { padding: 'var(--dimension3) var(--dimension4)' },
   themeFacets: ['document', 'opaque'],

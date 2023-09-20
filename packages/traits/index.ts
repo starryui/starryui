@@ -99,13 +99,9 @@ export interface StarryUIComponent<T> extends StarryTraitAssembler<T> {
  }): StarryUIComponent<T>
 }
 
-export type StarryUIComponentBuilder<T> = (
- ...traits: StarryUITrait[]
-) => StarryUIComponent<T>
-
 export function starryComponent<T>(
  builder: (traits: StarryUITrait[]) => StarryTraitAssembler<T>
-): StarryUIComponentBuilder<T> {
+): StarryUIComponent<T> {
  const wrap = function (...traits: StarryUITrait[]): StarryUIComponent<T> {
   const component = builder(traits) as StarryUIComponent<T>
 
@@ -123,7 +119,7 @@ export function starryComponent<T>(
 
   return component
  }
- return wrap
+ return wrap()
 }
 
 export function mergeTraits(

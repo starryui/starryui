@@ -2,7 +2,7 @@ import { button, withButtonImage } from '@starryui/button'
 import { row } from '@starryui/layout'
 import {
  StarryUITheme,
- applyTheme,
+ applyThemeMultiple,
  attachStyle,
  attachThemeVariables,
  useThemeDimensions,
@@ -20,11 +20,10 @@ attachThemeVariables('body', themeMidnight.variables)
 attachStyle(themeMidnight, 'body', themeMidnight.facets.body)
 useThemeDimensions.tiny()
 
-const [themedButton, themedRow, themedTray] = applyTheme(themeMidnight, [
- button,
- row,
- tray,
-])
+const [themedButton, themedRow, themedTray] = applyThemeMultiple(
+ themeMidnight,
+ [button, row, tray]
+)
 
 const topTray = themedTray({
  style: {

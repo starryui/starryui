@@ -1,4 +1,4 @@
-import { StarryUIComponent, StarryUIComponentBuilder } from '@starryui/traits'
+import { StarryUIComponent } from '@starryui/traits'
 
 export interface StarryUIThemeVariables {
  [key: string]: string
@@ -135,26 +135,20 @@ export function attachThemeFacetStyle(theme: StarryUITheme, facet: string) {
 
 export function applyTheme<T extends any>(
  theme: StarryUITheme,
- components: StarryUIComponentBuilder<T>
-): StarryUIComponent<T>
-export function applyTheme<T extends any>(
+ component: StarryUIComponent<T>
+): StarryUIComponent<T> {
+ return component.add(withTheme(theme))
+}
+
+export function applyThemeMultiple<T extends any>(
  theme: StarryUITheme,
- components: { [K in keyof T]: StarryUIComponentBuilder<T[K]> }
-): { [K in keyof T]: StarryUIComponent<T[K]> }
-export function applyTheme<T extends any>(
- theme: StarryUITheme,
- components:
-  | StarryUIComponentBuilder<T>
-  | { [K in keyof T]: StarryUIComponentBuilder<T[K]> }
-): StarryUIComponent<T> | { [K in keyof T]: StarryUIComponent<T[K]> } {
- if (Array.isArray(components)) {
-  return components.map((component: StarryUIComponentBuilder<T[any]>) =>
-   component(withTheme(theme))
-  ) as {
-   [K in keyof T]: StarryUIComponent<T[K]>
-  }
+ components: { [K in keyof T]: StarryUIComponent<T[K]> }
+): { [K in keyof T]: StarryUIComponent<T[K]> } {
+ return (components as StarryUIComponent<any>[]).map(
+  (component: StarryUIComponent<T[any]>) => component.add(withTheme(theme))
+ ) as {
+  [K in keyof T]: StarryUIComponent<T[K]>
  }
- return (components as StarryUIComponentBuilder<T>)(withTheme(theme))
 }
 
 export function createRootCSSVariables(source: { [key: string]: string }) {

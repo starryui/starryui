@@ -3,14 +3,14 @@ import { column, row } from '@starryui/layout'
 import { NORMAL_DELAY } from '@starryui/starryui-docs/constants'
 import {
  StarryUITheme,
- applyTheme,
+ applyThemeMultiple,
  attachThemeVariables,
 } from '@starryui/theme'
 import { ApplicationPage, ApplicationTask } from '../types'
 import { homeSlide1, homeSlide2, homeSlide3 } from './slides'
 
 export function home(theme: StarryUITheme): ApplicationPage {
- const [themedRow, themedColumn, themedFrame] = applyTheme(theme, [
+ const [themedRow, themedColumn, themedFrame] = applyThemeMultiple(theme, [
   row,
   column,
   frame,
