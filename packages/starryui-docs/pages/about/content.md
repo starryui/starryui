@@ -1,6 +1,6 @@
 ## About
 
-StarryUI is a component library for web browsers, written in [TypeScript](https://www.typescriptlang.org/).
+StarryUI is a component library for web browsers, written in [TypeScript](https://www.typescriptlang.org/). The source code is available on [GitHub](https://github.com/starryui/starryui).
 
 ## Installation
 

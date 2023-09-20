@@ -103,8 +103,8 @@ Object.assign(themeSwitcher.style, {
  fontSize: '14px',
  padding: '2px 4px',
  position: 'fixed',
- right: '3px',
- top: '3px',
+ right: '1px',
+ top: '1px',
  zIndex: '2',
 })
 themeSwitcher.textContent = activeTheme.name
