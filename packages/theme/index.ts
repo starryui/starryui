@@ -26,10 +26,17 @@ export function withTheme(theme: StarryUITheme): StarryUIThemeTrait {
  }
 }
 
+let uniqueId = 0
+
 export function attachThemeVariables(
- selector: string,
+ selector: string | HTMLElement,
  variables?: StarryUIThemeVariables
 ): HTMLStyleElement | undefined {
+ if (typeof selector !== 'string') {
+  const uniqueClassName = `scope-${uniqueId++}`
+  selector.classList.add(uniqueClassName)
+  selector = `.${uniqueClassName}`
+ }
  if (variables) {
   return attachStyleText(`${selector} {
 ${Object.entries(variables)

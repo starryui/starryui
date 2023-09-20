@@ -9,22 +9,18 @@ import {
 import { ApplicationPage, ApplicationTask } from '../types'
 import { homeSlide1, homeSlide2, homeSlide3 } from './slides'
 
-let pageInstance = 0
-
 export function home(theme: StarryUITheme): ApplicationPage {
  const [themedRow, themedColumn, themedFrame] = applyTheme(theme, [
   row,
   column,
   frame,
  ])
- const mainThemeClass = `page-home-${pageInstance++}`
  const mainArea = themedRow({
   style: { padding: '10px' },
   themeFacets: ['opaque'],
  })
- mainArea.classList.add(mainThemeClass)
  const themeVariablesStyle: HTMLStyleElement | undefined = attachThemeVariables(
-  `.${mainThemeClass}`,
+  mainArea,
   theme.variables
  )
 

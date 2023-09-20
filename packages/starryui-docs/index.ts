@@ -15,7 +15,6 @@ import { about } from './pages/about'
 import { home } from './pages/home'
 import { ApplicationPage } from './pages/types'
 
-let uniqueClassName = 0
 attachThemeVariables('body', themeMidnight.variables)
 attachStyle(themeMidnight, 'body', themeMidnight.facets.body)
 useThemeDimensions.tiny()
@@ -27,10 +26,7 @@ const topTray = themedTray({
   zIndex: '1',
  },
 })
-const trayThemeClass = `scope-${uniqueClassName++}`
-topTray.classList.add(trayThemeClass)
-attachThemeVariables(`.${trayThemeClass}`, themeMidnight.variables)
-
+attachThemeVariables(topTray, themeMidnight.variables)
 document.body.appendChild(topTray)
 
 const hello = themedButton.add(

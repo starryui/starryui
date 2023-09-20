@@ -6,18 +6,14 @@ import {
 } from '@starryui/theme'
 import { ApplicationPage, ApplicationTask } from '../types'
 
-let pageInstance = 0
-
 export function about(theme: StarryUITheme): ApplicationPage {
  const [themedRow] = applyTheme(theme, [row])
- const mainThemeClass = `page-about-${pageInstance++}`
  const mainArea = themedRow({
   style: { padding: '10px' },
   themeFacets: ['opaque'],
  })
- mainArea.classList.add(mainThemeClass)
  const themeVariablesStyle: HTMLStyleElement | undefined = attachThemeVariables(
-  `.${mainThemeClass}`,
+  mainArea,
   theme.variables
  )
 
