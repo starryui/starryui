@@ -13,6 +13,7 @@ import { withTextContent } from '@starryui/traits'
 import { tray } from '@starryui/tray'
 import { NORMAL_DELAY } from './constants'
 import { about } from './pages/about'
+import { components } from './pages/components'
 import { home } from './pages/home'
 import { ApplicationPage } from './pages/types'
 
@@ -71,6 +72,8 @@ function loadPage(path: string, id: string, theme: StarryUITheme) {
  switch (id) {
   case 'about':
    return withBreadcrumb(path, about(theme))
+  case 'components':
+   return withBreadcrumb(path, components(theme))
   case 'home':
    return home(theme)
   default:
@@ -134,6 +137,9 @@ async function route() {
    break
   case '#/about':
    activePage = getPage(location.hash, 'about', activeTheme)
+   break
+  case '#/components':
+   activePage = getPage(location.hash, 'components', activeTheme)
    break
  }
  if (activePage) {
