@@ -112,7 +112,9 @@ export function applyTheme<T extends any[]>(
  theme: StarryUITheme,
  components: { [K in keyof T]: StarryUIComponentBuilder<T[K]> }
 ): { [K in keyof T]: StarryUIComponent<T[K]> } {
- return components.map((component) => component(withTheme(theme))) as {
+ return components.map((component: StarryUIComponentBuilder<T[number]>) =>
+  component(withTheme(theme))
+ ) as {
   [K in keyof T]: StarryUIComponent<T[K]>
  }
 }

@@ -33,12 +33,13 @@ export function withTextContent(value: string): StarryUITextContentTrait {
 
 export type StarryUITrait =
  | StarryMouseEventListenerTrait<any>
+ | StarryUIButtonImageTrait
  | StarryUITextContentTrait
  | StarryUIThemeTrait
- | StarryUIButtonImageTrait
 
 export interface StarryUITraitConfig {
  style?: Partial<CSSStyleDeclaration>
+ tagName?: string
  themeFacet?: string
 }
 

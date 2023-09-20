@@ -7,11 +7,11 @@ import {
 
 export const defaultButtonConfig: StarryUITraitConfig = { themeFacet: 'button' }
 
-export const button = starryComponent<HTMLButtonElement>(function (
+export const button = starryComponent<HTMLElement>(function (
  traits: StarryUITrait[]
 ) {
  return function (config?: StarryUITraitConfig) {
-  const elem = document.createElement('button')
+  const elem = document.createElement(config?.tagName ?? 'button')
   applyTraits(elem, traits, Object.assign({}, defaultButtonConfig, config))
   return elem
  }

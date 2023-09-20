@@ -27,10 +27,13 @@ export const themeMidnight: StarryUITheme = {
      overflow: 'hidden',
      padding: 'var(--dimension0)',
     },
-    '&, input, textarea, select': {
+    '&, input, textarea, select, a': {
      color: 'var(--themef)',
      fontFamily: 'sans-serif',
      fontSize: '16px',
+    },
+    a: {
+     textDecoration: 'none',
     },
     h1: {
      fontSize: '24px',
@@ -50,6 +53,16 @@ export const themeMidnight: StarryUITheme = {
     h6: {
      fontSize: '12px',
     },
+    'div[starryui-reveal]': {
+     opacity: '0',
+     transform: 'scaleY(0.975) translateY(-2.5%)',
+     transformOrigin: 'top left',
+     transition: '0.5s ease-out opacity, 0.5s ease-out transform',
+    },
+    'div[starryui-reveal="reveal"]': {
+     opacity: '1',
+     transform: 'scaleY(1) translateY(0)',
+    },
    },
   ],
   button: [
@@ -57,13 +70,17 @@ export const themeMidnight: StarryUITheme = {
     '': {
      backgroundColor: 'var(--theme0)',
      border: '1px solid var(--theme8)',
+     boxSizing: 'border-box',
      color: 'var(--themef)',
      cursor: 'pointer',
-     display: 'flex',
+     display: 'inline-flex',
      flexDirection: 'row',
-     padding: 'var(--dimension1)',
-     minHeight: 'var(--dimension4)',
+     fontSize: '14px',
+     height: 'var(--dimension4)',
+     lineHeight: '14px',
+     maxHeight: 'var(--dimension4)',
      minWidth: 'var(--dimension4)',
+     padding: 'var(--dimension1)',
      whiteSpace: 'nowrap',
     },
     '&:hover': {
