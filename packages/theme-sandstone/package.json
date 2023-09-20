@@ -1,0 +1,14 @@
+{
+ "name": "@starryui/theme-sandstone",
+ "version": "0.0.7",
+ "types": "index.d.ts",
+ "description": "",
+ "main": "index.js",
+ "scripts": {},
+ "keywords": [],
+ "author": "",
+ "license": "ISC",
+ "dependencies": {
+  "@starryui/theme": "^0.0.7"
+ }
+}

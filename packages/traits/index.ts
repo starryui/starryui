@@ -41,6 +41,7 @@ export interface StarryUITraitConfig {
  style?: Partial<CSSStyleDeclaration>
  tagName?: string
  themeFacet?: string
+ themeFacets?: string[]
 }
 
 const ThemeFacetMap = new Map<string, HTMLStyleElement | undefined>()
@@ -82,6 +83,15 @@ export function applyTraits(
      )
     }
     elem.classList.add(className)
+    if (traitConfig.themeFacets) {
+     for (const facet of traitConfig.themeFacets) {
+      const className = `theme-${trait.theme.name}-${facet}`
+      if (!ThemeFacetMap.has(className)) {
+       ThemeFacetMap.set(className, attachThemeFacetStyle(trait.theme, facet))
+      }
+      elem.classList.add(className)
+     }
+    }
     break
   }
  }

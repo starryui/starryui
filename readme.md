@@ -6,6 +6,8 @@ Starry UI Monorepo
 
 ## Installation
 
+Get more information at https://starryui.com/
+
 See the list of available components at https://www.npmjs.com/org/starryui
 
 ## Development

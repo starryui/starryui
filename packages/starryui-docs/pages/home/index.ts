@@ -1,26 +1,32 @@
 import { frame } from '@starryui/frame'
 import { column, row } from '@starryui/layout'
+import { NORMAL_DELAY } from '@starryui/starryui-docs/constants'
 import {
+ StarryUITheme,
  applyTheme,
- attachStyle,
  attachThemeVariables,
- useThemeDimensions,
 } from '@starryui/theme'
-import { themeMidnight } from '@starryui/theme-midnight'
+import { ApplicationPage, ApplicationTask } from '../types'
 import { homeSlide1, homeSlide2, homeSlide3 } from './slides'
 
-attachThemeVariables(themeMidnight.variables)
-attachStyle(themeMidnight, 'body', themeMidnight.facets.body)
-useThemeDimensions.tiny()
+let pageInstance = 0
 
-const [themedRow, themedColumn, themedFrame] = applyTheme(themeMidnight, [
- row,
- column,
- frame,
-])
-
-export function home(attachTo: HTMLElement) {
- const mainArea = themedRow({ style: { padding: '10px' } })
+export function home(theme: StarryUITheme): ApplicationPage {
+ const [themedRow, themedColumn, themedFrame] = applyTheme(theme, [
+  row,
+  column,
+  frame,
+ ])
+ const mainThemeClass = `page-home-${pageInstance++}`
+ const mainArea = themedRow({
+  style: { padding: '10px' },
+  themeFacets: ['opaque'],
+ })
+ mainArea.classList.add(mainThemeClass)
+ const themeVariablesStyle: HTMLStyleElement | undefined = attachThemeVariables(
+  `.${mainThemeClass}`,
+  theme.variables
+ )
 
  const [slide1, slide2, slide3] = [homeSlide1, homeSlide2, homeSlide3].map(
   function (x) {
@@ -68,15 +74,49 @@ export function home(attachTo: HTMLElement) {
  mainArea.appendChild(slide2.column)
  mainArea.appendChild(slide3.column)
 
- mainArea.setAttribute('starryui-reveal', 'hidden')
- attachTo.appendChild(mainArea)
-
  setTimeout(() => {
-  mainArea.setAttribute('starryui-reveal', 'reveal')
   slide1.h1.scrollIntoView({ behavior: 'smooth' })
   slide2.h1.scrollIntoView({ behavior: 'smooth' })
   slide3.h1.scrollIntoView({ behavior: 'smooth' })
- }, 250)
+ }, 2 * NORMAL_DELAY)
 
- return mainArea
+ async function onLoad(final: boolean) {
+  if (!final) {
+   for (const task of startUpTasks) {
+    await task()
+   }
+  }
+ }
+
+ async function onUnload(final: boolean) {
+  if (!final) {
+   for (const task of cleanUpTasks) {
+    await task()
+   }
+  }
+ }
+
+ const startUpTasks: ApplicationTask[] = [
+  function () {
+   if (themeVariablesStyle) {
+    document.head.appendChild(themeVariablesStyle)
+   }
+  },
+ ]
+ const cleanUpTasks: ApplicationTask[] = [
+  function () {
+   if (themeVariablesStyle) {
+    document.head.removeChild(themeVariablesStyle)
+   }
+  },
+ ]
+
+ return {
+  cleanUpTasks,
+  element: mainArea,
+  onLoad,
+  onUnload,
+  startUpTasks,
+  title: 'Home',
+ }
 }

@@ -1,19 +1,19 @@
 import { NORMAL_DELAY, S } from '@starryui/starryui-docs/constants'
 import { StarryUITheme } from '@starryui/theme'
 
-export const themeMidnight: StarryUITheme = {
- name: 'midnight',
+export const themeSandstone: StarryUITheme = {
+ name: 'sandstone',
  variables: {
-  theme0: '#000000',
-  theme1: '#101010',
-  theme2: '#202020',
-  theme3: '#303030',
-  theme4: '#404040',
-  theme5: '#505050',
-  theme6: '#606060',
-  theme7: '#707070',
-  theme8: '#808080',
-  themef: '#ffffff',
+  theme0: '#404000',
+  theme1: '#606000',
+  theme2: '#707000',
+  theme3: '#808000',
+  theme4: '#909000',
+  theme5: '#a0a000',
+  theme6: '#b0b000',
+  theme7: '#c0c000',
+  theme8: '#d0d000',
+  themef: '#ffff00',
  },
  facets: {
   body: [
@@ -126,6 +126,10 @@ export const themeMidnight: StarryUITheme = {
    overflowX: 'hidden',
    overflowY: 'auto',
    width: '100%',
+  },
+  opaque: {
+   backgroundColor: 'var(--theme0)',
+   color: 'var(--themef)',
   },
   row: {
    display: 'flex',

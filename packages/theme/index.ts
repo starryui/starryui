@@ -26,9 +26,12 @@ export function withTheme(theme: StarryUITheme): StarryUIThemeTrait {
  }
 }
 
-export function attachThemeVariables(variables?: StarryUIThemeVariables) {
+export function attachThemeVariables(
+ selector: string,
+ variables?: StarryUIThemeVariables
+): HTMLStyleElement | undefined {
  if (variables) {
-  attachStyleText(`:root {
+  return attachStyleText(`${selector} {
 ${Object.entries(variables)
  .map(function ([name, value]) {
   return ` --${name}: ${value};`
@@ -75,6 +78,7 @@ export function compoundRuleText(
           .replace(/&/g, selector)
           .replace(/facet\(([^\)]*)\)/g, (_, a) => `.theme-${theme.name}-${a}`)
      if (Array.isArray(value)) {
+      return compoundRuleText(theme, finalSelector, value)
      } else {
       return cssRuleText(finalSelector, value)
      }

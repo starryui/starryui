@@ -24,8 +24,9 @@
   { "path": "./packages/frame" },
   { "path": "./packages/layout" },
   { "path": "./packages/starryui-docs" },
-  { "path": "./packages/theme" },
   { "path": "./packages/theme-midnight" },
+  { "path": "./packages/theme-sandstone" },
+  { "path": "./packages/theme" },
   { "path": "./packages/traits" },
   { "path": "./packages/tray" }
  ]
