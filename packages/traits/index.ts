@@ -1,4 +1,5 @@
 import { StarryUIButtonImageTrait } from '@starryui/button'
+import { StarryUITaskSchedule } from '@starryui/page'
 import { attachThemeFacet, StarryUIThemeTrait } from '@starryui/theme'
 
 export interface StarryUITextContentTrait {
@@ -38,11 +39,15 @@ export type StarryUITrait =
  | StarryUIThemeTrait
 
 export interface StarryUITraitConfig {
+ content?: (container: HTMLElement, traitConfig?: StarryUITraitConfig) => void
  href?: string
+ startUpTasks?: StarryUITaskSchedule
+ cleanUpTasks?: StarryUITaskSchedule
  style?: Partial<CSSStyleDeclaration>
  tagName?: string
  themeFacet?: string
  themeFacets?: string[]
+ title?: string
 }
 
 export function applyTraits(
@@ -50,6 +55,9 @@ export function applyTraits(
  traits: StarryUITrait[],
  traitConfig: StarryUITraitConfig
 ) {
+ if (traitConfig.content) {
+  traitConfig.content(elem, traitConfig)
+ }
  if (traitConfig.href) {
   elem.setAttribute('href', traitConfig.href)
  }
