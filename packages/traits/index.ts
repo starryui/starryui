@@ -1,5 +1,5 @@
 import { StarryUIButtonImageTrait } from '@starryui/button'
-import { attachThemeFacetStyle, StarryUIThemeTrait } from '@starryui/theme'
+import { attachThemeFacet, StarryUIThemeTrait } from '@starryui/theme'
 
 export interface StarryUITextContentTrait {
  type: 'textContent'
@@ -45,8 +45,6 @@ export interface StarryUITraitConfig {
  themeFacets?: string[]
 }
 
-const ThemeFacetMap = new Map<string, HTMLStyleElement | undefined>()
-
 export function applyTraits(
  elem: HTMLElement,
  traits: StarryUITrait[],
@@ -79,21 +77,10 @@ export function applyTraits(
      )
      break
     }
-    const className = `theme-${trait.theme.name}-${traitConfig.themeFacet}`
-    if (!ThemeFacetMap.has(className)) {
-     ThemeFacetMap.set(
-      className,
-      attachThemeFacetStyle(trait.theme, traitConfig.themeFacet)
-     )
-    }
-    elem.classList.add(className)
+    attachThemeFacet(elem, trait.theme, traitConfig.themeFacet)
     if (traitConfig.themeFacets) {
      for (const facet of traitConfig.themeFacets) {
-      const className = `theme-${trait.theme.name}-${facet}`
-      if (!ThemeFacetMap.has(className)) {
-       ThemeFacetMap.set(className, attachThemeFacetStyle(trait.theme, facet))
-      }
-      elem.classList.add(className)
+      attachThemeFacet(elem, trait.theme, facet)
      }
     }
     break

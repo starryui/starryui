@@ -1,9 +1,11 @@
 import { Marked } from '@ts-stack/markdown'
 import hljs from 'highlight.js/lib/core'
+import hljsLanguageShell from 'highlight.js/lib/languages/shell'
 import hljsLanguageTypeScript from 'highlight.js/lib/languages/typescript'
 
 import 'highlight.js/styles/github-dark.css'
 
+hljs.registerLanguage('shell', hljsLanguageShell)
 hljs.registerLanguage('javascript', hljsLanguageTypeScript)
 
 Marked.setOptions({

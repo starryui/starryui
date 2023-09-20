@@ -106,6 +106,20 @@ export function attachStyle(
  return attachStyleText(cssRuleText(selector, styles))
 }
 
+const ThemeFacetMap = new Map<string, HTMLStyleElement | undefined>()
+
+export function attachThemeFacet(
+ element: HTMLElement,
+ theme: StarryUITheme,
+ facet: string
+) {
+ const className = `theme-${theme.name}-${facet}`
+ if (!ThemeFacetMap.has(className)) {
+  ThemeFacetMap.set(className, attachThemeFacetStyle(theme, facet))
+ }
+ element.classList.add(className)
+}
+
 export function attachThemeFacetStyle(theme: StarryUITheme, facet: string) {
  if (facet in theme.facets) {
   return attachStyle(
@@ -119,15 +133,28 @@ export function attachThemeFacetStyle(theme: StarryUITheme, facet: string) {
  )
 }
 
-export function applyTheme<T extends any[]>(
+export function applyTheme<T extends any>(
+ theme: StarryUITheme,
+ components: StarryUIComponentBuilder<T>
+): StarryUIComponent<T>
+export function applyTheme<T extends any>(
  theme: StarryUITheme,
  components: { [K in keyof T]: StarryUIComponentBuilder<T[K]> }
-): { [K in keyof T]: StarryUIComponent<T[K]> } {
- return components.map((component: StarryUIComponentBuilder<T[number]>) =>
-  component(withTheme(theme))
- ) as {
-  [K in keyof T]: StarryUIComponent<T[K]>
+): { [K in keyof T]: StarryUIComponent<T[K]> }
+export function applyTheme<T extends any>(
+ theme: StarryUITheme,
+ components:
+  | StarryUIComponentBuilder<T>
+  | { [K in keyof T]: StarryUIComponentBuilder<T[K]> }
+): StarryUIComponent<T> | { [K in keyof T]: StarryUIComponent<T[K]> } {
+ if (Array.isArray(components)) {
+  return components.map((component: StarryUIComponentBuilder<T[any]>) =>
+   component(withTheme(theme))
+  ) as {
+   [K in keyof T]: StarryUIComponent<T[K]>
+  }
  }
+ return (components as StarryUIComponentBuilder<T>)(withTheme(theme))
 }
 
 export function createRootCSSVariables(source: { [key: string]: string }) {
@@ -156,7 +183,7 @@ export const useThemeDimensions = {
   return attachStyleText(
    createRootCSSVariables({
     dimension0: '0',
-    dimension1: '3px',
+    dimension1: '2px',
     dimension2: '7px',
     dimension3: '16px',
     dimension4: '32px',

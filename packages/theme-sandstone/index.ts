@@ -4,6 +4,10 @@ import { StarryUITheme } from '@starryui/theme'
 export const themeSandstone: StarryUITheme = {
  name: 'sandstone',
  variables: {
+  'theme-4': '#000000',
+  'theme-3': '#101000',
+  'theme-2': '#202000',
+  'theme-1': '#303000',
   theme0: '#404000',
   theme1: '#606000',
   theme2: '#707000',
@@ -32,7 +36,8 @@ export const themeSandstone: StarryUITheme = {
     '&, input, textarea, select, a': {
      color: 'var(--themef)',
      fontFamily: 'sans-serif',
-     fontSize: '16px',
+     fontSize: '15px',
+     lineHeight: '1.65',
     },
     a: [
      {
@@ -49,21 +54,27 @@ export const themeSandstone: StarryUITheme = {
     ],
     h1: {
      fontSize: '24px',
+     margin: 'var(--dimension2) 0',
     },
     h2: {
      fontSize: '20px',
+     margin: 'var(--dimension2) 0',
     },
     h3: {
      fontSize: '18px',
+     margin: 'var(--dimension2) 0',
     },
     h4: {
      fontSize: '16px',
+     margin: 'var(--dimension2) 0',
     },
     h5: {
      fontSize: '14px',
+     margin: 'var(--dimension2) 0',
     },
     h6: {
      fontSize: '12px',
+     margin: 'var(--dimension2) 0',
     },
     '*[data-starryui-reveal]': {
      opacity: '0',
@@ -116,19 +127,29 @@ export const themeSandstone: StarryUITheme = {
    display: 'flex',
    flexDirection: 'column',
    flexGrow: '1',
+   flexShrink: '1',
    overflowX: 'hidden',
    overflowY: 'auto',
   },
   document: [
    {
     '& a': {
-     borderBottom: '1px solid var(--themee)',
+     borderBottom: 'var(--dimension1) solid var(--theme8)',
      paddingBottom: 'var(--dimension1)',
+    },
+    '& pre': {
+     backgroundColor: 'var(--theme2)',
+     fontFamily: "'Source Code Pro', 'Liberation Mono', monospace",
+     fontSize: '13px',
+     lineHeight: '2',
+     margin: '0',
+     padding: 'var(--dimension2)',
+     whiteSpace: 'break-spaces',
     },
    },
   ],
   frame: {
-   border: '1px solid var(--theme4)',
+   border: '1px solid var(--theme2)',
    borderRadius: 'var(--dimension2)',
    boxSizing: 'border-box',
    height: '100%',
@@ -140,10 +161,14 @@ export const themeSandstone: StarryUITheme = {
    backgroundColor: 'var(--theme0)',
    color: 'var(--themef)',
   },
+  'opaque-alt': {
+   backgroundColor: 'var(--theme-2)',
+  },
   row: {
    display: 'flex',
    flexDirection: 'row',
    flexGrow: '1',
+   flexShrink: '0',
    overflowX: 'auto',
    overflowY: 'hidden',
   },
