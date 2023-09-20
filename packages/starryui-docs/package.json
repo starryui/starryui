@@ -13,8 +13,10 @@
  "license": "ISC",
  "dependencies": {
   "@starryui/button": "^0.0.7",
-  "@starryui/theme-midnight": "^0.0.7",
   "@starryui/theme": "^0.0.7",
-  "@starryui/traits": "^0.0.7"
+  "@starryui/theme-midnight": "^0.0.7",
+  "@starryui/traits": "^0.0.7",
+  "@ts-stack/markdown": "^1.5.0",
+  "highlight.js": "^11.8.0"
  }
 }

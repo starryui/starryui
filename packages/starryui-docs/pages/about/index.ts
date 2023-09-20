@@ -1,23 +1,28 @@
-import { row } from '@starryui/layout'
+import { column } from '@starryui/layout'
 import {
  StarryUITheme,
  applyTheme,
  attachThemeVariables,
 } from '@starryui/theme'
 import { ApplicationPage, ApplicationTask } from '../types'
+import { renderMarkdownFromPath } from '@starryui/starryui-docs/util/markdown'
 
 export function about(theme: StarryUITheme): ApplicationPage {
- const [themedRow] = applyTheme(theme, [row])
- const mainArea = themedRow({
-  style: { padding: '10px' },
-  themeFacets: ['opaque'],
+ const [themedColumn] = applyTheme(theme, [column])
+ const mainArea = themedColumn({
+  style: { padding: '0 20px' },
+  themeFacets: ['document', 'opaque'],
  })
  const themeVariablesStyle: HTMLStyleElement | undefined = attachThemeVariables(
   mainArea,
   theme.variables
  )
 
- mainArea.textContent = 'about StarryUI'
+ async function load() {
+  mainArea.innerHTML = await renderMarkdownFromPath('/pages/about/content.md')
+ }
+
+ load().catch((e) => console.warn(e))
 
  async function onLoad(final: boolean) {
   if (final) {

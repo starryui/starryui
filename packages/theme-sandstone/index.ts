@@ -13,6 +13,7 @@ export const themeSandstone: StarryUITheme = {
   theme6: '#b0b000',
   theme7: '#c0c000',
   theme8: '#d0d000',
+  themee: '#e0e0e0',
   themef: '#ffff00',
  },
  facets: {
@@ -93,7 +94,7 @@ export const themeSandstone: StarryUITheme = {
      lineHeight: '14px',
      maxHeight: 'var(--dimension4)',
      minWidth: 'var(--dimension4)',
-     padding: 'var(--dimension1)',
+     padding: 'var(--dimension2)',
      whiteSpace: 'nowrap',
     },
     '&:hover': {
@@ -106,7 +107,7 @@ export const themeSandstone: StarryUITheme = {
      backgroundSize: '100%',
      height: 'var(--dimension3)',
      imageRendering: 'pixelated',
-     marginRight: 'var(--dimension1)',
+     marginRight: 'var(--dimension2)',
      width: 'var(--dimension3)',
     },
    },
@@ -118,9 +119,17 @@ export const themeSandstone: StarryUITheme = {
    overflowX: 'hidden',
    overflowY: 'auto',
   },
+  document: [
+   {
+    '& a': {
+     borderBottom: '1px solid var(--themee)',
+     paddingBottom: 'var(--dimension1)',
+    },
+   },
+  ],
   frame: {
    border: '1px solid var(--theme4)',
-   borderRadius: 'var(--dimension1)',
+   borderRadius: 'var(--dimension2)',
    boxSizing: 'border-box',
    height: '100%',
    overflowX: 'hidden',

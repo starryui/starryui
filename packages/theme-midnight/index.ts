@@ -13,6 +13,7 @@ export const themeMidnight: StarryUITheme = {
   theme6: '#606060',
   theme7: '#707070',
   theme8: '#808080',
+  themee: '#e0e0e0',
   themef: '#ffffff',
  },
  facets: {
@@ -93,7 +94,7 @@ export const themeMidnight: StarryUITheme = {
      lineHeight: '14px',
      maxHeight: 'var(--dimension4)',
      minWidth: 'var(--dimension4)',
-     padding: 'var(--dimension1)',
+     padding: 'var(--dimension2)',
      whiteSpace: 'nowrap',
     },
     '&:hover': {
@@ -106,7 +107,7 @@ export const themeMidnight: StarryUITheme = {
      backgroundSize: '100%',
      height: 'var(--dimension3)',
      imageRendering: 'pixelated',
-     marginRight: 'var(--dimension1)',
+     marginRight: 'var(--dimension2)',
      width: 'var(--dimension3)',
     },
    },
@@ -118,14 +119,26 @@ export const themeMidnight: StarryUITheme = {
    overflowX: 'hidden',
    overflowY: 'auto',
   },
+  document: [
+   {
+    '& a': {
+     borderBottom: '1px solid var(--themee)',
+     paddingBottom: 'var(--dimension1)',
+    },
+   },
+  ],
   frame: {
    border: '1px solid var(--theme4)',
-   borderRadius: 'var(--dimension1)',
+   borderRadius: 'var(--dimension2)',
    boxSizing: 'border-box',
    height: '100%',
    overflowX: 'hidden',
    overflowY: 'auto',
    width: '100%',
+  },
+  opaque: {
+   backgroundColor: 'var(--theme0)',
+   color: 'var(--themef)',
   },
   row: {
    display: 'flex',

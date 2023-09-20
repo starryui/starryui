@@ -146,6 +146,8 @@ export const useThemeDimensions = {
    createRootCSSVariables({
     dimension0: '0',
     dimension1: '0',
+    dimension2: '0',
+    dimension3: '0',
     dimension4: '0',
    })
   )
@@ -154,8 +156,8 @@ export const useThemeDimensions = {
   return attachStyleText(
    createRootCSSVariables({
     dimension0: '0',
-    dimension1: '7px',
-    dimension2: '12px',
+    dimension1: '3px',
+    dimension2: '7px',
     dimension3: '16px',
     dimension4: '32px',
    })
