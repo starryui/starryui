@@ -38,6 +38,7 @@ export type StarryUITrait =
  | StarryUIThemeTrait
 
 export interface StarryUITraitConfig {
+ href?: string
  style?: Partial<CSSStyleDeclaration>
  tagName?: string
  themeFacet?: string
@@ -51,6 +52,9 @@ export function applyTraits(
  traits: StarryUITrait[],
  traitConfig: StarryUITraitConfig
 ) {
+ if (traitConfig.href) {
+  elem.setAttribute('href', traitConfig.href)
+ }
  if (traitConfig.style) {
   Object.assign(elem.style, traitConfig.style)
  }

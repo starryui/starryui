@@ -20,8 +20,12 @@ export function about(theme: StarryUITheme): ApplicationPage {
  mainArea.textContent = 'about StarryUI'
 
  async function onLoad(final: boolean) {
-  if (!final) {
-   for (const task of startUpTasks) {
+  if (final) {
+   for (const task of startUpTasks.final) {
+    await task()
+   }
+  } else {
+   for (const task of startUpTasks.initial) {
     await task()
    }
   }
@@ -29,26 +33,38 @@ export function about(theme: StarryUITheme): ApplicationPage {
 
  async function onUnload(final: boolean) {
   if (final) {
-   for (const task of cleanUpTasks) {
+   for (const task of cleanUpTasks.final) {
+    await task()
+   }
+  } else {
+   for (const task of cleanUpTasks.initial) {
     await task()
    }
   }
  }
 
- const startUpTasks: ApplicationTask[] = [
-  function () {
-   if (themeVariablesStyle) {
-    document.head.appendChild(themeVariablesStyle)
-   }
-  },
- ]
- const cleanUpTasks: ApplicationTask[] = [
-  function () {
-   if (themeVariablesStyle) {
-    document.head.removeChild(themeVariablesStyle)
-   }
-  },
- ]
+ const startUpTasks: { initial: ApplicationTask[]; final: ApplicationTask[] } =
+  {
+   initial: [
+    function () {
+     if (themeVariablesStyle) {
+      document.head.appendChild(themeVariablesStyle)
+     }
+    },
+   ],
+   final: [],
+  }
+ const cleanUpTasks: { initial: ApplicationTask[]; final: ApplicationTask[] } =
+  {
+   initial: [],
+   final: [
+    function () {
+     if (themeVariablesStyle) {
+      document.head.removeChild(themeVariablesStyle)
+     }
+    },
+   ],
+  }
 
  return {
   cleanUpTasks,

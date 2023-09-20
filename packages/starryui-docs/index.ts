@@ -1,4 +1,5 @@
 import { button, withButtonImage } from '@starryui/button'
+import { row } from '@starryui/layout'
 import {
  StarryUITheme,
  applyTheme,
@@ -19,7 +20,11 @@ attachThemeVariables('body', themeMidnight.variables)
 attachStyle(themeMidnight, 'body', themeMidnight.facets.body)
 useThemeDimensions.tiny()
 
-const [themedButton, themedTray] = applyTheme(themeMidnight, [button, tray])
+const [themedButton, themedRow, themedTray] = applyTheme(themeMidnight, [
+ button,
+ row,
+ tray,
+])
 
 const topTray = themedTray({
  style: {
@@ -29,21 +34,44 @@ const topTray = themedTray({
 attachThemeVariables(topTray, themeMidnight.variables)
 document.body.appendChild(topTray)
 
-const hello = themedButton.add(
- withButtonImage('/pages/home/starryui.png'),
- withTextContent('StarryUI')
-)({ tagName: 'a' })
-hello.setAttribute('href', '/#')
-topTray.appendChild(hello)
+topTray.appendChild(
+ themedButton.add(
+  withButtonImage('/pages/home/starryui.png'),
+  withTextContent('StarryUI')
+ )({ href: '/#', tagName: 'a' })
+)
+
+const breadcrumbs = themedRow()
+topTray.appendChild(breadcrumbs)
+
+function withBreadcrumb(path: string, page: ApplicationPage): ApplicationPage {
+ const crumb = themedButton.add(withTextContent(page.title))({
+  href: path,
+  tagName: 'a',
+ })
+ page.startUpTasks.initial.push(function () {
+  crumb.setAttribute('data-starryui-reveal', 'hidden')
+  breadcrumbs.appendChild(crumb)
+ })
+ page.startUpTasks.final.push(function () {
+  crumb.setAttribute('data-starryui-reveal', 'reveal')
+ })
+ page.cleanUpTasks.initial.push(function () {
+  crumb.setAttribute('data-starryui-reveal', 'hidden')
+ })
+ page.cleanUpTasks.final.push(function () {
+  breadcrumbs.removeChild(crumb)
+ })
+ return page
+}
 
 let activePage: ApplicationPage | undefined
-
 const pageCache = new Map<string, ApplicationPage>()
 
-function loadPage(id: string, theme: StarryUITheme) {
+function loadPage(path: string, id: string, theme: StarryUITheme) {
  switch (id) {
   case 'about':
-   return about(theme)
+   return withBreadcrumb(path, about(theme))
   case 'home':
    return home(theme)
   default:
@@ -51,12 +79,12 @@ function loadPage(id: string, theme: StarryUITheme) {
  }
 }
 
-function getPage(id: string, theme: StarryUITheme) {
+function getPage(path: string, id: string, theme: StarryUITheme) {
  const cacheId = `<theme:${theme.name}><page:${id}>`
  if (pageCache.has(cacheId)) {
   return pageCache.get(cacheId)
  }
- const page = loadPage(id, theme)
+ const page = loadPage(path, id, theme)
  pageCache.set(cacheId, page)
  return page
 }
@@ -93,7 +121,7 @@ document.body.appendChild(themeSwitcher)
 
 async function route() {
  if (activePage) {
-  activePage.element.setAttribute('starryui-reveal', 'hidden')
+  activePage.element.setAttribute('data-starryui-reveal', 'hidden')
   await activePage.onUnload?.(false)
   await new Promise((r) => setTimeout(r, NORMAL_DELAY))
   document.body.removeChild(activePage.element)
@@ -103,19 +131,19 @@ async function route() {
  switch (location.hash) {
   case '':
   case '#':
-   activePage = getPage('home', activeTheme)
+   activePage = getPage(location.hash, 'home', activeTheme)
    break
   case '#/about':
-   activePage = getPage('about', activeTheme)
+   activePage = getPage(location.hash, 'about', activeTheme)
    break
  }
  if (activePage) {
   // routing occurred
   await activePage.onLoad?.(false)
-  activePage.element.setAttribute('starryui-reveal', 'hidden') // todo can move to onLoad
+  activePage.element.setAttribute('data-starryui-reveal', 'hidden') // todo can move to onLoad
   document.body.appendChild(activePage.element)
   await new Promise((r) => setTimeout(r, NORMAL_DELAY))
-  activePage.element.setAttribute('starryui-reveal', 'reveal') // todo can move to onLoad
+  activePage.element.setAttribute('data-starryui-reveal', 'reveal') // todo can move to onLoad
   await activePage.onLoad?.(true)
  } else {
   console.warn(`Path ${location.hash} did not have an associated page`)

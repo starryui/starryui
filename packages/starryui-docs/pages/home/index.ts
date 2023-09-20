@@ -27,6 +27,7 @@ export function home(theme: StarryUITheme): ApplicationPage {
  const [slide1, slide2, slide3] = [homeSlide1, homeSlide2, homeSlide3].map(
   function (x) {
    const column = themedColumn({
+    href: x.href,
     style: {
      maxWidth: '480px',
      minWidth: '240px',
@@ -35,7 +36,6 @@ export function home(theme: StarryUITheme): ApplicationPage {
     },
     tagName: 'a',
    })
-   column.setAttribute('href', x.href)
    const frame = themedFrame({
     style: {
      display: 'grid',
@@ -77,35 +77,51 @@ export function home(theme: StarryUITheme): ApplicationPage {
  }, 2 * NORMAL_DELAY)
 
  async function onLoad(final: boolean) {
-  if (!final) {
-   for (const task of startUpTasks) {
+  if (final) {
+   for (const task of startUpTasks.final) {
+    await task()
+   }
+  } else {
+   for (const task of startUpTasks.initial) {
     await task()
    }
   }
  }
 
  async function onUnload(final: boolean) {
-  if (!final) {
-   for (const task of cleanUpTasks) {
+  if (final) {
+   for (const task of cleanUpTasks.final) {
+    await task()
+   }
+  } else {
+   for (const task of cleanUpTasks.initial) {
     await task()
    }
   }
  }
 
- const startUpTasks: ApplicationTask[] = [
-  function () {
-   if (themeVariablesStyle) {
-    document.head.appendChild(themeVariablesStyle)
-   }
-  },
- ]
- const cleanUpTasks: ApplicationTask[] = [
-  function () {
-   if (themeVariablesStyle) {
-    document.head.removeChild(themeVariablesStyle)
-   }
-  },
- ]
+ const startUpTasks: { initial: ApplicationTask[]; final: ApplicationTask[] } =
+  {
+   initial: [
+    function () {
+     if (themeVariablesStyle) {
+      document.head.appendChild(themeVariablesStyle)
+     }
+    },
+   ],
+   final: [],
+  }
+ const cleanUpTasks: { initial: ApplicationTask[]; final: ApplicationTask[] } =
+  {
+   initial: [],
+   final: [
+    function () {
+     if (themeVariablesStyle) {
+      document.head.removeChild(themeVariablesStyle)
+     }
+    },
+   ],
+  }
 
  return {
   cleanUpTasks,

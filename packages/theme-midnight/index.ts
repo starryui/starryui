@@ -64,7 +64,7 @@ export const themeMidnight: StarryUITheme = {
     h6: {
      fontSize: '12px',
     },
-    'div[starryui-reveal]': {
+    '*[data-starryui-reveal]': {
      opacity: '0',
      transform: 'scaleY(0.975) translateY(-2.5%)',
      transformOrigin: 'top left',
@@ -72,7 +72,7 @@ export const themeMidnight: StarryUITheme = {
       NORMAL_DELAY / S
      }s ease-out transform`,
     },
-    'div[starryui-reveal="reveal"]': {
+    '*[data-starryui-reveal="reveal"]': {
      opacity: '1',
      transform: 'scaleY(1) translateY(0)',
     },
@@ -140,13 +140,15 @@ export const themeMidnight: StarryUITheme = {
      backgroundColor: 'var(--theme1)',
      borderBottom: '1px solid var(--theme4)',
      boxSizing: 'border-box',
+     display: 'flex',
+     flexDirection: 'row',
      flexShrink: '0',
      overflowX: 'auto',
      overflowY: 'hidden',
      minHeight: 'var(--dimension4)',
      minWidth: 'var(--dimension4)',
     },
-    '& > facet(button)': {
+    '& facet(button)': {
      backgroundColor: 'var(--theme1)',
      borderBottom: '1px solid var(--theme4)',
      borderLeft: 'none',
