@@ -6,6 +6,7 @@ import {
  StarryUITheme,
  applyTheme,
  applyThemeMultiple,
+ attachThemeFacet,
  attachThemeVariables,
 } from '@starryui/theme'
 import { homeSlide1, homeSlide2, homeSlide3 } from './slides'
@@ -21,7 +22,7 @@ export function home(theme: StarryUITheme): StarryUIPage {
     frame,
    ])
    const mainArea = themedRow({
-    style: { padding: '10px' },
+    style: { gap: '10px', padding: '10px' },
     themeFacets: ['opaque'],
    })
    const themeVariablesStyle: HTMLStyleElement | undefined =
@@ -29,16 +30,11 @@ export function home(theme: StarryUITheme): StarryUIPage {
 
    const [slide1, slide2, slide3] = [homeSlide1, homeSlide2, homeSlide3].map(
     function (x) {
-     const column = themedColumn({
+     const link = themedColumn({
       href: x.href,
-      style: {
-       maxWidth: '480px',
-       minWidth: '240px',
-       padding: '10px',
-       width: '100vw',
-      },
       tagName: 'a',
      })
+     attachThemeFacet(link, theme, 'link-frame')
      const frame = themedFrame({
       style: {
        display: 'grid',
@@ -48,24 +44,32 @@ export function home(theme: StarryUITheme): StarryUIPage {
       },
      })
      const content = document.createElement('div')
-     content.style.height = 'fit-content'
-     column.appendChild(frame)
+     attachThemeFacet(content, theme, 'column')
+     Object.assign(content.style, {
+      height: 'fit-content',
+     })
+     link.appendChild(frame)
      frame.appendChild(content)
      if (x.imgSrc) {
       const img = document.createElement('img')
-      img.style.width = '256px'
-      img.style.maxWidth = '100%'
-      img.style.imageRendering = 'pixelated'
+      Object.assign(img.style, {
+       imageRendering: 'pixelated',
+       margin: '0 auto var(--dimension4)',
+       maxWidth: '100%',
+       width: '128px',
+      })
       img.src = x.imgSrc
       content.appendChild(img)
      }
      const h1 = document.createElement('h1')
-     h1.textContent = x.title
+     const h1text = document.createElement('span')
+     h1text.textContent = x.title
+     h1.appendChild(h1text)
      content.appendChild(h1)
-     const h2 = document.createElement('h2')
-     h2.textContent = x.subtitle
-     content.appendChild(h2)
-     return { column, content, frame, h1, h2 }
+     const h4 = document.createElement('h4')
+     h4.textContent = x.subtitle
+     content.appendChild(h4)
+     return { column: link, content, frame, h1, h4 }
     }
    )
 

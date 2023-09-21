@@ -39,6 +39,7 @@ export const themeMidnight: StarryUITheme = {
      {
       '&': {
        textDecoration: 'none',
+       transition: `${NORMAL_DELAY / S}s ease background-color`,
       },
       '&:hover': {
        backgroundColor: 'var(--theme3)',
@@ -120,18 +121,24 @@ export const themeMidnight: StarryUITheme = {
    },
   ],
   column: {
+   boxSizing: 'border-box',
    display: 'flex',
    flexDirection: 'column',
    flexGrow: '1',
    flexShrink: '1',
    overflowX: 'hidden',
    overflowY: 'auto',
+   width: '100%',
   },
   document: [
    {
     '& a': {
      borderBottom: 'var(--dimension1) solid var(--theme8)',
      paddingBottom: 'var(--dimension1)',
+     transition: `${NORMAL_DELAY / S}s ease border-bottom`,
+    },
+    '& a:hover': {
+     borderBottom: 'var(--dimension1) solid var(--themef)',
     },
     '& pre': {
      backgroundColor: 'var(--theme2)',
@@ -153,6 +160,18 @@ export const themeMidnight: StarryUITheme = {
    overflowY: 'auto',
    width: '100%',
   },
+  'link-frame': [
+   {
+    '& h1 span': {
+     borderBottom: 'var(--dimension1) solid transparent',
+     paddingBottom: 'var(--dimension1)',
+     transition: `${NORMAL_DELAY / S}s ease border-bottom`,
+    },
+    '&:hover h1 span': {
+     borderBottom: 'var(--dimension1) solid var(--themef)',
+    },
+   },
+  ],
   menu: [
    {
     '': {
@@ -182,6 +201,7 @@ export const themeMidnight: StarryUITheme = {
    backgroundColor: 'var(--theme2)',
   },
   row: {
+   boxSizing: 'border-box',
    display: 'flex',
    flexDirection: 'row',
    flexGrow: '1',
