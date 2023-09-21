@@ -63,27 +63,27 @@ export const themeSandstone: StarryUITheme = {
     ],
     h1: {
      fontSize: '24px',
-     margin: 'var(--dimension2) 0',
+     margin: 'var(--dimension3) 0 var(--dimension2)',
     },
     h2: {
      fontSize: '20px',
-     margin: 'var(--dimension2) 0',
+     margin: 'var(--dimension3) 0 var(--dimension2)',
     },
     h3: {
      fontSize: '18px',
-     margin: 'var(--dimension2) 0',
+     margin: 'var(--dimension3) 0 var(--dimension2)',
     },
     h4: {
      fontSize: '16px',
-     margin: 'var(--dimension2) 0',
+     margin: 'var(--dimension3) 0 var(--dimension2)',
     },
     h5: {
      fontSize: '14px',
-     margin: 'var(--dimension2) 0',
+     margin: 'var(--dimension3) 0 var(--dimension2)',
     },
     h6: {
      fontSize: '12px',
-     margin: 'var(--dimension2) 0',
+     margin: 'var(--dimension3) 0 var(--dimension2)',
     },
     '*[data-starryui-reveal]': {
      opacity: '0',

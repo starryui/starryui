@@ -1,7 +1,7 @@
 {
  "private": true,
  "scripts": {
-  "build": "tsc -b tsconfig.json --clean && tsc -b tsconfig.json",
+  "build": "./copy-component-readmes && tsc -b tsconfig.json --clean && tsc -b tsconfig.json",
   "docs": "cd packages/starryui-docs && python -m http.server",
   "docs-watch": "cd packages/starryui-docs && concurrently \"python -m http.server\" \"npm run compile-watch\"",
   "publish-all": "npm run build && npm publish --workspaces --access public"

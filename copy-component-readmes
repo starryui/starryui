@@ -1,0 +1,9 @@
+cp packages/layout/column.md packages/starryui-docs/pages/components/column.md
+cp packages/button/readme.md packages/starryui-docs/pages/components/button.md
+cp packages/layout/row.md packages/starryui-docs/pages/components/row.md
+cp packages/frame/readme.md packages/starryui-docs/pages/components/frame.md
+cp packages/menu/readme.md packages/starryui-docs/pages/components/menu.md
+cp packages/page/readme.md packages/starryui-docs/pages/components/page.md
+cp packages/theme/readme.md packages/starryui-docs/pages/components/theme.md
+cp packages/traits/readme.md packages/starryui-docs/pages/components/traits.md
+cp packages/tray/readme.md packages/starryui-docs/pages/components/tray.md

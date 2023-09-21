@@ -1,9 +1,12 @@
 import { frame } from '@starryui/frame'
 import { column, row } from '@starryui/layout'
 import { StarryUIPage, page } from '@starryui/page'
+import { NORMAL_DELAY_MS } from '@starryui/starryui-docs/constants'
+import { renderMarkdownFromPath } from '@starryui/starryui-docs/util/markdown'
 import {
  StarryUITheme,
  applyTheme,
+ attachThemeFacet,
  attachThemeVariables,
 } from '@starryui/theme'
 import hljs from 'highlight.js/lib/core'
@@ -35,8 +38,7 @@ export function components(theme: StarryUITheme): StarryUIPage {
    header.textContent = 'Components'
    topArea.appendChild(header)
    const para0 = document.createElement('p')
-   para0.textContent =
-    'Browse the gallery of StarryUI components, ready for use in your web project.'
+   para0.textContent = 'Browse the gallery of StarryUI components.'
    topArea.appendChild(para0)
    container.appendChild(topArea)
    const mainArea = themedColumn({
@@ -145,6 +147,37 @@ export function components(theme: StarryUITheme): StarryUIPage {
      frame.appendChild(h6examplesource)
      frame.appendChild(preES)
     }
+
+    const hoverReadme = document.createElement('div')
+    const readmeContent = document.createElement('div')
+    Object.assign(hoverReadme.style, {
+     marginTop: 'var(--dimension3)',
+     padding: 'var(--dimension2)',
+     textAlign: 'center',
+    })
+    let loading = false
+    hoverReadme.addEventListener('mouseover', async function () {
+     if (loading) {
+      return
+     }
+     loading = true
+     hoverReadme.textContent = 'loading...' // todo loading component
+     readmeContent.setAttribute('data-starryui-reveal', 'hidden')
+     readmeContent.innerHTML = await renderMarkdownFromPath(
+      `/pages/components/${componentDefinition.title}.md`
+     )
+     frame.appendChild(readmeContent)
+     setTimeout(function () {
+      hoverReadme.setAttribute('data-starryui-reveal', 'hidden')
+      readmeContent.setAttribute('data-starryui-reveal', 'reveal')
+      setTimeout(function () {
+       frame.removeChild(hoverReadme)
+      }, NORMAL_DELAY_MS)
+     }, NORMAL_DELAY_MS)
+    })
+    attachThemeFacet(hoverReadme, theme, 'opaque-alt')
+    hoverReadme.textContent = 'hover to load more content'
+    frame.appendChild(hoverReadme)
 
     gallery.appendChild(column)
    }

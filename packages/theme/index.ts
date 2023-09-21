@@ -26,6 +26,19 @@ export function withTheme(theme: StarryUITheme): StarryUIThemeTrait {
  }
 }
 
+export type StarryUIThemeFacet =
+ | 'button'
+ | 'column'
+ | 'document'
+ | 'frame'
+ | 'link-frame'
+ | 'menu'
+ | 'opaque-alt'
+ | 'opaque'
+ | 'row'
+ | 'tray'
+ | 'tray-spacer'
+
 let uniqueId = 0
 
 export function attachThemeVariables(
@@ -122,7 +135,7 @@ const ThemeFacetMap = new Map<string, HTMLStyleElement | undefined>()
 export function attachThemeFacet(
  element: HTMLElement,
  theme: StarryUITheme,
- facet: string
+ facet: StarryUIThemeFacet
 ) {
  const className = `theme-${theme.name}-${facet}`
  if (!ThemeFacetMap.has(className)) {
@@ -131,7 +144,10 @@ export function attachThemeFacet(
  element.classList.add(className)
 }
 
-export function attachThemeFacetStyle(theme: StarryUITheme, facet: string) {
+export function attachThemeFacetStyle(
+ theme: StarryUITheme,
+ facet: StarryUIThemeFacet
+) {
  if (facet in theme.facets) {
   return attachStyle(
    theme,

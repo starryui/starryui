@@ -1,5 +1,9 @@
 import { StarryUITaskSchedule } from '@starryui/page'
-import { attachThemeFacet, StarryUIThemeTrait } from '@starryui/theme'
+import {
+ attachThemeFacet,
+ StarryUIThemeFacet,
+ StarryUIThemeTrait,
+} from '@starryui/theme'
 
 export interface StarryUIButtonImageTrait {
  type: 'buttonImage'
@@ -55,8 +59,8 @@ export interface StarryUITraitConfig {
  cleanUpTasks?: StarryUITaskSchedule
  style?: Partial<CSSStyleDeclaration>
  tagName?: string
- themeFacet?: string
- themeFacets?: string[]
+ themeFacet?: StarryUIThemeFacet
+ themeFacets?: StarryUIThemeFacet[]
  title?: string
 }
 
