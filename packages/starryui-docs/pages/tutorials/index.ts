@@ -6,11 +6,11 @@ import {
  attachThemeVariables,
 } from '@starryui/theme'
 
-export function components(theme: StarryUITheme): StarryUIPage {
+export function tutorials(theme: StarryUITheme): StarryUIPage {
  const themedPage = applyTheme(theme, page)
  const themedRow = applyTheme(theme, row)
  return themedPage({
-  title: 'Components',
+  title: 'Tutorials',
   content(container, config) {
    const themeVariablesStyle: HTMLStyleElement | undefined =
     attachThemeVariables(container, theme.variables)
@@ -24,7 +24,7 @@ export function components(theme: StarryUITheme): StarryUIPage {
     themeFacets: ['document', 'opaque'],
    })
    const header = document.createElement('h2')
-   header.textContent = 'Components'
+   header.textContent = 'Tutorials'
    topArea.appendChild(header)
    container.appendChild(topArea)
    const themedColumn = applyTheme(theme, column)

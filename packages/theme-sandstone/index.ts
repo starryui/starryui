@@ -1,4 +1,8 @@
-import { NORMAL_DELAY, S } from '@starryui/starryui-docs/constants'
+import {
+ MOBILE_BREAKPOINT_PX,
+ NORMAL_DELAY_MS,
+ S,
+} from '@starryui/starryui-docs/constants'
 import { StarryUITheme } from '@starryui/theme'
 
 export const themeSandstone: StarryUITheme = {
@@ -39,11 +43,15 @@ export const themeSandstone: StarryUITheme = {
      fontSize: '15px',
      lineHeight: '1.65',
     },
+    '*::selection': {
+     backgroundColor: 'var(--theme8)',
+     color: 'var(--theme0)',
+    },
     a: [
      {
       '&': {
        textDecoration: 'none',
-       transition: `${NORMAL_DELAY / S}s ease background-color`,
+       transition: `${NORMAL_DELAY_MS / S}s ease background-color`,
       },
       '&:hover': {
        backgroundColor: 'var(--theme3)',
@@ -81,8 +89,8 @@ export const themeSandstone: StarryUITheme = {
      opacity: '0',
      transform: 'scaleY(0.975) translateY(-2.5%)',
      transformOrigin: 'top left',
-     transition: `${NORMAL_DELAY / S}s ease-out opacity, ${
-      NORMAL_DELAY / S
+     transition: `${NORMAL_DELAY_MS / S}s ease-out opacity, ${
+      NORMAL_DELAY_MS / S
      }s ease-out transform`,
     },
     '*[data-starryui-reveal="reveal"]': {
@@ -139,7 +147,7 @@ export const themeSandstone: StarryUITheme = {
     '& a': {
      borderBottom: 'var(--dimension1) solid var(--theme8)',
      paddingBottom: 'var(--dimension1)',
-     transition: `${NORMAL_DELAY / S}s ease border-bottom`,
+     transition: `${NORMAL_DELAY_MS / S}s ease border-bottom`,
     },
     '& a:hover': {
      borderBottom: 'var(--dimension1) solid var(--themef)',
@@ -169,7 +177,7 @@ export const themeSandstone: StarryUITheme = {
     '& h1 span': {
      borderBottom: 'var(--dimension1) solid transparent',
      paddingBottom: 'var(--dimension1)',
-     transition: `${NORMAL_DELAY / S}s ease border-bottom`,
+     transition: `${NORMAL_DELAY_MS / S}s ease border-bottom`,
     },
     '&:hover h1 span': {
      borderBottom: 'var(--dimension1) solid var(--themef)',
@@ -204,15 +212,25 @@ export const themeSandstone: StarryUITheme = {
   'opaque-alt': {
    backgroundColor: 'var(--theme-2)',
   },
-  row: {
-   boxSizing: 'border-box',
-   display: 'flex',
-   flexDirection: 'row',
-   flexGrow: '1',
-   flexShrink: '0',
-   overflowX: 'auto',
-   overflowY: 'hidden',
-  },
+  row: [
+   {
+    '': {
+     boxSizing: 'border-box',
+     display: 'flex',
+     flexDirection: 'row',
+     flexGrow: '1',
+     flexShrink: '0',
+     overflowX: 'auto',
+     overflowY: 'hidden',
+    },
+    '& > facet(column)': {
+     minWidth: '256px',
+    },
+    [`@media screen and (max-width: ${MOBILE_BREAKPOINT_PX}px) &`]: {
+     flexDirection: 'column',
+    },
+   },
+  ],
   tray: [
    {
     '': {
@@ -234,6 +252,9 @@ export const themeSandstone: StarryUITheme = {
      borderRight: '1px solid var(--theme4)',
      borderTop: 'none',
      marginBottom: '-1px',
+    },
+    '& facet(button):last-child': {
+     borderRight: 'none',
     },
    },
   ],

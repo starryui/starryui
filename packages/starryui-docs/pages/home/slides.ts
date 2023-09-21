@@ -7,7 +7,7 @@ export interface Slide {
 
 export const homeSlide1: Slide = {
  href: '/#/about',
- subtitle: 'TypeScript component library',
+ subtitle: 'About this library',
  title: 'StarryUI',
  imgSrc: '/pages/home/starryui.png',
 }

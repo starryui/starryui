@@ -78,6 +78,17 @@ export function compoundRuleText(
   .map((style) =>
    Object.entries(style)
     .map(function ([key, value]) {
+     let postfix = ''
+     let prefix = ''
+     if (key.startsWith('@media')) {
+      if (!key.endsWith(' &')) {
+       throw new Error(`selector should end with ' &': '${key}'`)
+      }
+      const media = key.substring(0, key.length - 2)
+      prefix += `${media} {\n`
+      postfix += '\n}'
+      key = '&'
+     }
      const finalSelector =
       key === ''
        ? selector
@@ -85,9 +96,9 @@ export function compoundRuleText(
           .replace(/&/g, selector)
           .replace(/facet\(([^\)]*)\)/g, (_, a) => `.theme-${theme.name}-${a}`)
      if (Array.isArray(value)) {
-      return compoundRuleText(theme, finalSelector, value)
+      return prefix + compoundRuleText(theme, finalSelector, value) + postfix
      } else {
-      return cssRuleText(finalSelector, value)
+      return prefix + cssRuleText(finalSelector, value) + postfix
      }
     })
     .join('\n')

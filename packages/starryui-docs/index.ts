@@ -6,17 +6,18 @@ import {
  useThemeDimensions,
 } from '@starryui/theme'
 import { themeMidnight } from '@starryui/theme-midnight'
-import { NORMAL_DELAY } from './constants'
+import { NORMAL_DELAY_MS } from './constants'
 import { mainTray } from './main-tray'
 import { about } from './pages/about'
 import { components } from './pages/components'
 import { home } from './pages/home'
+import { tutorials } from './pages/tutorials'
 
 async function route() {
  if (activePage) {
   activePage.element.setAttribute('data-starryui-reveal', 'hidden')
   await activePage.onUnload?.(false)
-  await new Promise((r) => setTimeout(r, NORMAL_DELAY))
+  await new Promise((r) => setTimeout(r, NORMAL_DELAY_MS))
   document.body.removeChild(activePage.element)
   await activePage.onUnload?.(true)
   activePage = undefined
@@ -27,10 +28,13 @@ async function route() {
    activePage = getPage(location.hash, 'home', topTray.activeTheme)
    break
   case '#/about':
-   activePage = getPage(location.hash, 'about', topTray.activeTheme)
-   break
   case '#/components':
-   activePage = getPage(location.hash, 'components', topTray.activeTheme)
+  case '#/tutorials':
+   activePage = getPage(
+    location.hash,
+    location.hash.substring(2),
+    topTray.activeTheme
+   )
    break
  }
  if (activePage) {
@@ -38,7 +42,7 @@ async function route() {
   await activePage.onLoad?.(false)
   activePage.element.setAttribute('data-starryui-reveal', 'hidden') // todo can move to onLoad
   document.body.appendChild(activePage.element)
-  await new Promise((r) => setTimeout(r, NORMAL_DELAY))
+  await new Promise((r) => setTimeout(r, NORMAL_DELAY_MS))
   activePage.element.setAttribute('data-starryui-reveal', 'reveal') // todo can move to onLoad
   await activePage.onLoad?.(true)
  } else {
@@ -61,6 +65,8 @@ function loadPage(path: string, id: string, theme: StarryUITheme) {
    return topTray.withBreadcrumb(path, about(theme))
   case 'components':
    return topTray.withBreadcrumb(path, components(theme))
+  case 'tutorials':
+   return topTray.withBreadcrumb(path, tutorials(theme))
   case 'home':
    return home(theme)
   default:

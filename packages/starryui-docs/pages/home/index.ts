@@ -1,7 +1,7 @@
 import { frame } from '@starryui/frame'
 import { column, row } from '@starryui/layout'
 import { StarryUIPage, page } from '@starryui/page'
-import { NORMAL_DELAY } from '@starryui/starryui-docs/constants'
+import { NORMAL_DELAY_MS } from '@starryui/starryui-docs/constants'
 import {
  StarryUITheme,
  applyTheme,
@@ -16,17 +16,41 @@ export function home(theme: StarryUITheme): StarryUIPage {
  return themedPage({
   title: 'Home',
   content(container, config) {
+   const themeVariablesStyle: HTMLStyleElement | undefined =
+    attachThemeVariables(container, theme.variables)
    const [themedRow, themedColumn, themedFrame] = applyThemeMultiple(theme, [
     row,
     column,
     frame,
    ])
+   const topArea = themedRow({
+    style: {
+     alignItems: 'center',
+     borderBottom: '1px solid var(--theme2)',
+     flexGrow: '0',
+     gap: '20px',
+     minHeight: '128px',
+     justifyContent: 'space-evenly',
+     padding: 'var(--dimension3) var(--dimension4)',
+    },
+    themeFacets: ['document', 'opaque'],
+   })
+   const header = document.createElement('h2')
+   header.textContent = 'HTML + TypeScript Component Library'
+   const para0 = document.createElement('p')
+   para0.textContent =
+    'StarryUI is a flexible and themeable component system for TypeScript and the web.'
+   const para1 = document.createElement('p')
+   para1.innerHTML =
+    'Find the source code on <a href="https://github.com/starryui/starryui" target="_blank">GitHub</a> and the published packages on <a href="https://www.npmjs.com/org/starryui" target="_blank">NPM</a>.'
+   topArea.appendChild(header)
+   topArea.appendChild(para0)
+   topArea.appendChild(para1)
+   container.appendChild(topArea)
    const mainArea = themedRow({
     style: { gap: '10px', padding: '10px' },
     themeFacets: ['opaque'],
    })
-   const themeVariablesStyle: HTMLStyleElement | undefined =
-    attachThemeVariables(mainArea, theme.variables)
 
    const [slide1, slide2, slide3] = [homeSlide1, homeSlide2, homeSlide3].map(
     function (x) {
@@ -81,7 +105,7 @@ export function home(theme: StarryUITheme): StarryUIPage {
     slide1.h1.scrollIntoView({ behavior: 'smooth' })
     slide2.h1.scrollIntoView({ behavior: 'smooth' })
     slide3.h1.scrollIntoView({ behavior: 'smooth' })
-   }, 2 * NORMAL_DELAY)
+   }, 2 * NORMAL_DELAY_MS)
 
    container.appendChild(mainArea)
 

@@ -1,4 +1,4 @@
-import { NORMAL_DELAY } from '@starryui/starryui-docs/constants'
+import { NORMAL_DELAY_MS } from '@starryui/starryui-docs/constants'
 import {
  StarryUITrait,
  StarryUITraitConfig,
@@ -47,7 +47,7 @@ export const menu = starryComponent<StarryUIMenu>(function (
    clearTimeout(openCloseTimeout)
    openCloseTimeout = setTimeout(() => {
     document.body.removeChild(elem)
-   }, NORMAL_DELAY)
+   }, NORMAL_DELAY_MS)
   }
   function open() {
    instance.isOpen = true
