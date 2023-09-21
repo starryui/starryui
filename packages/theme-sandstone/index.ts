@@ -44,7 +44,7 @@ export const themeSandstone: StarryUITheme = {
      lineHeight: '1.65',
     },
     '*::selection': {
-     backgroundColor: 'var(--theme8)',
+     backgroundColor: 'var(--themef)',
      color: 'var(--theme0)',
     },
     a: [
@@ -111,7 +111,7 @@ export const themeSandstone: StarryUITheme = {
      flexDirection: 'row',
      fontSize: '14px',
      height: 'var(--dimension4)',
-     lineHeight: '14px',
+     lineHeight: '16px',
      maxHeight: 'var(--dimension4)',
      minWidth: 'var(--dimension4)',
      padding: 'var(--dimension2)',
@@ -140,6 +140,7 @@ export const themeSandstone: StarryUITheme = {
    flexShrink: '1',
    overflowX: 'hidden',
    overflowY: 'auto',
+   position: 'relative',
    width: '100%',
   },
   document: [
@@ -155,7 +156,7 @@ export const themeSandstone: StarryUITheme = {
     '& pre': {
      backgroundColor: 'var(--theme-1)',
      fontFamily: "'Source Code Pro', 'Liberation Mono', monospace",
-     fontSize: '13px',
+     fontSize: '11px',
      lineHeight: '2',
      margin: '0',
      padding: 'var(--dimension2)',
@@ -170,6 +171,7 @@ export const themeSandstone: StarryUITheme = {
    height: '100%',
    overflowX: 'hidden',
    overflowY: 'auto',
+   position: 'relative',
    width: '100%',
   },
   'link-frame': [
@@ -190,7 +192,11 @@ export const themeSandstone: StarryUITheme = {
      backgroundColor: 'var(--theme0)',
      border: '1px solid var(--theme4)',
      borderRadius: 'var(--dimension2)',
+     boxShadow: '0 0 var(--dimension4) var(--theme8)',
+     boxSizing: 'border-box',
      fontSize: '14px',
+     minHeight: '27px',
+     minWidth: '27px',
      overflowX: 'hidden',
      overflowY: 'auto',
      position: 'absolute',
@@ -222,6 +228,7 @@ export const themeSandstone: StarryUITheme = {
      flexShrink: '0',
      overflowX: 'auto',
      overflowY: 'hidden',
+     position: 'relative',
     },
     '& > facet(column)': {
      minWidth: '256px',

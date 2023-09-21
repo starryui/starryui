@@ -84,6 +84,7 @@ export function attachMenu(element: HTMLElement, menu: StarryUIMenu) {
   Object.assign(menu.element.style, {
    left: `${Math.min(box.left, innerWidth - menu.element.clientWidth)}px`,
    maxHeight: `${innerHeight - box.bottom - 20}px`,
+   minWidth: `${Math.max(box.width, 27)}px`,
    top: `${box.bottom - 1}px`,
   })
  })

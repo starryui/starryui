@@ -6,10 +6,10 @@ import hljsLanguageTypeScript from 'highlight.js/lib/languages/typescript'
 import 'highlight.js/styles/github-dark.css'
 
 hljs.registerLanguage('shell', hljsLanguageShell)
-hljs.registerLanguage('javascript', hljsLanguageTypeScript)
+hljs.registerLanguage('typescript', hljsLanguageTypeScript)
 
 Marked.setOptions({
- highlight(code, language = 'ts') {
+ highlight(code, language = 'typescript') {
   return hljs.highlight(code, { language }).value
  },
 })
