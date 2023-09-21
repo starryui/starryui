@@ -23,6 +23,7 @@
   { "path": "./packages/button" },
   { "path": "./packages/frame" },
   { "path": "./packages/layout" },
+  { "path": "./packages/menu" },
   { "path": "./packages/page" },
   { "path": "./packages/starryui-docs" },
   { "path": "./packages/theme-midnight" },
