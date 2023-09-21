@@ -192,5 +192,8 @@ export const themeMidnight: StarryUITheme = {
     },
    },
   ],
+  'tray-spacer': {
+   flexGrow: '1',
+  },
  },
 }

@@ -1,3 +1,4 @@
+import { StarryUITheme, attachThemeFacet } from '@starryui/theme'
 import {
  StarryUITrait,
  StarryUITraitConfig,
@@ -16,3 +17,9 @@ export const tray = starryComponent<HTMLDivElement>(function (
   return elem
  }
 })
+
+export function traySpacer(theme: StarryUITheme) {
+ const elem = document.createElement('div')
+ attachThemeFacet(elem, theme, 'tray-spacer')
+ return elem
+}

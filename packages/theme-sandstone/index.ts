@@ -196,5 +196,8 @@ export const themeSandstone: StarryUITheme = {
     },
    },
   ],
+  'tray-spacer': {
+   flexGrow: '1',
+  },
  },
 }
