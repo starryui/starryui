@@ -1,3 +1,4 @@
+import { NORMAL_DELAY } from '@starryui/starryui-docs/constants'
 import {
  StarryUITrait,
  StarryUITraitConfig,
@@ -21,6 +22,7 @@ export const menu = starryComponent<StarryUIMenu>(function (
 ) {
  return function (config?: StarryUITraitConfig) {
   const elem = document.createElement(config?.tagName ?? 'div')
+  elem.setAttribute('data-starryui-reveal', 'hidden')
   const finalTraitConfig = Object.assign({}, defaultMenuConfig, config)
   applyTraits(elem, traits, finalTraitConfig)
   const selectTrait = traits.find((x) => x.type === 'onSelect')
@@ -39,7 +41,10 @@ export const menu = starryComponent<StarryUIMenu>(function (
     console.warn('No need to close menu, it is not open')
    }
    instance.isOpen = false
-   document.body.removeChild(elem)
+   elem.setAttribute('data-starryui-reveal', 'hidden')
+   setTimeout(() => {
+    document.body.removeChild(elem)
+   }, NORMAL_DELAY)
   }
   function render() {
    config?.content?.(elem, finalTraitConfig)
@@ -65,6 +70,9 @@ export function attachMenu(element: HTMLElement, menu: StarryUIMenu) {
    maxHeight: `${innerHeight - box.bottom - 20}px`,
    top: `${box.bottom - 1}px`,
   })
+  setTimeout(() => {
+   menu.element.setAttribute('data-starryui-reveal', 'reveal')
+  }, 0)
  })
 }
 
