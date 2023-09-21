@@ -41,7 +41,7 @@ export const themeMidnight: StarryUITheme = {
        textDecoration: 'none',
       },
       '&:hover': {
-       backgroundColor: 'var(--theme2)',
+       backgroundColor: 'var(--theme3)',
       },
       '&:active': {
        backgroundColor: 'var(--theme0)',
@@ -105,7 +105,7 @@ export const themeMidnight: StarryUITheme = {
      whiteSpace: 'nowrap',
     },
     '&:hover': {
-     backgroundColor: 'var(--theme2)',
+     backgroundColor: 'var(--theme3)',
     },
     '&:active': {
      backgroundColor: 'var(--theme0)',
@@ -153,6 +153,27 @@ export const themeMidnight: StarryUITheme = {
    overflowY: 'auto',
    width: '100%',
   },
+  menu: [
+   {
+    '': {
+     backgroundColor: 'var(--theme0)',
+     border: '1px solid var(--theme4)',
+     borderRadius: 'var(--dimension2)',
+     fontSize: '14px',
+     overflowX: 'hidden',
+     overflowY: 'auto',
+     position: 'absolute',
+     zIndex: '2',
+    },
+    '& > div': {
+     cursor: 'pointer',
+     padding: 'var(--dimension1) var(--dimension2)',
+    },
+    '& > div:hover': {
+     backgroundColor: 'var(--theme3)',
+    },
+   },
+  ],
   opaque: {
    backgroundColor: 'var(--theme0)',
    color: 'var(--themef)',
@@ -192,8 +213,15 @@ export const themeMidnight: StarryUITheme = {
     },
    },
   ],
-  'tray-spacer': {
-   flexGrow: '1',
-  },
+  'tray-spacer': [
+   {
+    '': {
+     flexGrow: '1',
+    },
+    '& + facet(button)': {
+     borderLeft: '1px solid var(--theme4)',
+    },
+   },
+  ],
  },
 }

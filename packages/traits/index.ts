@@ -1,10 +1,19 @@
-import { StarryUIButtonImageTrait } from '@starryui/button'
 import { StarryUITaskSchedule } from '@starryui/page'
 import { attachThemeFacet, StarryUIThemeTrait } from '@starryui/theme'
+
+export interface StarryUIButtonImageTrait {
+ type: 'buttonImage'
+ image: string
+}
 
 export interface StarryUITextContentTrait {
  type: 'textContent'
  textContent: string
+}
+
+export interface StarryUIOnSelectTrait {
+ type: 'onSelect'
+ onSelect(value: string | undefined): void
 }
 
 export interface StarryMouseEventListenerTrait<
@@ -37,6 +46,7 @@ export type StarryUITrait =
  | StarryUIButtonImageTrait
  | StarryUITextContentTrait
  | StarryUIThemeTrait
+ | StarryUIOnSelectTrait
 
 export interface StarryUITraitConfig {
  content?: (container: HTMLElement, traitConfig?: StarryUITraitConfig) => void

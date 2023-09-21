@@ -1,9 +1,10 @@
 import { button, withButtonImage } from '@starryui/button'
 import { row } from '@starryui/layout'
+import { attachMenu, menu } from '@starryui/menu'
 import { StarryUIPage } from '@starryui/page'
 import {
  StarryUITheme,
- applyThemeMultiple,
+ applyTheme,
  attachStyle,
  attachThemeFacet,
  attachThemeVariables,
@@ -19,11 +20,10 @@ attachStyle(themeMidnight, 'body', themeMidnight.facets.body)
 useThemeDimensions.tiny()
 
 export function mainTray(route: () => void, theme: StarryUITheme) {
- const [themedButton, themedRow, themedTray] = applyThemeMultiple(theme, [
-  button,
-  row,
-  tray,
- ])
+ const themedButton = applyTheme(theme, button)
+ const themedMenu = applyTheme(theme, menu)
+ const themedRow = applyTheme(theme, row)
+ const themedTray = applyTheme(theme, tray)
 
  const container = themedTray({
   style: {
@@ -53,14 +53,30 @@ export function mainTray(route: () => void, theme: StarryUITheme) {
 
  attachThemeFacet(themeSwitcher, themeMidnight, 'button')
  themeSwitcher.textContent = activeTheme.name
- themeSwitcher.addEventListener('click', () => {
-  const currentIndex = allThemes.indexOf(activeTheme)
-  const nextIndex = (currentIndex + 1) % allThemes.length
-  activeTheme = allThemes[nextIndex]
-  themeSwitcher.textContent = activeTheme.name
-  localStorage.setItem(themeNameStorageKey, activeTheme.name)
-  route()
- })
+ attachMenu(
+  themeSwitcher,
+  themedMenu.add({
+   type: 'onSelect',
+   onSelect(selectedThemeName) {
+    const selectedTheme = allThemes.find((x) => x.name === selectedThemeName)
+    if (selectedTheme) {
+     activeTheme = selectedTheme
+     themeSwitcher.textContent = activeTheme.name
+     localStorage.setItem(themeNameStorageKey, activeTheme.name)
+     route()
+    }
+   },
+  })({
+   content(container) {
+    for (const theme of allThemes) {
+     const pickTheme = document.createElement('div')
+     pickTheme.textContent = theme.name
+     pickTheme.setAttribute('data-value', theme.name)
+     container.appendChild(pickTheme)
+    }
+   },
+  })
+ )
 
  container.appendChild(themeSwitcher)
 
