@@ -260,7 +260,7 @@ export const themeSandstone: StarryUITheme = {
      borderTop: 'none',
      marginBottom: '-1px',
     },
-    '& facet(button):last-child': {
+    '& > facet(button):last-child': {
      borderRight: 'none',
     },
    },
