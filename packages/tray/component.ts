@@ -5,6 +5,8 @@ import { tray } from '.'
 
 export const trayDefinition: StarryUIComponentDefinition = {
  title: 'tray',
+ exampleSource: `const themedTray = applyTheme(theme, tray)
+return themedTray.add(withTextContent('A tray'))()`,
  example(theme) {
   const themedTray = applyTheme(theme, tray)
   return themedTray.add(withTextContent('A tray'))()

@@ -89,10 +89,14 @@ export function components(theme: StarryUITheme): StarryUIPage {
     pre0.textContent = 'npm install @starryui/' + packageName
     ;("'")
     const pre1 = document.createElement('pre')
-    pre1.textContent =
+    pre1.innerHTML = hljs.highlight(
      `import { ${componentDefinition.title} } from '@starryui/` +
-     packageName +
-     "'"
+      packageName +
+      "'",
+     {
+      language: 'typescript',
+     }
+    ).value
     const h6install = document.createElement('h6')
     h6install.textContent = 'Install'
     const h6import = document.createElement('h6')
@@ -123,6 +127,10 @@ export function components(theme: StarryUITheme): StarryUIPage {
     frame.appendChild(h1)
     frame.appendChild(h6example)
     frame.appendChild(example)
+    frame.appendChild(h6install)
+    frame.appendChild(pre0)
+    frame.appendChild(h6import)
+    frame.appendChild(pre1)
 
     if (componentDefinition.exampleSource) {
      const highlighted = hljs.highlight(componentDefinition.exampleSource, {
@@ -138,10 +146,6 @@ export function components(theme: StarryUITheme): StarryUIPage {
      frame.appendChild(preES)
     }
 
-    frame.appendChild(h6install)
-    frame.appendChild(pre0)
-    frame.appendChild(h6import)
-    frame.appendChild(pre1)
     gallery.appendChild(column)
    }
 
