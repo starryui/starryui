@@ -14,6 +14,7 @@ export interface StarryUIMenu {
  element: HTMLElement
  isOpen: boolean
  close(): void
+ open(): void
  render(): void
 }
 
@@ -36,20 +37,38 @@ export const menu = starryComponent<StarryUIMenu>(function (
     }
    })
   }
+  let openCloseTimeout: NodeJS.Timeout
   function close() {
    if (!instance.isOpen) {
     console.warn('No need to close menu, it is not open')
    }
    instance.isOpen = false
    elem.setAttribute('data-starryui-reveal', 'hidden')
-   setTimeout(() => {
+   clearTimeout(openCloseTimeout)
+   openCloseTimeout = setTimeout(() => {
     document.body.removeChild(elem)
    }, NORMAL_DELAY)
+  }
+  function open() {
+   instance.isOpen = true
+   elem.innerHTML = ''
+   render()
+   document.body.appendChild(elem)
+   clearTimeout(openCloseTimeout)
+   openCloseTimeout = setTimeout(() => {
+    elem.setAttribute('data-starryui-reveal', 'reveal')
+   }, 0)
   }
   function render() {
    config?.content?.(elem, finalTraitConfig)
   }
-  const instance: StarryUIMenu = { close, element: elem, isOpen: false, render }
+  const instance: StarryUIMenu = {
+   close,
+   element: elem,
+   isOpen: false,
+   open,
+   render,
+  }
   return instance
  }
 })
@@ -60,19 +79,13 @@ export function attachMenu(element: HTMLElement, menu: StarryUIMenu) {
    menu.close()
    return
   }
-  menu.isOpen = true
-  menu.element.innerHTML = ''
-  menu.render()
+  menu.open()
   const box = element.getBoundingClientRect()
-  document.body.appendChild(menu.element)
   Object.assign(menu.element.style, {
    left: `${Math.min(box.left, innerWidth - menu.element.clientWidth)}px`,
    maxHeight: `${innerHeight - box.bottom - 20}px`,
    top: `${box.bottom - 1}px`,
   })
-  setTimeout(() => {
-   menu.element.setAttribute('data-starryui-reveal', 'reveal')
-  }, 0)
  })
 }
 
