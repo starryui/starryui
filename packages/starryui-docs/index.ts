@@ -11,6 +11,7 @@ import { mainTray } from './main-tray'
 import { about } from './pages/about'
 import { components } from './pages/components'
 import { home } from './pages/home'
+import { themes } from './pages/themes'
 import { tutorials } from './pages/tutorials'
 
 async function route() {
@@ -29,6 +30,7 @@ async function route() {
    break
   case '#/about':
   case '#/components':
+  case '#/themes':
   case '#/tutorials':
    activePage = getPage(
     location.hash,
@@ -65,6 +67,8 @@ function loadPage(path: string, id: string, theme: StarryUITheme) {
    return topTray.withBreadcrumb(path, about(theme))
   case 'components':
    return topTray.withBreadcrumb(path, components(theme))
+  case 'themes':
+   return topTray.withBreadcrumb(path, themes(theme))
   case 'tutorials':
    return topTray.withBreadcrumb(path, tutorials(theme))
   case 'home':

@@ -9,7 +9,7 @@ import {
  attachThemeFacet,
  attachThemeVariables,
 } from '@starryui/theme'
-import { homeSlide1, homeSlide2, homeSlide3 } from './slides'
+import { homeSlide1, homeSlide2, homeSlide3, homeSlide4 } from './slides'
 
 export function home(theme: StarryUITheme): StarryUIPage {
  const themedPage = applyTheme(theme, page)
@@ -52,54 +52,58 @@ export function home(theme: StarryUITheme): StarryUIPage {
     themeFacets: ['opaque'],
    })
 
-   const [slide1, slide2, slide3] = [homeSlide1, homeSlide2, homeSlide3].map(
-    function (x) {
-     const link = themedColumn({
-      href: x.href,
-      tagName: 'a',
+   const [slide1, slide2, slide3, slide4] = [
+    homeSlide1,
+    homeSlide2,
+    homeSlide3,
+    homeSlide4,
+   ].map(function (x) {
+    const link = themedColumn({
+     href: x.href,
+     tagName: 'a',
+    })
+    attachThemeFacet(link, theme, 'link-frame')
+    const frame = themedFrame({
+     style: {
+      display: 'grid',
+      alignContent: 'safe center',
+      justifyItems: 'center',
+      padding: '20px',
+     },
+    })
+    const content = document.createElement('div')
+    attachThemeFacet(content, theme, 'column')
+    Object.assign(content.style, {
+     height: 'fit-content',
+    })
+    link.appendChild(frame)
+    frame.appendChild(content)
+    if (x.imgSrc) {
+     const img = document.createElement('img')
+     Object.assign(img.style, {
+      imageRendering: 'pixelated',
+      margin: '0 auto var(--dimension4)',
+      maxWidth: '100%',
+      width: '128px',
      })
-     attachThemeFacet(link, theme, 'link-frame')
-     const frame = themedFrame({
-      style: {
-       display: 'grid',
-       alignContent: 'safe center',
-       justifyItems: 'center',
-       padding: '20px',
-      },
-     })
-     const content = document.createElement('div')
-     attachThemeFacet(content, theme, 'column')
-     Object.assign(content.style, {
-      height: 'fit-content',
-     })
-     link.appendChild(frame)
-     frame.appendChild(content)
-     if (x.imgSrc) {
-      const img = document.createElement('img')
-      Object.assign(img.style, {
-       imageRendering: 'pixelated',
-       margin: '0 auto var(--dimension4)',
-       maxWidth: '100%',
-       width: '128px',
-      })
-      img.src = x.imgSrc
-      content.appendChild(img)
-     }
-     const h1 = document.createElement('h1')
-     const h1text = document.createElement('span')
-     h1text.textContent = x.title
-     h1.appendChild(h1text)
-     content.appendChild(h1)
-     const h4 = document.createElement('h4')
-     h4.textContent = x.subtitle
-     content.appendChild(h4)
-     return { column: link, content, frame, h1, h4 }
+     img.src = x.imgSrc
+     content.appendChild(img)
     }
-   )
+    const h1 = document.createElement('h1')
+    const h1text = document.createElement('span')
+    h1text.textContent = x.title
+    h1.appendChild(h1text)
+    content.appendChild(h1)
+    const h4 = document.createElement('h4')
+    h4.textContent = x.subtitle
+    content.appendChild(h4)
+    return { column: link, content, frame, h1, h4 }
+   })
 
    mainArea.appendChild(slide1.column)
    mainArea.appendChild(slide2.column)
    mainArea.appendChild(slide3.column)
+   mainArea.appendChild(slide4.column)
 
    setTimeout(() => {
     slide1.h1.scrollIntoView({ behavior: 'smooth' })

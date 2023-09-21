@@ -20,6 +20,13 @@ export const homeSlide2: Slide = {
 }
 
 export const homeSlide3: Slide = {
+ href: '/#/themes',
+ subtitle: 'Color schemes for use with StarryUI.',
+ title: 'Themes',
+ imgSrc: '/pages/home/themes.png',
+}
+
+export const homeSlide4: Slide = {
  href: '/#/tutorials',
  subtitle: 'StarryUI examples & getting started',
  title: 'Tutorials',
