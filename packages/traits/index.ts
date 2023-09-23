@@ -1,10 +1,16 @@
-import { StarryUITaskSchedule } from '@starryui/page'
 import {
  attachThemeFacet,
  StarryUITheme,
  StarryUIThemeFacet,
  StarryUIThemeTrait,
 } from '@starryui/theme'
+
+export type StarryUITask = () => void | Promise<void>
+
+export interface StarryUITaskSchedule {
+ initial: StarryUITask[]
+ final: StarryUITask[]
+}
 
 export interface StarryUIButtonImageTrait {
  type: 'buttonImage'

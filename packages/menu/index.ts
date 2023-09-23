@@ -1,10 +1,10 @@
-import { NORMAL_DELAY_MS } from '@starryui/starryui-docs/constants'
 import {
  StarryUITrait,
  StarryUITraitConfig,
  applyTraits,
  starryComponent,
 } from '@starryui/traits'
+import { NORMAL_DELAY_MS } from '@starryui/traits/constants'
 
 export const defaultMenuConfig: StarryUITraitConfig = {
  themeFacet: 'menu',

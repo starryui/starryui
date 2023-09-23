@@ -1,4 +1,5 @@
 import {
+ StarryUITaskSchedule,
  StarryUITrait,
  StarryUITraitConfig,
  applyTraits,
@@ -71,11 +72,4 @@ export interface StarryUIPage {
  onUnload: (final: boolean) => Promise<void>
  startUpTasks: StarryUITaskSchedule
  title: string
-}
-
-export type StarryUITask = () => void | Promise<void>
-
-export interface StarryUITaskSchedule {
- initial: StarryUITask[]
- final: StarryUITask[]
 }

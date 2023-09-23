@@ -6,7 +6,7 @@ import {
  useThemeDimensions,
 } from '@starryui/theme'
 import { themeMidnight } from '@starryui/theme-midnight'
-import { NORMAL_DELAY_MS } from './constants'
+import { NORMAL_DELAY_MS } from '@starryui/traits/constants'
 import { mainTray } from './main-tray'
 import { about } from './pages/about'
 import { components } from './pages/components'

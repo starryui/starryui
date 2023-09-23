@@ -2,7 +2,7 @@ import {
  MOBILE_BREAKPOINT_PX,
  NORMAL_DELAY_MS,
  S,
-} from '@starryui/starryui-docs/constants'
+} from '@starryui/traits/constants'
 import { StarryUITheme } from '@starryui/theme'
 
 export const themeMidnight: StarryUITheme = {

@@ -1,7 +1,7 @@
 import { frame } from '@starryui/frame'
 import { column, row } from '@starryui/layout'
 import { StarryUIPage, page } from '@starryui/page'
-import { NORMAL_DELAY_MS } from '@starryui/starryui-docs/constants'
+import { NORMAL_DELAY_MS } from '@starryui/traits/constants'
 import { renderMarkdownFromPath } from '@starryui/starryui-docs/util/markdown'
 import {
  StarryUITheme,
