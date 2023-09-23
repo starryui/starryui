@@ -1,6 +1,6 @@
 {
  "name": "@starryui/starryui-docs",
- "version": "0.0.11",
+ "version": "0.0.12",
  "types": "index.d.ts",
  "description": "",
  "main": "index.js",
@@ -12,11 +12,13 @@
  "author": "",
  "license": "ISC",
  "dependencies": {
-  "@starryui/button": "^0.0.11",
-  "@starryui/theme": "^0.0.11",
-  "@starryui/theme-midnight": "^0.0.11",
-  "@starryui/traits": "^0.0.11",
   "@ts-stack/markdown": "^1.5.0",
   "highlight.js": "^11.8.0"
+ },
+ "peerDependencies": {
+  "@starryui/button": "^0.0.12",
+  "@starryui/theme": "^0.0.12",
+  "@starryui/theme-midnight": "^0.0.12",
+  "@starryui/traits": "^0.0.12"
  }
 }

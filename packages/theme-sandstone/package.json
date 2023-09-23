@@ -1,6 +1,6 @@
 {
  "name": "@starryui/theme-sandstone",
- "version": "0.0.11",
+ "version": "0.0.12",
  "types": "index.d.ts",
  "description": "",
  "main": "index.js",
@@ -8,8 +8,8 @@
  "keywords": [],
  "author": "",
  "license": "ISC",
- "dependencies": {
-  "@starryui/theme": "^0.0.11",
-  "@starryui/traits": "^0.0.11"
+ "peerDependencies": {
+  "@starryui/theme": "^0.0.12",
+  "@starryui/traits": "^0.0.12"
  }
 }
