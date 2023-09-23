@@ -1,6 +1,7 @@
 import { StarryUITaskSchedule } from '@starryui/page'
 import {
  attachThemeFacet,
+ StarryUITheme,
  StarryUIThemeFacet,
  StarryUIThemeTrait,
 } from '@starryui/theme'
@@ -156,4 +157,11 @@ export function mergeTraits(
   traits = traits.concat(add.filter((trait) => !traits.includes(trait)))
  }
  return traits
+}
+
+export interface StarryUIComponentDefinition {
+ packageTitle?: string
+ title: string
+ exampleSource?: string
+ example(theme: StarryUITheme): HTMLElement
 }

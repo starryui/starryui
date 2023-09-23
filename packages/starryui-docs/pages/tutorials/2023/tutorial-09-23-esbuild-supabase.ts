@@ -1,17 +1,22 @@
 import { column, row } from '@starryui/layout'
 import { StarryUIPage, page } from '@starryui/page'
+import { renderMarkdownFromPath } from '@starryui/starryui-docs/util/markdown'
 import {
  StarryUITheme,
  applyTheme,
  attachThemeVariables,
 } from '@starryui/theme'
-import { tutorial_09_23_esbuild_supabase } from './2023/tutorial-09-23-esbuild-supabase'
 
-export function tutorials(theme: StarryUITheme): StarryUIPage {
+export function tutorial_09_23_esbuild_supabase(
+ theme: StarryUITheme
+): StarryUIPage {
+ const title =
+  'Building an app with ESBuild, Supabase, and StarryUI in TypeScript'
+ const themedColumn = applyTheme(theme, column)
  const themedPage = applyTheme(theme, page)
  const themedRow = applyTheme(theme, row)
  return themedPage({
-  title: 'Tutorials',
+  title,
   content(container, config) {
    const themeVariablesStyle: HTMLStyleElement | undefined =
     attachThemeVariables(container, theme.variables)
@@ -25,27 +30,22 @@ export function tutorials(theme: StarryUITheme): StarryUIPage {
     themeFacets: ['document', 'opaque'],
    })
    const header = document.createElement('h2')
-   header.textContent = 'Tutorials'
+   header.textContent = title
    topArea.appendChild(header)
    container.appendChild(topArea)
-   const themedColumn = applyTheme(theme, column)
    const mainArea = themedColumn({
     style: { padding: 'var(--dimension3) var(--dimension4)' },
     themeFacets: ['document', 'opaque'],
    })
    container.appendChild(mainArea)
-
-   const div = document.createElement('div')
-   const tutorialLink = document.createElement('a')
-   tutorialLink.textContent = tutorial_09_23_esbuild_supabase(theme).title
-   tutorialLink.setAttribute('href', '#/tutorials/2023/09/23/esbuild-supabase')
-   div.appendChild(tutorialLink)
-   mainArea.appendChild(div)
-
-   config?.startUpTasks?.initial?.push?.(function () {
+   config?.startUpTasks?.initial?.push?.(async function () {
     if (themeVariablesStyle) {
      document.head.appendChild(themeVariablesStyle)
     }
+    mainArea.innerHTML = 'loading...'
+    mainArea.innerHTML = await renderMarkdownFromPath(
+     '/pages/tutorials/2023/tutorial-09-23-esbuild-supabase.md'
+    )
    })
 
    config?.cleanUpTasks?.final?.push(function () {

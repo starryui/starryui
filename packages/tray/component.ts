@@ -1,4 +1,4 @@
-import { StarryUIComponentDefinition } from '@starryui/starryui-docs/pages/components/component-list'
+import { StarryUIComponentDefinition } from '@starryui/traits'
 import { applyTheme } from '@starryui/theme'
 import { withTextContent } from '@starryui/traits'
 import { tray } from '.'

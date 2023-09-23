@@ -149,14 +149,25 @@ export const themeMidnight: StarryUITheme = {
     '& a:hover': {
      borderBottom: 'var(--dimension1) solid var(--themef)',
     },
-    '& pre': {
+    '& hr': {
+     margin: 'var(--dimension4) 0 var(--dimension2)',
+     width: '100%',
+    },
+    '& code': {
      backgroundColor: 'var(--theme2)',
      fontFamily: "'Source Code Pro', 'Liberation Mono', monospace",
+     padding: 'var(--dimension1) var(--dimension2)',
+    },
+    '& pre': {
+     backgroundColor: 'var(--theme2)',
      fontSize: '11px',
      lineHeight: '2',
      margin: '0',
      padding: 'var(--dimension2)',
      whiteSpace: 'break-spaces',
+    },
+    '& pre > code': {
+     padding: '0',
     },
    },
   ],

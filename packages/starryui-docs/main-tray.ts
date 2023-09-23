@@ -80,7 +80,30 @@ export function mainTray(route: () => void, theme: StarryUITheme) {
 
  container.appendChild(themeSwitcher)
 
- function withBreadcrumb(path: string, page: StarryUIPage): StarryUIPage {
+ function withBreadcrumb(
+  path: string,
+  page: StarryUIPage,
+  prefixBreadcrumbs: { title: string; url: string }[] = []
+ ): StarryUIPage {
+  for (const prefixBreadcrumb of prefixBreadcrumbs) {
+   const crumb = themedButton.add(withTextContent(prefixBreadcrumb.title))({
+    href: prefixBreadcrumb.url,
+    tagName: 'a',
+   })
+   page.startUpTasks.initial.push(function () {
+    crumb.setAttribute('data-starryui-reveal', 'hidden')
+    breadcrumbs.appendChild(crumb)
+   })
+   page.startUpTasks.final.push(function () {
+    crumb.setAttribute('data-starryui-reveal', 'reveal')
+   })
+   page.cleanUpTasks.initial.push(function () {
+    crumb.setAttribute('data-starryui-reveal', 'hidden')
+   })
+   page.cleanUpTasks.final.push(function () {
+    breadcrumbs.removeChild(crumb)
+   })
+  }
   const crumb = themedButton.add(withTextContent(page.title))({
    href: path,
    tagName: 'a',

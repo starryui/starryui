@@ -1,4 +1,4 @@
-import { StarryUIComponentDefinition } from '@starryui/starryui-docs/pages/components/component-list'
+import { StarryUIComponentDefinition } from '@starryui/traits'
 
 export const themeDefinition: StarryUIComponentDefinition = {
  title: 'theme',
