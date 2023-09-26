@@ -82,6 +82,9 @@ export const themeMidnight: StarryUITheme = {
      fontSize: '12px',
      margin: 'var(--dimension3) 0 var(--dimension2)',
     },
+    p: {
+     margin: 'var(--dimension3) 0 var(--dimension2)',
+    },
     '*[data-starryui-reveal]': {
      opacity: '0',
      transform: 'scaleY(0.975) translateY(-2.5%)',

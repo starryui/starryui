@@ -30,6 +30,7 @@ export function about(theme: StarryUITheme): StarryUIPage {
      return
     }
     attachThemeFacet(example, theme, 'row')
+    example.setAttribute('data-responsive', '1')
     const code = example.previousElementSibling as HTMLElement
     if (!code) {
      console.warn('.${className} previous code element not found')

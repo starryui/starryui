@@ -40,4 +40,10 @@ function myApp(theme: StarryUITheme): HTMLElement {
 document.body.appendChild(myApp(themeMidnight))
 ```
 
-<div class="example0" />
+<div class="example0"></div>
+
+## Learn more
+
+View the collection of StarryUI [components](/#/components).
+
+Or, learn how to use StarryUI in your project with one of the [tutorials](/#/tutorials).
