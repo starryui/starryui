@@ -3,7 +3,7 @@
  "scripts": {
   "build": "./copy-component-readmes && tsc -b tsconfig.json --clean && tsc -b tsconfig.json",
   "docs": "cd packages/starryui-docs && python -m http.server",
-  "docs:watch": "cd packages/starryui-docs && concurrently \"python -m http.server\" \"npm run compile-watch\"",
+  "docs:watch": "cd packages/starryui-docs && echo 'starting server at http://localhost:8001' && concurrently \"python -m http.server 8001\" \"npm run compile-watch\"",
   "publish-all": "npm run build && npm publish --workspaces --access public"
  },
  "workspaces": [
