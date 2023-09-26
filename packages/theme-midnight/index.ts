@@ -106,6 +106,7 @@ export const themeMidnight: StarryUITheme = {
      cursor: 'pointer',
      display: 'inline-flex',
      flexDirection: 'row',
+     flexShrink: '0',
      fontSize: '14px',
      height: 'var(--dimension4)',
      lineHeight: '16px',
@@ -241,9 +242,10 @@ export const themeMidnight: StarryUITheme = {
     '& > facet(column)': {
      minWidth: '256px',
     },
-    [`@media screen and (max-width: ${MOBILE_BREAKPOINT_PX}px) &`]: {
-     flexDirection: 'column',
-    },
+    [`@media screen and (max-width: ${MOBILE_BREAKPOINT_PX}px) &[data-responsive="1"]`]:
+     {
+      flexDirection: 'column',
+     },
    },
   ],
   tray: [
@@ -277,6 +279,7 @@ export const themeMidnight: StarryUITheme = {
    {
     '': {
      flexGrow: '1',
+     minWidth: 'var(--dimension2)',
     },
     '& + facet(button)': {
      borderLeft: '1px solid var(--theme4)',

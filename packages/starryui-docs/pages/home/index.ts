@@ -35,6 +35,7 @@ export function home(theme: StarryUITheme): StarryUIPage {
     },
     themeFacets: ['document', 'opaque'],
    })
+   topArea.setAttribute('data-responsive', '1')
    const header = document.createElement('h2')
    header.textContent = 'HTML + TypeScript Component Library'
    const para0 = document.createElement('p')

@@ -32,18 +32,20 @@ export function tutorial_09_23_esbuild_supabase(
    const header = document.createElement('h2')
    header.textContent = title
    topArea.appendChild(header)
-   container.appendChild(topArea)
    const mainArea = themedColumn({
-    style: { padding: 'var(--dimension3) var(--dimension4)' },
     themeFacets: ['document', 'opaque'],
    })
    container.appendChild(mainArea)
+   mainArea.appendChild(topArea)
+   const content = document.createElement('div')
+   content.style.padding = 'var(--dimension3) var(--dimension4)'
+   mainArea.appendChild(content)
    config?.startUpTasks?.initial?.push?.(async function () {
     if (themeVariablesStyle) {
      document.head.appendChild(themeVariablesStyle)
     }
-    mainArea.innerHTML = 'loading...'
-    mainArea.innerHTML = await renderMarkdownFromPath(
+    content.innerHTML = 'loading...'
+    content.innerHTML = await renderMarkdownFromPath(
      '/pages/tutorials/2023/tutorial-09-23-esbuild-supabase.md'
     )
    })

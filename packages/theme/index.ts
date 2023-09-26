@@ -94,13 +94,14 @@ export function compoundRuleText(
      let postfix = ''
      let prefix = ''
      if (key.startsWith('@media')) {
-      if (!key.endsWith(' &')) {
-       throw new Error(`selector should end with ' &': '${key}'`)
+      if (!key.includes('&')) {
+       throw new Error(`selector should include '&': '${key}'`)
       }
-      const media = key.substring(0, key.length - 2)
+      const selfPosition = key.indexOf('&')
+      const media = key.substring(0, selfPosition)
+      key = key.substring(selfPosition)
       prefix += `${media} {\n`
       postfix += '\n}'
-      key = '&'
      }
      const finalSelector =
       key === ''
