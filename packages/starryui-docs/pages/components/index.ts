@@ -1,7 +1,6 @@
 import { frame } from '@starryui/frame'
 import { column, row } from '@starryui/layout'
 import { StarryUIPage, page } from '@starryui/page'
-import { NORMAL_DELAY_MS } from '@starryui/traits/constants'
 import { renderMarkdownFromPath } from '@starryui/starryui-docs/util/markdown'
 import {
  StarryUITheme,
@@ -9,6 +8,7 @@ import {
  attachThemeFacet,
  attachThemeVariables,
 } from '@starryui/theme'
+import { NORMAL_DELAY_MS } from '@starryui/traits/constants'
 import hljs from 'highlight.js/lib/core'
 import hljsLanguageTypeScript from 'highlight.js/lib/languages/typescript'
 import { componentList } from './component-list'
@@ -84,12 +84,12 @@ export function components(theme: StarryUITheme): StarryUIPage {
      },
     })
     const h1 = document.createElement('h1')
-    const h1text = document.createElement('span')
+    const h1text = document.createElement('a')
+    h1text.setAttribute('href', `/#/components/${componentDefinition.title}`)
     const pre0 = document.createElement('pre')
     const packageName =
      componentDefinition.packageTitle ?? componentDefinition.title
     pre0.textContent = 'npm install @starryui/' + packageName
-    ;("'")
     const pre1 = document.createElement('pre')
     pre1.innerHTML = hljs.highlight(
      `import { ${componentDefinition.title} } from '@starryui/` +

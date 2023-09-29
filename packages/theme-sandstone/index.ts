@@ -1,9 +1,9 @@
+import { StarryUITheme } from '@starryui/theme'
 import {
  MOBILE_BREAKPOINT_PX,
  NORMAL_DELAY_MS,
  S,
 } from '@starryui/traits/constants'
-import { StarryUITheme } from '@starryui/theme'
 
 export const themeSandstone: StarryUITheme = {
  name: 'sandstone',
@@ -38,7 +38,7 @@ export const themeSandstone: StarryUITheme = {
      overflow: 'hidden',
      padding: 'var(--dimension0)',
     },
-    '&, input, textarea, select, a': {
+    '&, input, textarea, select': {
      color: 'var(--themef)',
      fontFamily: 'sans-serif',
      fontSize: '15px',
@@ -51,6 +51,7 @@ export const themeSandstone: StarryUITheme = {
     a: [
      {
       '&': {
+       color: 'inherit',
        textDecoration: 'none',
        transition: `${NORMAL_DELAY_MS / S}s ease background-color`,
       },

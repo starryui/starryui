@@ -19,7 +19,20 @@ attachThemeVariables('body', themeMidnight.variables)
 attachStyle(themeMidnight, 'body', themeMidnight.facets.body)
 useThemeDimensions.tiny()
 
-export function mainTray(route: () => void, theme: StarryUITheme) {
+export interface MainTrayControl {
+ container: HTMLElement
+ activeTheme: StarryUITheme
+ withBreadcrumb(
+  path: string,
+  page: StarryUIPage,
+  prefixBreadcrumbs?: { title: string; url: string }[]
+ ): StarryUIPage
+}
+
+export function mainTray(
+ route: () => void,
+ theme: StarryUITheme
+): MainTrayControl {
  const themedButton = applyTheme(theme, button)
  const themedMenu = applyTheme(theme, menu)
  const themedRow = applyTheme(theme, row)
