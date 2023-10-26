@@ -38,6 +38,7 @@ export type StarryUIThemeFacet =
  | 'row'
  | 'tray'
  | 'tray-spacer'
+ | 'grid'
 
 let uniqueId = 0
 
