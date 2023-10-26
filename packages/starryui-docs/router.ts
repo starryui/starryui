@@ -1,6 +1,6 @@
 import { StarryUIPage } from '@starryui/page'
 import { StarryUITheme } from '@starryui/theme'
-import { NORMAL_DELAY_MS } from '@starryui/traits/constants'
+import { NORMAL_DELAY_MS } from '@starryui/traits/constants.js'
 import { MainTrayControl } from './main-tray'
 import { about } from './pages/about'
 import { component } from './pages/component'

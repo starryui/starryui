@@ -8,7 +8,7 @@ import {
  attachThemeFacet,
  attachThemeVariables,
 } from '@starryui/theme'
-import { NORMAL_DELAY_MS } from '@starryui/traits/constants'
+import { NORMAL_DELAY_MS } from '@starryui/traits/constants.js'
 import hljs from 'highlight.js/lib/core'
 import hljsLanguageTypeScript from 'highlight.js/lib/languages/typescript'
 import { componentList } from './component-list'

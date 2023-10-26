@@ -1,6 +1,6 @@
 {
  "name": "@starryui/traits",
- "version": "0.0.13",
+ "version": "0.0.14",
  "types": "index.d.ts",
  "description": "",
  "main": "index.js",
@@ -10,6 +10,6 @@
  "author": "",
  "license": "ISC",
  "peerDependencies": {
-  "@starryui/theme": "^0.0.13"
+  "@starryui/theme": "^0.0.14"
  }
 }

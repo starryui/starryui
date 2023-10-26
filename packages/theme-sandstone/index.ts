@@ -3,7 +3,7 @@ import {
  MOBILE_BREAKPOINT_PX,
  NORMAL_DELAY_MS,
  S,
-} from '@starryui/traits/constants'
+} from '@starryui/traits/constants.js'
 
 export const themeSandstone: StarryUITheme = {
  name: 'sandstone',

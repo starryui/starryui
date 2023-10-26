@@ -1,7 +1,6 @@
 import { frame } from '@starryui/frame'
 import { column, row } from '@starryui/layout'
 import { StarryUIPage, page } from '@starryui/page'
-import { NORMAL_DELAY_MS } from '@starryui/traits/constants'
 import {
  StarryUITheme,
  applyTheme,
@@ -9,6 +8,7 @@ import {
  attachThemeFacet,
  attachThemeVariables,
 } from '@starryui/theme'
+import { NORMAL_DELAY_MS } from '@starryui/traits/constants.js'
 import { homeSlide1, homeSlide2, homeSlide3, homeSlide4 } from './slides'
 
 export function home(theme: StarryUITheme): StarryUIPage {
