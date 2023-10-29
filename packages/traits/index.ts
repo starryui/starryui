@@ -59,6 +59,7 @@ export type StarryUITrait =
  | StarryUIThemeTrait
  | StarryUIOnSelectTrait
  | StarryUICellRenderTrait
+ | StarryUICellDimensionsTrait
 
 export interface StarryUITraitConfig {
  content?: (container: HTMLElement, traitConfig?: StarryUITraitConfig) => void
@@ -203,4 +204,3 @@ export function withCellRender(
   cellRender,
  }
 }
-
