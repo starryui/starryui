@@ -13,11 +13,11 @@ export const componentList: StarryUIComponentDefinition[] = [
  buttonDefinition,
  columnDefinition,
  frameDefinition,
+ gridDefinition,
  menuDefinition,
  pageDefinition,
  rowDefinition,
  themeDefinition,
  traitsDefinition,
  trayDefinition,
- gridDefinition,
 ]

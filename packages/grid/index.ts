@@ -36,13 +36,15 @@ export const grid = starryComponent<HTMLElement>(function (
   const elem = document.createElement(config?.tagName ?? 'div')
   applyTraits(elem, traits, Object.assign({}, defaultConfigConfig, config))
 
-  const grid = createGrid({
+  const gridElement = createGrid({
    cellHeight: height,
    cellWidth: width,
    renderCell: cellRender,
   }).container
 
-  return elem.appendChild(grid)
+  elem.appendChild(gridElement)
+
+  return elem
  }
 })
 

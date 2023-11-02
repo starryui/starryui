@@ -9,6 +9,7 @@ export const gridDefinition: StarryUIComponentDefinition = {
 return themedGrid.add(withCellDimensions(20, 20))()`,
  example(theme) {
   const themedGrid = applyTheme(theme, grid)
+
   return themedGrid.add(withCellDimensions(20, 20))()
  },
 }
