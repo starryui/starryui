@@ -55,7 +55,7 @@ interface CreateGridParams {
  renderCell(x: number, y: number): HTMLElement
 }
 
-function createGrid({ cellHeight, cellWidth, renderCell }: CreateGridParams) {
+export function createGrid({ cellHeight, cellWidth, renderCell }: CreateGridParams) {
  const container = document.createElement('div')
  container.style.position = 'relative'
  let maxX = 0
@@ -91,7 +91,7 @@ function createGrid({ cellHeight, cellWidth, renderCell }: CreateGridParams) {
  }
 }
 
-function ObserveGrid(element: HTMLElement) {
+export function ObserveGrid(element: HTMLElement) {
  var resizeObs = new ResizeObserver((entries) => {
   for (let entry of entries) {
    const cr = entry.contentRect
