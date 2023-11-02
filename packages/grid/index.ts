@@ -1,6 +1,7 @@
 import {
  StarryUICellDimensionsTrait,
  StarryUICellRenderTrait,
+ StarryUIComponent,
  StarryUITrait,
  StarryUITraitConfig,
  applyTraits,
@@ -89,3 +90,17 @@ function createGrid({ cellHeight, cellWidth, renderCell }: CreateGridParams) {
   container,
  }
 }
+
+function ObserveGrid(element: HTMLElement) {
+ var resizeObs = new ResizeObserver((entries) => {
+  for (let entry of entries) {
+   const cr = entry.contentRect
+
+   console.log(`Grid size: ${cr.width}px x ${cr.height}px`)
+   console.log(`Grid padding: ${cr.top}px ; ${cr.left}px`)
+  }
+ })
+
+ resizeObs.observe(element)
+}
+
