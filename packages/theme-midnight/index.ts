@@ -290,5 +290,11 @@ export const themeMidnight: StarryUITheme = {
     },
    },
   ],
+  grid: {
+   boxSizing: 'border-box',
+   height: '100%',
+   width: '100%',
+   position: 'relative',
+  },
  },
 }

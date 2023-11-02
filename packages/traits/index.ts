@@ -58,6 +58,8 @@ export type StarryUITrait =
  | StarryUITextContentTrait
  | StarryUIThemeTrait
  | StarryUIOnSelectTrait
+ | StarryUICellRenderTrait
+ | StarryUICellDimensionsTrait
 
 export interface StarryUITraitConfig {
  content?: (container: HTMLElement, traitConfig?: StarryUITraitConfig) => void
@@ -170,4 +172,35 @@ export interface StarryUIComponentDefinition {
  title: string
  exampleSource?: string
  example(theme: StarryUITheme): HTMLElement
+}
+
+export interface StarryUICellDimensionsTrait {
+ type: 'cellDimensions'
+ height: number
+ width: number
+}
+
+export interface StarryUICellRenderTrait {
+ type: 'cellRender'
+ cellRender: (x: number, y: number) => HTMLElement
+}
+
+export function withCellDimensions(
+ height: number,
+ width: number
+): StarryUICellDimensionsTrait {
+ return {
+  type: 'cellDimensions',
+  height,
+  width,
+ }
+}
+
+export function withCellRender(
+ cellRender: (x: number, y: number) => HTMLElement
+): StarryUICellRenderTrait {
+ return {
+  type: 'cellRender',
+  cellRender,
+ }
 }

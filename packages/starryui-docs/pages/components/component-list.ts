@@ -1,5 +1,6 @@
 import { buttonDefinition } from '@starryui/button/component'
 import { frameDefinition } from '@starryui/frame/component'
+import { gridDefinition } from '@starryui/grid/component'
 import { columnDefinition, rowDefinition } from '@starryui/layout/component'
 import { menuDefinition } from '@starryui/menu/component'
 import { pageDefinition } from '@starryui/page/component'
@@ -12,6 +13,7 @@ export const componentList: StarryUIComponentDefinition[] = [
  buttonDefinition,
  columnDefinition,
  frameDefinition,
+ gridDefinition,
  menuDefinition,
  pageDefinition,
  rowDefinition,
