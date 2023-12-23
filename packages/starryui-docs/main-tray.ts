@@ -10,6 +10,7 @@ import {
  attachThemeVariables,
  useThemeDimensions,
 } from '@starryui/theme'
+import { themeBrilliance } from '@starryui/theme-brilliance'
 import { themeMidnight } from '@starryui/theme-midnight'
 import { themeSandstone } from '@starryui/theme-sandstone'
 import { withTextContent } from '@starryui/traits'
@@ -58,7 +59,7 @@ export function mainTray(
 
  const themeNameStorageKey = 'theme'
  const storedThemeName = localStorage.getItem(themeNameStorageKey)
- let allThemes = [themeMidnight, themeSandstone]
+ let allThemes = [themeBrilliance, themeMidnight, themeSandstone]
  let activeTheme =
   allThemes.find((x) => x.name === storedThemeName) ?? themeMidnight
 

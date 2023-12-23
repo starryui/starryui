@@ -1,15 +1,14 @@
-/* util/highlight.css */
 pre code.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 1em;
+ display: block;
+ overflow-x: auto;
+ padding: 1em;
 }
 code.hljs {
-  padding: var(--dimension3) var(--dimension4);
+ padding: var(--dimension3) var(--dimension4);
 }
 .hljs {
-  color: var(--themef);
-  background: var(--themef);
+ color: var(--themef);
+ background: var(--themef);
 }
 .hljs-doctag,
 .hljs-keyword,
@@ -18,13 +17,13 @@ code.hljs {
 .hljs-template-variable,
 .hljs-type,
 .hljs-variable.language_ {
-  color: var(--theme6);
+ color: var(--theme6);
 }
 .hljs-title,
 .hljs-title.class_,
 .hljs-title.class_.inherited__,
 .hljs-title.function_ {
-  color: var(--themef);
+ color: var(--themef);
 }
 .hljs-attr,
 .hljs-attribute,
@@ -36,51 +35,51 @@ code.hljs {
 .hljs-selector-class,
 .hljs-selector-id,
 .hljs-variable {
-  color: var(--theme8);
+ color: var(--theme8);
 }
 .hljs-meta .hljs-string,
 .hljs-regexp,
 .hljs-string {
-  color: var(--theme5);
+ color: var(--theme5);
 }
 .hljs-built_in,
 .hljs-symbol {
-  color: var(--theme6);
+ color: var(--theme6);
 }
 .hljs-code,
 .hljs-comment,
 .hljs-formula {
-  color: var(--theme5);
+ color: var(--theme5);
 }
 .hljs-name,
 .hljs-quote,
 .hljs-selector-pseudo,
 .hljs-selector-tag {
-  color: var(--theme4);
+ color: var(--theme4);
 }
 .hljs-subst {
-  color: var(--theme4);
+ color: var(--theme4);
 }
 .hljs-section {
-  color: var(--theme4);
-  font-weight: 700;
+ color: var(--theme4);
+ font-weight: 700;
 }
 .hljs-bullet {
-  color: var(--themef);
+ color: var(--themef);
 }
 .hljs-emphasis {
-  color: var(--themef);
-  font-style: italic;
+ color: var(--themef);
+ font-style: italic;
 }
 .hljs-strong {
-  color: var(--themef);
-  font-weight: 700;
+ color: var(--themef);
+ font-weight: 700;
 }
 .hljs-addition {
-  color: var(--themef);
-  background-color: var(--themef);
+ color: var(--themef);
+ background-color: var(--themef);
 }
 .hljs-deletion {
-  color: var(--themef);
-  background-color: var(--themef);
+ color: var(--themef);
+ background-color: var(--themef);
 }

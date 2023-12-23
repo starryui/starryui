@@ -1,5 +1,5 @@
 {
- "name": "@starryui/button",
+ "name": "@starryui/theme-brilliance",
  "version": "0.0.15",
  "types": "index.d.ts",
  "description": "",
@@ -9,6 +9,7 @@
  "author": "",
  "license": "ISC",
  "peerDependencies": {
+  "@starryui/theme": "^0.0.15",
   "@starryui/traits": "^0.0.15"
  }
 }

@@ -3,7 +3,7 @@ import hljs from 'highlight.js/lib/core'
 import hljsLanguageShell from 'highlight.js/lib/languages/shell'
 import hljsLanguageTypeScript from 'highlight.js/lib/languages/typescript'
 
-import 'highlight.js/styles/github-dark.css'
+import './highlight.css'
 
 hljs.registerLanguage('shell', hljsLanguageShell)
 hljs.registerLanguage('typescript', hljsLanguageTypeScript)

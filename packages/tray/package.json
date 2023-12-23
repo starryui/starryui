@@ -1,6 +1,6 @@
 {
  "name": "@starryui/tray",
- "version": "0.0.14",
+ "version": "0.0.15",
  "types": "index.d.ts",
  "description": "",
  "main": "index.js",
@@ -9,6 +9,6 @@
  "author": "",
  "license": "ISC",
  "peerDependencies": {
-  "@starryui/traits": "^0.0.14"
+  "@starryui/traits": "^0.0.15"
  }
 }
