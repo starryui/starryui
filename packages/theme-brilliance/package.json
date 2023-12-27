@@ -1,6 +1,6 @@
 {
  "name": "@starryui/theme-brilliance",
- "version": "0.0.16",
+ "version": "0.0.17",
  "types": "index.d.ts",
  "description": "",
  "main": "index.js",
@@ -9,7 +9,7 @@
  "author": "",
  "license": "ISC",
  "peerDependencies": {
-  "@starryui/theme": "^0.0.16",
-  "@starryui/traits": "^0.0.16"
+  "@starryui/theme": "^0.0.17",
+  "@starryui/traits": "^0.0.17"
  }
 }
