@@ -268,7 +268,7 @@ export const themeMidnight: StarryUITheme = {
     },
     '& facet(button)': {
      backgroundColor: 'var(--theme1)',
-     borderBottom: '1px solid var(--theme4)',
+     borderBottom: 'none',
      borderLeft: 'none',
      borderRight: '1px solid var(--theme4)',
      borderTop: 'none',

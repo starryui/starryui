@@ -1,6 +1,6 @@
 {
  "name": "@starryui/theme-midnight",
- "version": "0.0.15",
+ "version": "0.0.16",
  "types": "index.d.ts",
  "description": "",
  "main": "index.js",
@@ -9,7 +9,7 @@
  "author": "",
  "license": "ISC",
  "peerDependencies": {
-  "@starryui/theme": "^0.0.15",
-  "@starryui/traits": "^0.0.15"
+  "@starryui/theme": "^0.0.16",
+  "@starryui/traits": "^0.0.16"
  }
 }
