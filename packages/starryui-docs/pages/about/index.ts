@@ -1,4 +1,5 @@
 import { column } from '@starryui/layout'
+import { loading } from '@starryui/loading'
 import { StarryUIPage, page } from '@starryui/page'
 import { renderMarkdownFromPath } from '@starryui/starryui-docs/util/markdown'
 import {
@@ -7,6 +8,7 @@ import {
  attachThemeFacet,
  attachThemeVariables,
 } from '@starryui/theme'
+import { withTextContent } from '@starryui/traits'
 import { example0 } from './examples/example0'
 
 export function about(theme: StarryUITheme): StarryUIPage {
@@ -63,7 +65,8 @@ export function about(theme: StarryUITheme): StarryUIPage {
     resultContainer.appendChild(build())
    }
 
-   mainArea.textContent = 'loading...' // todo loading component
+   const themedLoading = applyTheme(theme, loading)
+   mainArea.appendChild(themedLoading.add(withTextContent('Loading'))())
 
    async function load() {
     mainArea.innerHTML = await renderMarkdownFromPath('/pages/about/content.md')

@@ -1,4 +1,5 @@
 import { column } from '@starryui/layout'
+import { loading as loadingView } from '@starryui/loading'
 import { StarryUIPage, page } from '@starryui/page'
 import { renderMarkdownFromPath } from '@starryui/starryui-docs/util/markdown'
 import {
@@ -7,7 +8,7 @@ import {
  attachThemeFacet,
  attachThemeVariables,
 } from '@starryui/theme'
-import { StarryUIComponentDefinition } from '@starryui/traits'
+import { StarryUIComponentDefinition, withTextContent } from '@starryui/traits'
 import { NORMAL_DELAY_MS } from '@starryui/traits/constants.js'
 import hljs from 'highlight.js/lib/core'
 import hljsLanguageTypeScript from 'highlight.js/lib/languages/typescript'
@@ -96,36 +97,52 @@ export function component(
     mainArea.appendChild(preES)
    }
 
+   const readmeSlot = document.createElement('div')
+   readmeSlot.style.position = 'relative'
    const hoverReadme = document.createElement('div')
    const readmeContent = document.createElement('div')
+   readmeContent.style.display = 'flow-root'
    Object.assign(hoverReadme.style, {
     marginTop: 'var(--dimension3)',
     padding: 'var(--dimension2)',
     textAlign: 'center',
    })
-   let loading = false
+   let busy = false
    hoverReadme.addEventListener('mouseover', async function () {
-    if (loading) {
+    if (busy) {
      return
     }
-    loading = true
-    hoverReadme.textContent = 'loading...' // todo loading component
+    busy = true
+    const loadingButton = applyTheme(theme, loadingView).add(
+     withTextContent('Loading')
+    )()
+    hoverReadme.replaceChildren(loadingButton)
     readmeContent.setAttribute('data-starryui-reveal', 'hidden')
     readmeContent.innerHTML = await renderMarkdownFromPath(
      `/pages/components/${componentDefinition.title}.md`
     )
-    mainArea.appendChild(readmeContent)
+    Object.assign(loadingButton.style, {
+     left: '0',
+     position: 'absolute',
+     right: '0',
+     textAlign: 'center',
+     top: '0',
+     zIndex: '1',
+    })
+    hoverReadme.replaceWith(loadingButton)
+    readmeSlot.appendChild(readmeContent)
     setTimeout(function () {
-     hoverReadme.setAttribute('data-starryui-reveal', 'hidden')
+     loadingButton.setAttribute('data-starryui-reveal', 'hidden')
      readmeContent.setAttribute('data-starryui-reveal', 'reveal')
      setTimeout(function () {
-      mainArea.removeChild(hoverReadme)
+      loadingButton.remove()
      }, NORMAL_DELAY_MS)
     }, NORMAL_DELAY_MS)
    })
    attachThemeFacet(hoverReadme, theme, 'opaque-alt')
    hoverReadme.textContent = 'hover to load more content'
-   mainArea.appendChild(hoverReadme)
+   readmeSlot.appendChild(hoverReadme)
+   mainArea.appendChild(readmeSlot)
 
    config?.startUpTasks?.initial?.push?.(function () {
     if (themeVariablesStyle) {

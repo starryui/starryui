@@ -1,5 +1,6 @@
 import { frame } from '@starryui/frame'
 import { column, row } from '@starryui/layout'
+import { loading as loadingView } from '@starryui/loading'
 import { StarryUIPage, page } from '@starryui/page'
 import { renderMarkdownFromPath } from '@starryui/starryui-docs/util/markdown'
 import {
@@ -9,6 +10,7 @@ import {
  attachThemeVariables,
 } from '@starryui/theme'
 import { NORMAL_DELAY_MS } from '@starryui/traits/constants.js'
+import { withTextContent } from '@starryui/traits'
 import hljs from 'highlight.js/lib/core'
 import hljsLanguageTypeScript from 'highlight.js/lib/languages/typescript'
 import { componentList } from './component-list'
@@ -148,36 +150,52 @@ export function components(theme: StarryUITheme): StarryUIPage {
      frame.appendChild(preES)
     }
 
+    const readmeSlot = document.createElement('div')
+    readmeSlot.style.position = 'relative'
     const hoverReadme = document.createElement('div')
     const readmeContent = document.createElement('div')
+    readmeContent.style.display = 'flow-root'
     Object.assign(hoverReadme.style, {
      marginTop: 'var(--dimension3)',
      padding: 'var(--dimension2)',
      textAlign: 'center',
     })
-    let loading = false
+    let busy = false
     hoverReadme.addEventListener('mouseover', async function () {
-     if (loading) {
+     if (busy) {
       return
      }
-     loading = true
-     hoverReadme.textContent = 'loading...' // todo loading component
+     busy = true
+     const loadingButton = applyTheme(theme, loadingView).add(
+      withTextContent('Loading')
+     )()
+     hoverReadme.replaceChildren(loadingButton)
      readmeContent.setAttribute('data-starryui-reveal', 'hidden')
      readmeContent.innerHTML = await renderMarkdownFromPath(
       `/pages/components/${componentDefinition.title}.md`
      )
-     frame.appendChild(readmeContent)
+     Object.assign(loadingButton.style, {
+      left: '0',
+      position: 'absolute',
+      right: '0',
+      textAlign: 'center',
+      top: '0',
+      zIndex: '1',
+     })
+     hoverReadme.replaceWith(loadingButton)
+     readmeSlot.appendChild(readmeContent)
      setTimeout(function () {
-      hoverReadme.setAttribute('data-starryui-reveal', 'hidden')
+      loadingButton.setAttribute('data-starryui-reveal', 'hidden')
       readmeContent.setAttribute('data-starryui-reveal', 'reveal')
       setTimeout(function () {
-       frame.removeChild(hoverReadme)
+       loadingButton.remove()
       }, NORMAL_DELAY_MS)
      }, NORMAL_DELAY_MS)
     })
     attachThemeFacet(hoverReadme, theme, 'opaque-alt')
     hoverReadme.textContent = 'hover to load more content'
-    frame.appendChild(hoverReadme)
+    readmeSlot.appendChild(hoverReadme)
+    frame.appendChild(readmeSlot)
 
     gallery.appendChild(column)
    }

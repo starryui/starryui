@@ -112,12 +112,8 @@ export function router(topTray: MainTrayControl) {
    }
   }
   if (activePage) {
-   // routing occurred
    await activePage.onLoad?.(false)
-   activePage.element.setAttribute('data-starryui-reveal', 'hidden') // todo can move to onLoad
    document.body.appendChild(activePage.element)
-   await new Promise((r) => setTimeout(r, NORMAL_DELAY_MS))
-   activePage.element.setAttribute('data-starryui-reveal', 'reveal') // todo can move to onLoad
    await activePage.onLoad?.(true)
   } else {
    console.warn(`Path ${location.hash} did not have an associated page`)

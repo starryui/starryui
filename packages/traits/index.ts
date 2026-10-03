@@ -27,6 +27,26 @@ export interface StarryUIOnSelectTrait {
  onSelect(value: string | undefined): void
 }
 
+export interface StarryUIValueTrait {
+ type: 'value'
+ value: string
+}
+
+export interface StarryUIPlaceholderTrait {
+ type: 'placeholder'
+ placeholder: string
+}
+
+export interface StarryUIDisabledTrait {
+ type: 'disabled'
+ disabled: boolean
+}
+
+export interface StarryUIOnInputTrait {
+ type: 'onInput'
+ onInput(value: string): void
+}
+
 export interface StarryMouseEventListenerTrait<
  T extends keyof HTMLElementEventMap
 > {
@@ -52,12 +72,46 @@ export function withTextContent(value: string): StarryUITextContentTrait {
  }
 }
 
+export function withValue(value: string): StarryUIValueTrait {
+ return {
+  type: 'value',
+  value,
+ }
+}
+
+export function withPlaceholder(placeholder: string): StarryUIPlaceholderTrait {
+ return {
+  type: 'placeholder',
+  placeholder,
+ }
+}
+
+export function withDisabled(disabled = true): StarryUIDisabledTrait {
+ return {
+  type: 'disabled',
+  disabled,
+ }
+}
+
+export function withOnInput(
+ onInput: (value: string) => void
+): StarryUIOnInputTrait {
+ return {
+  type: 'onInput',
+  onInput,
+ }
+}
+
 export type StarryUITrait =
  | StarryMouseEventListenerTrait<any>
  | StarryUIButtonImageTrait
  | StarryUITextContentTrait
  | StarryUIThemeTrait
  | StarryUIOnSelectTrait
+ | StarryUIValueTrait
+ | StarryUIPlaceholderTrait
+ | StarryUIDisabledTrait
+ | StarryUIOnInputTrait
 
 export interface StarryUITraitConfig {
  content?: (container: HTMLElement, traitConfig?: StarryUITraitConfig) => void
@@ -113,37 +167,85 @@ export function applyTraits(
      }
     }
     break
+   case 'value':
+    applyValue(elem, trait.value)
+    break
+   case 'placeholder':
+    if (elem instanceof HTMLInputElement || elem instanceof HTMLTextAreaElement) {
+     elem.placeholder = trait.placeholder
+    }
+    break
+   case 'disabled':
+    if (elem instanceof HTMLInputElement || elem instanceof HTMLTextAreaElement || elem instanceof HTMLButtonElement) {
+     elem.disabled = trait.disabled
+    }
+    break
+   case 'onInput':
+    elem.addEventListener('input', () => {
+     trait.onInput(readControlValue(elem))
+    })
+    break
   }
  }
 }
 
-export type StarryTraitAssembler<T> = (traitConfig?: StarryUITraitConfig) => T
+function applyValue(elem: HTMLElement, value: string) {
+ if (elem instanceof HTMLInputElement && elem.type === 'checkbox') {
+  elem.checked = value === 'true'
+  return
+ }
+ if (elem instanceof HTMLInputElement || elem instanceof HTMLTextAreaElement) {
+  elem.value = value
+ }
+}
 
-export interface StarryUIComponent<T> extends StarryTraitAssembler<T> {
- add(...addTraits: StarryUITrait[]): StarryUIComponent<T>
- remove(...removeTraits: StarryUITrait[]): StarryUIComponent<T>
+function readControlValue(elem: HTMLElement) {
+ if (elem instanceof HTMLInputElement && elem.type === 'checkbox') {
+  return elem.checked ? 'true' : 'false'
+ }
+ if (elem instanceof HTMLInputElement || elem instanceof HTMLTextAreaElement) {
+  return elem.value
+ }
+ return ''
+}
+
+export type StarryTraitAssembler<
+ T,
+ C extends StarryUITraitConfig = StarryUITraitConfig
+> = (traitConfig?: C) => T
+
+export interface StarryUIComponent<
+ T,
+ C extends StarryUITraitConfig = StarryUITraitConfig
+> extends StarryTraitAssembler<T, C> {
+ add(...addTraits: StarryUITrait[]): StarryUIComponent<T, C>
+ remove(...removeTraits: StarryUITrait[]): StarryUIComponent<T, C>
  extend(props: {
   add?: StarryUITrait[]
   remove?: StarryUITrait[]
- }): StarryUIComponent<T>
+ }): StarryUIComponent<T, C>
 }
 
-export function starryComponent<T>(
- builder: (traits: StarryUITrait[]) => StarryTraitAssembler<T>
-): StarryUIComponent<T> {
- const wrap = function (...traits: StarryUITrait[]): StarryUIComponent<T> {
-  const component = builder(traits) as StarryUIComponent<T>
+export function starryComponent<
+ T,
+ C extends StarryUITraitConfig = StarryUITraitConfig
+>(
+ builder: (traits: StarryUITrait[]) => StarryTraitAssembler<T, C>
+): StarryUIComponent<T, C> {
+ const wrap = function (...traits: StarryUITrait[]): StarryUIComponent<T, C> {
+  const component = builder(traits) as StarryUIComponent<T, C>
 
-  component.add = (...addTraits: StarryUITrait[]): StarryUIComponent<T> =>
+  component.add = (...addTraits: StarryUITrait[]): StarryUIComponent<T, C> =>
    wrap(...mergeTraits(traits, undefined, addTraits))
 
-  component.remove = (...removeTraits: StarryUITrait[]): StarryUIComponent<T> =>
-   wrap(...mergeTraits(traits, removeTraits))
+  component.remove = (
+   ...removeTraits: StarryUITrait[]
+  ): StarryUIComponent<T, C> => wrap(...mergeTraits(traits, removeTraits))
 
   component.extend = (props: {
    add?: StarryUITrait[]
    remove?: StarryUITrait[]
-  }): StarryUIComponent<T> =>
+  }): StarryUIComponent<T, C> =>
    wrap(...mergeTraits(traits, props.remove, props.add))
 
   return component

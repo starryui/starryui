@@ -1,0 +1,15 @@
+{
+ "name": "@starryui/dialog",
+ "version": "0.0.18",
+ "types": "index.d.ts",
+ "description": "",
+ "main": "index.js",
+ "scripts": {},
+ "keywords": [],
+ "author": "",
+ "license": "ISC",
+ "peerDependencies": {
+  "@starryui/theme": "^0.0.18",
+  "@starryui/traits": "^0.0.18"
+ }
+}
