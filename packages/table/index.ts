@@ -37,6 +37,7 @@ export interface TableConfig extends StarryUITraitConfig {
  pageSize?: number
  total?: number
  editable?: boolean
+ archived?: boolean[]
  onSort?(sort: TableSort[]): void
  onFilter?(filters: TableFilter[]): void
  onSelectRow?(index: number): void
@@ -112,6 +113,9 @@ export const table = starryComponent<HTMLElement, TableConfig>(function (
    const tr = document.createElement('tr')
    if (config?.selectedIndex === rowIndex) {
     tr.setAttribute('data-selected', '1')
+   }
+   if (config?.archived?.[rowIndex]) {
+    tr.setAttribute('data-archived', '1')
    }
    columns.forEach((column, columnIndex) => {
     const td = document.createElement('td')
