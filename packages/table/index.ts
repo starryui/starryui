@@ -43,6 +43,7 @@ export interface TableConfig extends StarryUITraitConfig {
  onSelectRow?(index: number): void
  onPage?(page: number): void
  onCellEdit?(row: number, column: string, value: string): void
+ summary?: Record<string, string>
 }
 
 const filterOps: TableFilterOp[] = ['contains', 'eq', 'neq', 'gt', 'lt', 'empty']
@@ -86,12 +87,23 @@ export const table = starryComponent<HTMLElement, TableConfig>(function (
     cell.style.width = `${column.width}px`
    }
    const active = sort.find((item) => item.column === column.name)
-   const mark = active ? (active.direction === 'asc' ? ' ↑' : ' ↓') : ''
+   const mark = active ? (active.direction === 'asc' ? '↑' : '↓') : ''
    const heading = document.createElement('div')
    heading.setAttribute('data-starryui-trait', 'tableHeading')
    const label = document.createElement('span')
    label.setAttribute('data-starryui-trait', 'tableHeadingLabel')
-   label.textContent = `${column.name}${column.type ? ` ${column.type}` : ''}${mark}`
+   const name = document.createElement('span')
+   name.textContent = column.name
+   label.appendChild(name)
+   if (column.type) {
+    const type = document.createElement('span')
+    type.setAttribute('data-starryui-trait', 'tableHeadingType')
+    type.textContent = column.type
+    label.appendChild(type)
+   }
+   if (mark) {
+    label.appendChild(document.createTextNode(mark))
+   }
    label.addEventListener('click', () => {
     const next: TableSort[] = active
      ? [{ column: column.name, direction: active.direction === 'asc' ? 'desc' : 'asc' }]
@@ -152,6 +164,19 @@ export const table = starryComponent<HTMLElement, TableConfig>(function (
    grid.appendChild(head)
   }
   grid.appendChild(body)
+  const summary = config?.summary ?? {}
+  if (columns.some((column) => summary[column.name])) {
+   const foot = document.createElement('tfoot')
+   const tr = document.createElement('tr')
+   tr.setAttribute('data-starryui-trait', 'tableSummary')
+   for (const column of columns) {
+    const td = document.createElement('td')
+    td.textContent = summary[column.name] ?? ''
+    tr.appendChild(td)
+   }
+   foot.appendChild(tr)
+   grid.appendChild(foot)
+  }
   elem.appendChild(grid)
   if (config?.onPage) {
    elem.appendChild(pager(config))

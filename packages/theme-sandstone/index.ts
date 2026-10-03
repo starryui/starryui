@@ -415,6 +415,8 @@ export const themeSandstone: StarryUITheme = {
      flexDirection: 'column',
     },
     '& > [data-starryui-pane]': {
+     display: 'flex',
+     flexDirection: 'column',
      minHeight: '0',
      minWidth: '0',
      overflow: 'auto',
@@ -470,11 +472,18 @@ export const themeSandstone: StarryUITheme = {
      minWidth: '0',
     },
     '& [data-starryui-trait="tableHeadingLabel"]': {
+     alignItems: 'baseline',
      cursor: 'pointer',
+     display: 'inline-flex',
      flex: '1',
+     gap: 'var(--dimension1)',
      minWidth: '0',
      overflow: 'hidden',
-     textOverflow: 'ellipsis',
+    },
+    '& [data-starryui-trait="tableHeadingType"]': {
+     color: 'var(--theme8)',
+     flexShrink: '0',
+     fontSize: '11px',
     },
     '& [data-starryui-trait="tableFilterButton"]': {
      alignItems: 'center',
@@ -531,6 +540,10 @@ export const themeSandstone: StarryUITheme = {
     '& tr[data-selected="1"]': {
      backgroundColor: 'var(--theme3)',
     },
+    '& tr[data-starryui-trait="tableSummary"] td': {
+     backgroundColor: 'var(--theme2)',
+     fontWeight: '600',
+    },
     '& td input': {
      backgroundColor: 'var(--theme0)',
      border: '1px solid var(--theme4)',
@@ -584,6 +597,8 @@ export const themeSandstone: StarryUITheme = {
    {
     '': {
      boxSizing: 'border-box',
+     flex: '1 1 auto',
+     minHeight: '0',
      overflow: 'auto',
      width: '100%',
     },
