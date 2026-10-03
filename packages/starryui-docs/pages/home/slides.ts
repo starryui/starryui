@@ -19,6 +19,13 @@ export const homeSlide2: Slide = {
  imgSrc: '/pages/home/components.png',
 }
 
+export const homeSlideExamples: Slide = {
+ href: '/#/examples',
+ subtitle: 'Launchable apps built with StarryUI',
+ title: 'Examples',
+ imgSrc: '/pages/home/tutorials.png',
+}
+
 export const homeSlide3: Slide = {
  href: '/#/themes',
  subtitle: 'Color schemes for use with StarryUI.',

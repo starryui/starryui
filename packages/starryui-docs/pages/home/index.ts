@@ -9,7 +9,13 @@ import {
  attachThemeVariables,
 } from '@starryui/theme'
 import { NORMAL_DELAY_MS } from '@starryui/traits/constants.js'
-import { homeSlide1, homeSlide2, homeSlide3, homeSlide4 } from './slides'
+import {
+ homeSlide1,
+ homeSlide2,
+ homeSlide3,
+ homeSlide4,
+ homeSlideExamples,
+} from './slides'
 
 export function home(theme: StarryUITheme): StarryUIPage {
  const themedPage = applyTheme(theme, page)
@@ -53,9 +59,10 @@ export function home(theme: StarryUITheme): StarryUIPage {
     themeFacets: ['opaque'],
    })
 
-   const [slide1, slide2, slide3, slide4] = [
+   const [slide1, slide2, slideExamples, slide3, slide4] = [
     homeSlide1,
     homeSlide2,
+    homeSlideExamples,
     homeSlide3,
     homeSlide4,
    ].map(function (x) {
@@ -103,13 +110,14 @@ export function home(theme: StarryUITheme): StarryUIPage {
 
    mainArea.appendChild(slide1.column)
    mainArea.appendChild(slide2.column)
+   mainArea.appendChild(slideExamples.column)
    mainArea.appendChild(slide3.column)
    mainArea.appendChild(slide4.column)
 
    setTimeout(() => {
     slide1.h1.scrollIntoView({ behavior: 'smooth' })
     slide2.h1.scrollIntoView({ behavior: 'smooth' })
-    slide3.h1.scrollIntoView({ behavior: 'smooth' })
+    slideExamples.h1.scrollIntoView({ behavior: 'smooth' })
    }, 2 * NORMAL_DELAY_MS)
 
    container.appendChild(mainArea)

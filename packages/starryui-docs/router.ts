@@ -6,6 +6,14 @@ import { about } from './pages/about'
 import { component } from './pages/component'
 import { components } from './pages/components'
 import { componentList } from './pages/components/component-list'
+import {
+ contactsExample,
+ examples,
+ inventoryExample,
+ notesExample,
+ settingsExample,
+ todoExample,
+} from './pages/examples'
 import { home } from './pages/home'
 import { themes } from './pages/themes'
 import { tutorials } from './pages/tutorials'
@@ -15,6 +23,15 @@ export function router(topTray: MainTrayControl) {
  let activePage: StarryUIPage | undefined
 
  const pageCache = new Map<string, StarryUIPage>()
+
+ function loadExample(path: string, examplePage: StarryUIPage) {
+  return topTray.withBreadcrumb(path, examplePage, [
+   {
+    title: 'Examples',
+    url: '/#/examples',
+   },
+  ])
+ }
 
  function loadPage(
   path: string,
@@ -38,6 +55,18 @@ export function router(topTray: MainTrayControl) {
     ])
    case 'components':
     return topTray.withBreadcrumb(path, components(theme))
+   case 'examples':
+    return topTray.withBreadcrumb(path, examples(theme))
+   case 'examples/todo':
+    return loadExample(path, todoExample(theme))
+   case 'examples/contacts':
+    return loadExample(path, contactsExample(theme))
+   case 'examples/notes':
+    return loadExample(path, notesExample(theme))
+   case 'examples/settings':
+    return loadExample(path, settingsExample(theme))
+   case 'examples/inventory':
+    return loadExample(path, inventoryExample(theme))
    case 'themes':
     return topTray.withBreadcrumb(path, themes(theme))
    case 'tutorials':
@@ -99,6 +128,12 @@ export function router(topTray: MainTrayControl) {
      break
     case '#/about':
     case '#/components':
+    case '#/examples':
+    case '#/examples/todo':
+    case '#/examples/contacts':
+    case '#/examples/notes':
+    case '#/examples/settings':
+    case '#/examples/inventory':
     case '#/themes':
     case '#/tutorials':
     case '#/tutorials/2023/09/23/esbuild-supabase':
