@@ -527,6 +527,12 @@ export const themeMidnight: StarryUITheme = {
     '& tr[data-selected="1"]': {
      backgroundColor: 'var(--theme3)',
     },
+    '& tr[data-archived="1"] td': {
+     color: 'var(--theme8)',
+    },
+    '& tr[data-selected="1"][data-archived="1"] td': {
+     color: 'var(--themef)',
+    },
     '& td input': {
      backgroundColor: 'var(--theme0)',
      border: '1px solid var(--theme4)',

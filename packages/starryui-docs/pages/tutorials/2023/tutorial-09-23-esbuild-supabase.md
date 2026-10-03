@@ -7,21 +7,46 @@ Create a `package.json` file with [npm](https://www.npmjs.com/) and install [Typ
 ```shell
 mkdir my-project && cd ./my-project
 npm init # fill out the prompts to create package.json
-npm i --save typescript @types/node @starryui/theme @starryui/traits @starryui/theme-midnight
+npm i --save typescript @starryui/layout @starryui/theme @starryui/traits @starryui/theme-midnight
+npm i --save-dev esbuild
 ```
 
 ---
 
 ### Setup TypeScript
 
-Add a script to `package.json` to build the app:
+Add a script to `package.json` to compile and serve the app:
 
 ```typescript
 {
  "scripts": {
-  "build": "tsc index.ts"
+  "start": "esbuild index.ts --bundle --outfile=dist/main.js --servedir=. --serve=8080"
  }
 }
+```
+
+`index.ts` runs in the browser. esbuild only compiles that file, bundles the StarryUI packages into `dist/main.js`, and serves the files in this directory. It does not run the app in Node.
+
+---
+
+### Page
+
+Create `index.html` in your project directory. The browser loads the bundle from this page:
+
+```html
+<!DOCTYPE html>
+<head>
+ <title>My Project</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <style>
+  body {
+   background-color: #232327;
+  }
+ </style>
+</head>
+<body>
+ <script src="/dist/main.js"></script>
+</body>
 ```
 
 ---
@@ -47,11 +72,10 @@ document.body.appendChild(mainArea)
 
 ### Build and Run
 
-Now it's time to build and run our app.
+Now it's time to serve the app.
 
 ```shell
-npm run build
-node .
+npm start
 ```
 
 If there were no errors in any of the previous steps, you should now have a working application that you can visit at [http://localhost:8080](http://localhost:8080)
