@@ -10,6 +10,7 @@ export interface TreeNode {
  label: string
  children?: TreeNode[]
  expanded?: boolean
+ branch?: boolean
 }
 
 export interface TreeConfig extends StarryUITraitConfig {
@@ -54,11 +55,16 @@ export const tree = starryComponent<HTMLElement, TreeConfig>(function (
      row.setAttribute('data-selected', '1')
     }
     const marker = document.createElement('span')
-    const hasChildren = Boolean(node.children?.length)
-    marker.textContent = hasChildren ? (expanded.has(node.id) ? '▾' : '▸') : '·'
+    const hasChildren = Boolean(node.children?.length) || node.branch === true
+    marker.textContent = hasChildren ? (expanded.has(node.id) && node.children?.length ? '▾' : '▸') : '·'
     marker.addEventListener('click', (event) => {
      event.stopPropagation()
-     if (!hasChildren) {
+     if (!node.children?.length) {
+      if (node.branch) {
+       selected = node.id
+       config?.onSelect?.(node.id)
+       render()
+      }
       return
      }
      if (expanded.has(node.id)) {

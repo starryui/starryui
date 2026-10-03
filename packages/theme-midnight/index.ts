@@ -411,6 +411,8 @@ export const themeMidnight: StarryUITheme = {
      flexDirection: 'column',
     },
     '& > [data-starryui-pane]': {
+     display: 'flex',
+     flexDirection: 'column',
      minHeight: '0',
      minWidth: '0',
      overflow: 'auto',
@@ -534,6 +536,10 @@ export const themeMidnight: StarryUITheme = {
     '& tr[data-selected="1"]': {
      backgroundColor: 'var(--theme3)',
     },
+    '& tr[data-starryui-trait="tableSummary"] td': {
+     backgroundColor: 'var(--theme2)',
+     fontWeight: '600',
+    },
     '& tr[data-archived="1"] td': {
      color: 'var(--theme8)',
     },
@@ -593,6 +599,8 @@ export const themeMidnight: StarryUITheme = {
    {
     '': {
      boxSizing: 'border-box',
+     flex: '1 1 auto',
+     minHeight: '0',
      overflow: 'auto',
      width: '100%',
     },

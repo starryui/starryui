@@ -43,6 +43,7 @@ export interface TableConfig extends StarryUITraitConfig {
  onSelectRow?(index: number): void
  onPage?(page: number): void
  onCellEdit?(row: number, column: string, value: string): void
+ summary?: Record<string, string>
 }
 
 const filterOps: TableFilterOp[] = ['contains', 'eq', 'neq', 'gt', 'lt', 'empty']
@@ -163,6 +164,19 @@ export const table = starryComponent<HTMLElement, TableConfig>(function (
    grid.appendChild(head)
   }
   grid.appendChild(body)
+  const summary = config?.summary ?? {}
+  if (columns.some((column) => summary[column.name])) {
+   const foot = document.createElement('tfoot')
+   const tr = document.createElement('tr')
+   tr.setAttribute('data-starryui-trait', 'tableSummary')
+   for (const column of columns) {
+    const td = document.createElement('td')
+    td.textContent = summary[column.name] ?? ''
+    tr.appendChild(td)
+   }
+   foot.appendChild(tr)
+   grid.appendChild(foot)
+  }
   elem.appendChild(grid)
   if (config?.onPage) {
    elem.appendChild(pager(config))
