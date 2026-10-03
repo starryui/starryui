@@ -466,11 +466,18 @@ export const themeMidnight: StarryUITheme = {
      minWidth: '0',
     },
     '& [data-starryui-trait="tableHeadingLabel"]': {
+     alignItems: 'baseline',
      cursor: 'pointer',
+     display: 'inline-flex',
      flex: '1',
+     gap: 'var(--dimension1)',
      minWidth: '0',
      overflow: 'hidden',
-     textOverflow: 'ellipsis',
+    },
+    '& [data-starryui-trait="tableHeadingType"]': {
+     color: 'var(--theme8)',
+     flexShrink: '0',
+     fontSize: '11px',
     },
     '& [data-starryui-trait="tableFilterButton"]': {
      alignItems: 'center',

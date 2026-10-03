@@ -86,12 +86,23 @@ export const table = starryComponent<HTMLElement, TableConfig>(function (
     cell.style.width = `${column.width}px`
    }
    const active = sort.find((item) => item.column === column.name)
-   const mark = active ? (active.direction === 'asc' ? ' ↑' : ' ↓') : ''
+   const mark = active ? (active.direction === 'asc' ? '↑' : '↓') : ''
    const heading = document.createElement('div')
    heading.setAttribute('data-starryui-trait', 'tableHeading')
    const label = document.createElement('span')
    label.setAttribute('data-starryui-trait', 'tableHeadingLabel')
-   label.textContent = `${column.name}${column.type ? ` ${column.type}` : ''}${mark}`
+   const name = document.createElement('span')
+   name.textContent = column.name
+   label.appendChild(name)
+   if (column.type) {
+    const type = document.createElement('span')
+    type.setAttribute('data-starryui-trait', 'tableHeadingType')
+    type.textContent = column.type
+    label.appendChild(type)
+   }
+   if (mark) {
+    label.appendChild(document.createTextNode(mark))
+   }
    label.addEventListener('click', () => {
     const next: TableSort[] = active
      ? [{ column: column.name, direction: active.direction === 'asc' ? 'desc' : 'asc' }]
