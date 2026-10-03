@@ -1,5 +1,6 @@
 import { frame } from '@starryui/frame'
 import { column, row } from '@starryui/layout'
+import { loading as loadingView } from '@starryui/loading'
 import { StarryUIPage, page } from '@starryui/page'
 import { renderMarkdownFromPath } from '@starryui/starryui-docs/util/markdown'
 import {
@@ -9,6 +10,7 @@ import {
  attachThemeVariables,
 } from '@starryui/theme'
 import { NORMAL_DELAY_MS } from '@starryui/traits/constants.js'
+import { withTextContent } from '@starryui/traits'
 import hljs from 'highlight.js/lib/core'
 import hljsLanguageTypeScript from 'highlight.js/lib/languages/typescript'
 import { componentList } from './component-list'
@@ -155,13 +157,15 @@ export function components(theme: StarryUITheme): StarryUIPage {
      padding: 'var(--dimension2)',
      textAlign: 'center',
     })
-    let loading = false
+    let busy = false
     hoverReadme.addEventListener('mouseover', async function () {
-     if (loading) {
+     if (busy) {
       return
      }
-     loading = true
-     hoverReadme.textContent = 'loading...' // todo loading component
+     busy = true
+     hoverReadme.replaceChildren(
+      applyTheme(theme, loadingView).add(withTextContent('Loading'))()
+     )
      readmeContent.setAttribute('data-starryui-reveal', 'hidden')
      readmeContent.innerHTML = await renderMarkdownFromPath(
       `/pages/components/${componentDefinition.title}.md`

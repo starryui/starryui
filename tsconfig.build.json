@@ -21,15 +21,25 @@
  "include": ["./packages/**/*.ts"],
  "references": [
   { "path": "./packages/button" },
+  { "path": "./packages/dialog" },
+  { "path": "./packages/field" },
   { "path": "./packages/frame" },
   { "path": "./packages/layout" },
+  { "path": "./packages/loading" },
+  { "path": "./packages/markdown" },
   { "path": "./packages/menu" },
+  { "path": "./packages/notice" },
   { "path": "./packages/page" },
+  { "path": "./packages/split" },
   { "path": "./packages/starryui-docs" },
+  { "path": "./packages/table" },
+  { "path": "./packages/tabs" },
+  { "path": "./packages/theme-brilliance" },
   { "path": "./packages/theme-midnight" },
   { "path": "./packages/theme-sandstone" },
   { "path": "./packages/theme" },
   { "path": "./packages/traits" },
-  { "path": "./packages/tray" }
+  { "path": "./packages/tray" },
+  { "path": "./packages/tree" }
  ]
 }

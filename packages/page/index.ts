@@ -5,6 +5,7 @@ import {
  applyTraits,
  starryComponent,
 } from '@starryui/traits'
+import { NORMAL_DELAY_MS } from '@starryui/traits/constants.js'
 
 export const defaultPageConfig: StarryUITraitConfig = { themeFacet: 'column' }
 
@@ -13,6 +14,7 @@ export const page = starryComponent<StarryUIPage>(function (
 ) {
  return function (config?: StarryUITraitConfig) {
   const elem = document.createElement('div')
+  elem.setAttribute('data-starryui-reveal', 'hidden')
 
   const startUpTasks: StarryUITaskSchedule = {
    initial: [],
@@ -32,6 +34,8 @@ export const page = starryComponent<StarryUIPage>(function (
 
   async function onLoad(final: boolean) {
    if (final) {
+    await new Promise((resolve) => setTimeout(resolve, NORMAL_DELAY_MS))
+    elem.setAttribute('data-starryui-reveal', 'reveal')
     for (const task of startUpTasks.final) {
      await task()
     }

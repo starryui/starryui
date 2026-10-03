@@ -290,5 +290,246 @@ export const themeMidnight: StarryUITheme = {
     },
    },
   ],
+  check: {
+   accentColor: 'var(--themef)',
+   height: 'var(--dimension3)',
+   width: 'var(--dimension3)',
+  },
+  code: [
+   {
+    '': {
+     backgroundColor: 'var(--theme1)',
+     border: '1px solid var(--theme4)',
+     boxSizing: 'border-box',
+     color: 'var(--themef)',
+     fontFamily: "'Source Code Pro', 'Liberation Mono', monospace",
+     fontSize: '13px',
+     lineHeight: '1.45',
+     minHeight: '8rem',
+     padding: 'var(--dimension2)',
+     resize: 'vertical',
+     width: '100%',
+    },
+   },
+  ],
+  dialog: [
+   {
+    '': {
+     backgroundColor: 'var(--theme0)',
+     border: '1px solid var(--theme4)',
+     borderRadius: 'var(--dimension2)',
+     boxSizing: 'border-box',
+     color: 'var(--themef)',
+     display: 'flex',
+     flexDirection: 'column',
+     gap: 'var(--dimension3)',
+     maxHeight: '80vh',
+     maxWidth: '36rem',
+     minWidth: '18rem',
+     overflow: 'auto',
+     padding: 'var(--dimension3)',
+    },
+   },
+  ],
+  'dialog-backdrop': {
+   alignItems: 'center',
+   backgroundColor: 'rgba(0, 0, 0, 0.45)',
+   bottom: '0',
+   display: 'flex',
+   justifyContent: 'center',
+   left: '0',
+   position: 'fixed',
+   right: '0',
+   top: '0',
+   zIndex: '5',
+  },
+  field: [
+   {
+    '': {
+     boxSizing: 'border-box',
+     color: 'var(--themef)',
+     font: 'inherit',
+    },
+    '&:is(input, textarea, select)': {
+     backgroundColor: 'var(--theme1)',
+     border: '1px solid var(--theme4)',
+     padding: 'var(--dimension2)',
+     width: '100%',
+    },
+    '&:is(label)': {
+     display: 'flex',
+     flexDirection: 'column',
+     gap: 'var(--dimension1)',
+     width: '100%',
+    },
+    '& > span': {
+     fontSize: '12px',
+     letterSpacing: '0.04em',
+     textTransform: 'uppercase',
+    },
+   },
+  ],
+  loading: {
+   color: 'var(--theme8)',
+   fontSize: '13px',
+   padding: 'var(--dimension2)',
+  },
+  notice: [
+   {
+    '': {
+     border: '1px solid var(--theme4)',
+     boxSizing: 'border-box',
+     fontSize: '14px',
+     padding: 'var(--dimension2) var(--dimension3)',
+    },
+    '&[data-tone="error"]': {
+     backgroundColor: 'var(--theme2)',
+     color: 'var(--themef)',
+    },
+    '&[data-tone="info"]': {
+     backgroundColor: 'var(--theme1)',
+    },
+    '&[data-tone="empty"]': {
+     color: 'var(--theme8)',
+     textAlign: 'center',
+    },
+   },
+  ],
+  split: [
+   {
+    '': {
+     boxSizing: 'border-box',
+     display: 'flex',
+     flexDirection: 'row',
+     flexGrow: '1',
+     minHeight: '0',
+     minWidth: '0',
+     overflow: 'hidden',
+     width: '100%',
+    },
+    '&[data-direction="column"]': {
+     flexDirection: 'column',
+    },
+    '& > [data-starryui-pane]': {
+     minHeight: '0',
+     minWidth: '0',
+     overflow: 'auto',
+    },
+    '& > [data-starryui-trait="splitHandle"]': {
+     backgroundColor: 'var(--theme4)',
+     flexShrink: '0',
+    },
+    '&[data-direction="row"] > [data-starryui-trait="splitHandle"]': {
+     cursor: 'col-resize',
+     width: 'var(--dimension2)',
+    },
+    '&[data-direction="column"] > [data-starryui-trait="splitHandle"]': {
+     cursor: 'row-resize',
+     height: 'var(--dimension2)',
+    },
+   },
+  ],
+  table: [
+   {
+    '': {
+     boxSizing: 'border-box',
+     display: 'flex',
+     flexDirection: 'column',
+     minHeight: '0',
+     overflow: 'auto',
+     width: '100%',
+    },
+    '& table': {
+     borderCollapse: 'collapse',
+     width: '100%',
+    },
+    '& th, & td': {
+     borderBottom: '1px solid var(--theme4)',
+     fontSize: '13px',
+     fontWeight: '400',
+     padding: 'var(--dimension1) var(--dimension2)',
+     textAlign: 'left',
+     whiteSpace: 'nowrap',
+    },
+    '& th': {
+     backgroundColor: 'var(--theme1)',
+     cursor: 'pointer',
+     position: 'sticky',
+     top: '0',
+    },
+    '& tr[data-selected="1"]': {
+     backgroundColor: 'var(--theme3)',
+    },
+    '& input, & select': {
+     backgroundColor: 'var(--theme0)',
+     border: '1px solid var(--theme4)',
+     boxSizing: 'border-box',
+     color: 'var(--themef)',
+     font: 'inherit',
+     width: '100%',
+    },
+    '& [data-starryui-trait="tablePager"]': {
+     display: 'flex',
+     gap: 'var(--dimension2)',
+     padding: 'var(--dimension2)',
+    },
+   },
+  ],
+  tabs: [
+   {
+    '': {
+     boxSizing: 'border-box',
+     display: 'flex',
+     flexDirection: 'column',
+     flexGrow: '1',
+     minHeight: '0',
+     width: '100%',
+    },
+    '& > [data-starryui-trait="tablist"]': {
+     display: 'flex',
+     flexShrink: '0',
+    },
+    '& > [data-starryui-trait="tablist"] > button': {
+     backgroundColor: 'var(--theme1)',
+     border: '1px solid var(--theme4)',
+     borderBottom: 'none',
+     color: 'var(--themef)',
+     cursor: 'pointer',
+     font: 'inherit',
+     padding: 'var(--dimension2) var(--dimension3)',
+    },
+    '& > [data-starryui-trait="tablist"] > button[aria-selected="true"]': {
+     backgroundColor: 'var(--theme0)',
+    },
+    '& > [data-starryui-trait="tabpanel"]': {
+     border: '1px solid var(--theme4)',
+     flexGrow: '1',
+     minHeight: '0',
+     overflow: 'auto',
+    },
+   },
+  ],
+  tree: [
+   {
+    '': {
+     boxSizing: 'border-box',
+     overflow: 'auto',
+     width: '100%',
+    },
+    '& [data-starryui-trait="treeRow"]': {
+     cursor: 'pointer',
+     display: 'flex',
+     gap: 'var(--dimension2)',
+     padding: 'var(--dimension1) var(--dimension2)',
+     whiteSpace: 'nowrap',
+    },
+    '& [data-starryui-trait="treeRow"]:hover': {
+     backgroundColor: 'var(--theme2)',
+    },
+    '& [data-starryui-trait="treeRow"][data-selected="1"]': {
+     backgroundColor: 'var(--theme3)',
+    },
+   },
+  ],
  },
 }
