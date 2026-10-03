@@ -144,11 +144,14 @@ export const table = starryComponent<HTMLElement, TableConfig>(function (
    const tr = document.createElement('tr')
    const td = document.createElement('td')
    td.colSpan = Math.max(columns.length, 1)
-   td.textContent = 'No rows'
+   td.textContent = columns.length === 0 ? 'No columns' : 'No rows'
    tr.appendChild(td)
    body.appendChild(tr)
   }
-  grid.append(head, body)
+  if (columns.length > 0) {
+   grid.appendChild(head)
+  }
+  grid.appendChild(body)
   elem.appendChild(grid)
   if (config?.onPage) {
    elem.appendChild(pager(config))
