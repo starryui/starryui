@@ -97,8 +97,11 @@ export function component(
     mainArea.appendChild(preES)
    }
 
+   const readmeSlot = document.createElement('div')
+   readmeSlot.style.position = 'relative'
    const hoverReadme = document.createElement('div')
    const readmeContent = document.createElement('div')
+   readmeContent.style.display = 'flow-root'
    Object.assign(hoverReadme.style, {
     marginTop: 'var(--dimension3)',
     padding: 'var(--dimension2)',
@@ -110,25 +113,36 @@ export function component(
      return
     }
     busy = true
-    hoverReadme.replaceChildren(
-     applyTheme(theme, loadingView).add(withTextContent('Loading'))()
-    )
+    const loadingButton = applyTheme(theme, loadingView).add(
+     withTextContent('Loading')
+    )()
+    hoverReadme.replaceChildren(loadingButton)
     readmeContent.setAttribute('data-starryui-reveal', 'hidden')
     readmeContent.innerHTML = await renderMarkdownFromPath(
      `/pages/components/${componentDefinition.title}.md`
     )
-    mainArea.appendChild(readmeContent)
+    Object.assign(loadingButton.style, {
+     left: '0',
+     position: 'absolute',
+     right: '0',
+     textAlign: 'center',
+     top: '0',
+     zIndex: '1',
+    })
+    hoverReadme.replaceWith(loadingButton)
+    readmeSlot.appendChild(readmeContent)
     setTimeout(function () {
-     hoverReadme.setAttribute('data-starryui-reveal', 'hidden')
+     loadingButton.setAttribute('data-starryui-reveal', 'hidden')
      readmeContent.setAttribute('data-starryui-reveal', 'reveal')
      setTimeout(function () {
-      mainArea.removeChild(hoverReadme)
+      loadingButton.remove()
      }, NORMAL_DELAY_MS)
     }, NORMAL_DELAY_MS)
    })
    attachThemeFacet(hoverReadme, theme, 'opaque-alt')
    hoverReadme.textContent = 'hover to load more content'
-   mainArea.appendChild(hoverReadme)
+   readmeSlot.appendChild(hoverReadme)
+   mainArea.appendChild(readmeSlot)
 
    config?.startUpTasks?.initial?.push?.(function () {
     if (themeVariablesStyle) {

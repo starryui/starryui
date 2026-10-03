@@ -462,7 +462,13 @@ function draftRow(
  })
  remove.setAttribute('aria-label', 'Remove filter')
  remove.style.flex = '0 0 auto'
+ remove.style.display = 'flex'
+ remove.style.alignItems = 'center'
+ remove.style.justifyContent = 'center'
+ remove.style.width = 'var(--dimension4)'
+ remove.style.height = 'var(--dimension4)'
  remove.style.minWidth = 'var(--dimension4)'
+ remove.style.lineHeight = '1'
  remove.style.padding = '0'
  row.append(op, value, remove)
  return row
