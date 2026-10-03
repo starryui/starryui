@@ -453,14 +453,81 @@ export const themeBrilliance: StarryUITheme = {
     },
     '& th': {
      backgroundColor: 'var(--theme1)',
-     cursor: 'pointer',
+    },
+    '& thead tr:first-child th': {
      position: 'sticky',
      top: '0',
+     zIndex: '2',
+    },
+    '& [data-starryui-trait="tableHeading"]': {
+     alignItems: 'center',
+     display: 'flex',
+     gap: 'var(--dimension1)',
+     minWidth: '0',
+    },
+    '& [data-starryui-trait="tableHeadingLabel"]': {
+     cursor: 'pointer',
+     flex: '1',
+     minWidth: '0',
+     overflow: 'hidden',
+     textOverflow: 'ellipsis',
+    },
+    '& [data-starryui-trait="tableFilterButton"]': {
+     alignItems: 'center',
+     backgroundColor: 'transparent',
+     border: '1px solid transparent',
+     borderRadius: 'var(--dimension1)',
+     color: 'var(--theme8)',
+     cursor: 'pointer',
+     display: 'inline-flex',
+     flexShrink: '0',
+     gap: 'var(--dimension1)',
+     padding: '1px var(--dimension1)',
+    },
+    '& [data-starryui-trait="tableFilterButton"][data-active="1"]': {
+     backgroundColor: 'var(--theme3)',
+     borderColor: 'var(--theme5)',
+     color: 'var(--themef)',
+    },
+    '& [data-starryui-trait="tableFilterCount"]': {
+     fontSize: '11px',
+     lineHeight: '1',
+    },
+    '& [data-starryui-trait="tableFilters"]': {
+     cursor: 'default',
+     verticalAlign: 'top',
+     whiteSpace: 'normal',
+    },
+    '& [data-starryui-trait="tableFilterList"]': {
+     display: 'flex',
+     flexDirection: 'column',
+     gap: '2px',
+     maxWidth: '9rem',
+    },
+    '& [data-starryui-trait="tableFilterChip"]': {
+     alignItems: 'center',
+     display: 'flex',
+     gap: 'var(--dimension1)',
+     minWidth: '0',
+    },
+    '& [data-starryui-trait="tableFilterChip"] span': {
+     minWidth: '0',
+     overflow: 'hidden',
+     textOverflow: 'ellipsis',
+    },
+    '& [data-starryui-trait="tableFilterChip"] button': {
+     backgroundColor: 'transparent',
+     border: 'none',
+     color: 'inherit',
+     cursor: 'pointer',
+     flexShrink: '0',
+     lineHeight: '1',
+     padding: '0',
     },
     '& tr[data-selected="1"]': {
      backgroundColor: 'var(--theme3)',
     },
-    '& input, & select': {
+    '& td input': {
      backgroundColor: 'var(--theme0)',
      border: '1px solid var(--theme4)',
      boxSizing: 'border-box',
