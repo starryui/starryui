@@ -197,6 +197,39 @@ export function createRootCSSVariables(source: { [key: string]: string }) {
 }`
 }
 
+export type ThemeDensity = 'compact' | 'comfortable'
+
+export const themeDensityVariables: Record<ThemeDensity, StarryUIThemeVariables> = {
+ compact: {
+  dimension0: '0',
+  dimension1: '2px',
+  dimension2: '7px',
+  dimension3: '16px',
+  dimension4: '32px',
+  dimensionRow: '28px',
+ },
+ comfortable: {
+  dimension0: '0',
+  dimension1: '4px',
+  dimension2: '10px',
+  dimension3: '20px',
+  dimension4: '40px',
+  dimensionRow: '36px',
+ },
+}
+
+let densityStyleElement: HTMLStyleElement | undefined
+
+export function applyThemeDensity(density: ThemeDensity) {
+ const text = createRootCSSVariables(themeDensityVariables[density])
+ if (!densityStyleElement) {
+  densityStyleElement = attachStyleText(text)
+  return densityStyleElement
+ }
+ densityStyleElement.textContent = text
+ return densityStyleElement
+}
+
 export const useThemeDimensions = {
  zero() {
   return attachStyleText(
@@ -206,18 +239,11 @@ export const useThemeDimensions = {
     dimension2: '0',
     dimension3: '0',
     dimension4: '0',
+    dimensionRow: '0',
    })
   )
  },
  tiny() {
-  return attachStyleText(
-   createRootCSSVariables({
-    dimension0: '0',
-    dimension1: '2px',
-    dimension2: '7px',
-    dimension3: '16px',
-    dimension4: '32px',
-   })
-  )
+  return applyThemeDensity('compact')
  },
 }

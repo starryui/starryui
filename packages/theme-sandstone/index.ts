@@ -129,6 +129,9 @@ export const themeSandstone: StarryUITheme = {
     '&:active': {
      backgroundColor: 'var(--theme0)',
     },
+    '&[data-pressed="1"], &[data-pressed="1"]:hover': {
+     backgroundColor: 'var(--theme3)',
+    },
     '& div[data-starryui-trait="buttonImage"]': {
      backgroundSize: '100%',
      height: 'var(--dimension3)',
@@ -181,16 +184,24 @@ export const themeSandstone: StarryUITheme = {
     },
    },
   ],
-  frame: {
-   border: '1px solid var(--theme2)',
-   borderRadius: 'var(--dimension2)',
-   boxSizing: 'border-box',
-   height: '100%',
-   overflowX: 'hidden',
-   overflowY: 'auto',
-   position: 'relative',
-   width: '100%',
-  },
+  frame: [
+   {
+    '': {
+     border: '1px solid var(--theme2)',
+     borderRadius: 'var(--dimension2)',
+     boxSizing: 'border-box',
+     height: '100%',
+     overflowX: 'hidden',
+     overflowY: 'auto',
+     position: 'relative',
+     width: '100%',
+    },
+    '& > facet(document)': {
+     boxSizing: 'border-box',
+     padding: '0 var(--dimension3)',
+    },
+   },
+  ],
   'link-frame': [
    {
     '& h1 span': {
@@ -451,8 +462,10 @@ export const themeSandstone: StarryUITheme = {
     },
     '& th, & td': {
      borderBottom: '1px solid var(--theme4)',
+     boxSizing: 'border-box',
      fontSize: '13px',
      fontWeight: '400',
+     height: 'var(--dimensionRow)',
      padding: 'var(--dimension1) var(--dimension2)',
      textAlign: 'left',
      whiteSpace: 'nowrap',
@@ -550,6 +563,7 @@ export const themeSandstone: StarryUITheme = {
      boxSizing: 'border-box',
      color: 'var(--themef)',
      font: 'inherit',
+     padding: '0 var(--dimension2)',
      width: '100%',
     },
     '& [data-starryui-trait="tablePager"]': {
@@ -587,9 +601,11 @@ export const themeSandstone: StarryUITheme = {
     },
     '& > [data-starryui-trait="tabpanel"]': {
      border: '1px solid var(--theme4)',
+     boxSizing: 'border-box',
      flexGrow: '1',
      minHeight: '0',
      overflow: 'auto',
+     padding: 'var(--dimension2) var(--dimension3)',
     },
    },
   ],
