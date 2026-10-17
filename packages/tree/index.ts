@@ -8,6 +8,9 @@ import {
 export interface TreeNode {
  id: string
  label: string
+ detail?: string
+ title?: string
+ bullet?: boolean
  children?: TreeNode[]
  expanded?: boolean
  branch?: boolean
@@ -54,30 +57,43 @@ export const tree = starryComponent<HTMLElement, TreeConfig>(function (
     if (node.id === selected) {
      row.setAttribute('data-selected', '1')
     }
-    const marker = document.createElement('span')
+    if (node.title) {
+     row.title = node.title
+    }
     const hasChildren = Boolean(node.children?.length) || node.branch === true
-    marker.textContent = hasChildren ? (expanded.has(node.id) && node.children?.length ? '▾' : '▸') : '·'
-    marker.addEventListener('click', (event) => {
-     event.stopPropagation()
-     if (!node.children?.length) {
-      if (node.branch) {
-       selected = node.id
-       config?.onSelect?.(node.id)
-       render()
+    if (hasChildren || node.bullet !== false) {
+     const marker = document.createElement('span')
+     marker.textContent = hasChildren ? (expanded.has(node.id) && node.children?.length ? '▾' : '▸') : '·'
+     marker.addEventListener('click', (event) => {
+      event.stopPropagation()
+      if (!node.children?.length) {
+       if (node.branch) {
+        selected = node.id
+        config?.onSelect?.(node.id)
+        render()
+       }
+       return
       }
-      return
-     }
-     if (expanded.has(node.id)) {
-      expanded.delete(node.id)
-     } else {
-      expanded.add(node.id)
-     }
-     config?.onToggle?.(node.id, expanded.has(node.id))
-     render()
-    })
+      if (expanded.has(node.id)) {
+       expanded.delete(node.id)
+      } else {
+       expanded.add(node.id)
+      }
+      config?.onToggle?.(node.id, expanded.has(node.id))
+      render()
+     })
+     row.append(marker)
+    }
     const label = document.createElement('span')
+    label.setAttribute('data-starryui-trait', 'treeLabel')
     label.textContent = node.label
-    row.append(marker, label)
+    row.append(label)
+    if (node.detail) {
+     const detail = document.createElement('span')
+     detail.setAttribute('data-starryui-trait', 'treeDetail')
+     detail.textContent = node.detail
+     row.append(detail)
+    }
     row.addEventListener('click', () => {
      selected = node.id
      config?.onSelect?.(node.id)

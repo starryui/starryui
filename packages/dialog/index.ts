@@ -35,10 +35,16 @@ export const dialog = starryComponent<StarryUIDialog, DialogConfig>(function (
   }
   backdrop.appendChild(panel)
   let isOpen = false
+  backdrop.setAttribute('data-dialog-backdrop', '')
   function onKey(event: KeyboardEvent) {
-   if (event.key === 'Escape') {
-    close()
+   if (event.key !== 'Escape' || !isOpen) {
+    return
    }
+   const open = document.querySelectorAll('[data-dialog-backdrop]')
+   if (open.length > 0 && open[open.length - 1] !== backdrop) {
+    return
+   }
+   close()
   }
   function close() {
    if (!isOpen) {
