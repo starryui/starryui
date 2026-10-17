@@ -633,6 +633,17 @@ export const themeMidnight: StarryUITheme = {
     '& [data-starryui-trait="treeRow"][data-selected="1"]': {
      backgroundColor: 'var(--theme3)',
     },
+    '& [data-starryui-trait="treeLabel"]': {
+     flex: '1 1 auto',
+     minWidth: '0',
+     overflow: 'hidden',
+     textOverflow: 'ellipsis',
+    },
+    '& [data-starryui-trait="treeDetail"]': {
+     flexShrink: '0',
+     marginLeft: 'auto',
+     opacity: '0.55',
+    },
    },
   ],
  },
